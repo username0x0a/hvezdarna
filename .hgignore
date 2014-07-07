@@ -1,0 +1,8 @@
+syntax: glob
+
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.DS_Store*
+*~
