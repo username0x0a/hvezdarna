@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Program.h"
 
+
 @interface ProgramList : NSObject
 
-- (int) numberOfDays;
-- (int) numberOfEventsOnDayIndex:(NSInteger)idx;
+- (NSUInteger) numberOfDays;
+- (NSUInteger) numberOfEventsOnDayIndex:(NSInteger)idx;
 - (NSInteger) dayAtIndex:(NSInteger)idx;
-- (Program*) programOnDayIdx:(NSInteger)day atIdx:(NSInteger)idx;
-- (void) processSearchWord:(NSString*)word;
+- (Program *) programOnDayIdx:(NSInteger)day atIdx:(NSInteger)idx;
+- (void) processSearchWord:(NSString *)word;
 
 @end

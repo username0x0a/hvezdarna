@@ -12,35 +12,37 @@
 
 @implementation Program
 
-@synthesize title           = _title;
-@synthesize description     = _description;
-@synthesize day             = _day;
-@synthesize timestamp       = _timestamp;
-@synthesize price           = _price;
-@synthesize link            = _link;
-@synthesize opts            = _opts;
-
-+(id)programWithTitle:(NSString*)title description:(NSString*)description day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString*)price link:(NSString*)link opts:(NSString*)opts {
-    
-    Program *program = [[Program alloc] init];
-    
-    [program setTitle:title];
-    [program setDescription:description];
-	[program setDay:day];
-    [program setTimestamp:timestamp];
-    [program setPrice:price];
-    [program setLink:link];
-	[program setOpts:[opts componentsSeparatedByString:@"|"]];
-    
-    return program;
++ (instancetype)programFromDictionary:(NSDictionary *)dictionary
+{
+	return [[self alloc] initFromDictionary:dictionary];
 }
 
-- (NSString*)smallDescription {
-    
-    if ([self.description length] > kSmallTextLength)
-        return [[self description] stringByPaddingToLength:kSmallTextLength withString:@"…" startingAtIndex:0];
-	else
-		return [self description];
+- (instancetype)initFromDictionary:(NSDictionary *)dictionary
+{
+	if (self = [super init])
+	{
+		dictionary = [dictionary dictionaryExcludingNSNull];
+
+		_ID = [dictionary[@"id"] integerValue];
+		_title = dictionary[@"name"];
+		_description = dictionary[@"desc"];
+		_shortDescription = dictionary[@"short_desc"];
+		_day = [dictionary[@"day"] integerValue];
+		_timestamp = [dictionary[@"time"] integerValue];
+		_price = dictionary[@"price"];
+		_link = dictionary[@"link"];
+		_opts = [dictionary[@"opts"] componentsSeparatedByString:@"|"];
+	}
+
+	return self;
+}
+
+- (NSString *)smallDescription
+{
+    if (_description.length > kSmallTextLength)
+        return [[_description substringToIndex:kSmallTextLength ] stringByAppendingString:@"…"];
+
+	return _description;
 }
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation Utils
 
-+ (NSString*) getValueFromString:(NSString*)data withStarters:(NSArray*)starters andEnding:(NSString*)ending {
++ (NSString *) getValueFromString:(NSString *)data withStarters:(NSArray*)starters andEnding:(NSString *)ending {
 
 	NSRange range = NSMakeRange(0, [data length]-1);
 
@@ -34,7 +34,7 @@
 	return [data substringWithRange:range];
 }
 
-+ (NSInteger) getDayTimestampFromCustomLocalDate:(NSString*)date {
++ (NSInteger) getDayTimestampFromCustomLocalDate:(NSString *)date {
 	
 	NSDateComponents* dc = [[NSDateComponents alloc] init];
 	[dc setDay:[date intValue]];
@@ -63,37 +63,36 @@
 	return [n intValue];
 }
 
-+ (NSInteger) getDayTimestampFromCustomLocalTime:(NSString*)time {
++ (NSInteger) getDayTimestampFromCustomLocalTime:(NSString *)time {
 	NSArray* t = [time componentsSeparatedByString:@":"];
 	return [[t objectAtIndex:0] intValue] * 3600 + [[t objectAtIndex:1] intValue] * 60;
 }
 
 + (NSInteger) getLocalDayTimestampFromTimestamp:(NSInteger)timestamp {
-	return timestamp / 86400 * 86400;
+	return timestamp / kTimeDayInSeconds * kTimeDayInSeconds;
 }
 
 + (NSInteger) unixTimestamp {
 	return [[NSDate date] timeIntervalSince1970];
 }
 
-+ (NSString*) getLocalTimeStringFromTimestamp:(NSInteger)timestamp {
++ (NSString *) getLocalTimeStringFromTimestamp:(NSInteger)timestamp {
 	NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
 	NSDateComponents *c = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
-	NSString *minute = [NSString stringWithFormat:([c minute] < 10 ? @"0%d" : @"%d"), [c minute]];
-	return [NSString stringWithFormat:@"%d.%@", [c hour], minute];
+	return [NSString stringWithFormat:@"%d.%02d", c.hour, c.minute];
 }
 
-+ (NSString*) getLocalDayOfWeekStringFromTimestamp:(NSInteger)timestamp {
-	NSArray *days = @[@"Pondělí", @"Úterý", @"Středa", @"Čtvrtek", @"Pátek", @"Sobota", @"Neděle"];
-	timestamp += 2*60*60; // UTC->CET max difference
-	int idx = (timestamp / 86400 % 7 + 3) % 7;
++ (NSString *) getLocalDayOfWeekStringFromTimestamp:(NSInteger)timestamp {
+	NSArray *days = @[ @"Pondělí", @"Úterý", @"Středa", @"Čtvrtek", @"Pátek", @"Sobota", @"Neděle" ];
+	timestamp += 2 * kTimeHourInSeconds; // UTC->CET max difference
+	int idx = (timestamp / kTimeDayInSeconds % 7 + 3) % 7;
 	return [days objectAtIndex:idx];
 }
 
-+ (NSString*) getLocalDateStringFromTimestamp:(NSInteger)timestamp {
++ (NSString *) getLocalDateStringFromTimestamp:(NSInteger)timestamp {
 	NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
@@ -102,12 +101,12 @@
 	return [NSString stringWithFormat:@"%d. %@", [c day], [self getLocalMonthNameFromNumber:[c month]]];
 }
 
-+ (NSString*) getLocalMoneyValueFromString:(NSString*)price {
++ (NSString *) getLocalMoneyValueFromString:(NSString *)price {
 	if ([price intValue] > 0) return [NSString stringWithFormat:@"%@ Kč", price];
 	else return @"zdarma";
 }
 
-+ (NSString*) getLocalUnitValueFromFloat:(float)value {
++ (NSString *) getLocalUnitValueFromFloat:(float)value {
 	NSInteger int_value =[[NSNumber numberWithFloat:value] intValue];
 	if (value == int_value)
 		return [NSString stringWithFormat:@"%d", int_value];
@@ -115,7 +114,7 @@
 	return [ret stringByReplacingOccurrencesOfString:@"." withString:@","];
 }
 
-+ (NSString*) getLocalMonthNameFromNumber:(NSInteger)month {
++ (NSString *) getLocalMonthNameFromNumber:(NSInteger)month {
 	if (month == 1) return @"ledna";
 	if (month == 2) return @"února";
 	if (month == 3) return @"března";
@@ -131,7 +130,7 @@
 	return @"";
 }
 
-+ (NSString*) getWeatherIconFromConditionString:(NSString*)condition {
++ (NSString *) getWeatherIconFromConditionString:(NSString *)condition {
 	
 	// WS-2300 forecast values: "Rainy", "Cloudy", "Sunny"
 
@@ -146,10 +145,27 @@
 
 	if ([condition isEqualToString:@"Cloudy"]) return @"cloudy";
 	if ([condition isEqualToString:@"Rainy"]) return @"rain";
+
 	return nil;
 }
 
-+ (void) openURL:(NSString*)url inDelegate:(UIViewController *)delegate withStyle:(UtilsWebBrowserStyle)style {
++ (NSString *) getVerboseStringFromConditionString:(NSString *)condition {
+
+	// WS-2300 forecast values: "Rainy", "Cloudy", "Sunny"
+
+	if ([condition isEqualToString:@"Sunny"])
+		return NSLocalizedString(@"Clear", @"Condition");
+
+	if ([condition isEqualToString:@"Cloudy"])
+		return NSLocalizedString(@"Cloudy", @"Condition");
+
+	if ([condition isEqualToString:@"Rainy"])
+		return NSLocalizedString(@"Rainy", @"Condition");
+
+	return nil;
+}
+
++ (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate withStyle:(UtilsWebBrowserStyle)style {
 		
 	NSURL *URL = [NSURL URLWithString:url];
 	
@@ -213,6 +229,25 @@
 }
 
 #pragma clang diagnostic pop
+
+@end
+
+
+@implementation NSDictionary (Utils)
+
+- (NSDictionary *)dictionaryExcludingNSNull
+{
+	NSMutableDictionary *mutable = [self mutableCopy];
+	NSMutableArray *keysToRemove = [NSMutableArray array];
+
+	for (NSString *key in self.allKeys)
+		if ([self[key] isKindOfClass:[NSNull class]])
+			[keysToRemove addObject:key];
+
+	[mutable removeObjectsForKeys:keysToRemove];
+
+	return [mutable copy];
+}
 
 @end
 

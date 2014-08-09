@@ -8,10 +8,10 @@
 
 #import "AppDelegate.h"
 
-#import "ActualViewController.h"
-#import "ProgramViewController.h"
+#import "WeatherViewController.h"
+#import "EventsListViewController.h"
 #import "ProgramSplitViewController.h"
-#import "OHvezdarneViewController.h"
+#import "AboutObservatoryViewController.h"
 #import "SVWebViewController.h"
 
 
@@ -31,25 +31,26 @@
 {
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-	// Override point for customization after application launch.
-	UIViewController *aktualneController, *programController, *oHvezdarneController;
+	// Declare tabbed view controllers
+	UIViewController *weather, *eventsList, *observatory;
 
-	aktualneController = [[ActualViewController alloc] initWithNibName:@"ActualViewController" bundle:nil];
-	oHvezdarneController = [[OHvezdarneViewController alloc] initWithNibName:@"OHvezdarneViewController" bundle:nil];
+	weather = [[WeatherViewController alloc] initWithNibName:@"WeatherViewController" bundle:nil];
+	observatory = [[AboutObservatoryViewController alloc] initWithNibName:@"AboutObservatoryViewController" bundle:nil];
 
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-		programController    = [[UINavigationController alloc]initWithRootViewController:[[ProgramViewController alloc] initWithNibName:@"ProgramViewController" bundle:nil]];
-		programController.title = @"Aktuálně";
+		eventsList = [[UINavigationController alloc]initWithRootViewController:[[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil]];
 	} else {
 		[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
-		programController    = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController_iPad" bundle:nil];
+		eventsList = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController_iPad" bundle:nil];
 	}
 
 	_tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.delegate = self;
-	_tabBarController.viewControllers = @[ aktualneController, programController, oHvezdarneController ];
+	_tabBarController.viewControllers = @[ weather, eventsList, observatory ];
 
 	[self refreshTabBarAppearance];
+
+	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 
 	self.window.rootViewController = _tabBarController;
 	[self.window makeKeyAndVisible];
@@ -61,22 +62,21 @@
 {
 	if (isIOS7) {
 
-		BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[ActualViewController class]];
+		BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
 
-		_tabBarController.tabBar.translucent = YES;
-		[_tabBarController.tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : nil];
+		[_tabBarController.tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
 		[_tabBarController.tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
+		_tabBarController.tabBar.translucent = YES;
 		[_tabBarController.tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
 		[_tabBarController.tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
+		[_tabBarController.tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
 
-//		_tabBarController.tabBarItem setTitleTextAttributes:<#(NSDictionary *)#> forState:<#(UIControlState)#>
-
-		[[UIApplication sharedApplication] setStatusBarStyle:(isClear)?UIStatusBarStyleLightContent:UIStatusBarStyleDefault animated:YES];
+		[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
 
 	} else {
 
-		static dispatch_once_t onceToken;
-		dispatch_once(&onceToken, ^{
+		static dispatch_once_t once;
+		dispatch_once(&once, ^{
 
 			[[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
 			[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation"] forBarMetrics:UIBarMetricsDefault];

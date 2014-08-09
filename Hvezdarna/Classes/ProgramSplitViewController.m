@@ -7,8 +7,8 @@
 //
 
 #import "ProgramSplitViewController.h"
-#import "ProgramViewController.h"
-#import "ProgramDetailViewController.h"
+#import "EventsListViewController.h"
+#import "EventDetailViewController.h"
 
 @implementation ProgramSplitViewController
 
@@ -16,11 +16,11 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
 	{
-        self.title                = @"Program";
-        self.tabBarItem.image     = [UIImage imageNamed:@"program.png"];
+        self.title = @"Program";
+		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
 
-		ProgramViewController *root = [[ProgramViewController alloc] initWithNibName:@"ProgramViewController" bundle:nil];
-		ProgramDetailViewController *detail = [[ProgramDetailViewController alloc] initWithNibName:@"ProgramDetailViewController" bundle:nil];
+		EventsListViewController *root = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
+		EventDetailViewController *detail = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
 		
 		UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:root];
 		UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:detail];

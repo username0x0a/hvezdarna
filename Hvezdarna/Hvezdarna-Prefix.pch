@@ -58,6 +58,11 @@
 #define isRetina() ((int)[UIScreen mainScreen].scale > 1)
 #define isWidescreen() ((int)[[UIScreen mainScreen] bounds].size.height == 568)
 
+// App-related paths
+#define NSDocumentsPath() (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0])
+#define NSLibraryPath() (NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0])
+#define NSTemporaryPath() (NSTemporaryDirectory())
+
 // Devices macros
 #define isIPad() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define isIPhone() (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)

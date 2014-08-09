@@ -10,20 +10,20 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>Icon-29.png</string>
-		<string>Icon-29@2x.png</string>
-		<string>Icon-40.png</string>
-		<string>Icon-40@2x.png</string>
-		<string>Icon-50.png</string>
-		<string>Icon-50@2x.png</string>
-		<string>Icon-57.png</string>
-		<string>Icon-57@2x.png</string>
-		<string>Icon-60.png</string>
-		<string>Icon-60@2x.png</string>
-		<string>Icon-72.png</string>
-		<string>Icon-72@2x.png</string>
-		<string>Icon-76.png</string>
-		<string>Icon-76@2x.png</string>
+		<string>AppIcon29x29.png</string>
+		<string>AppIcon29x29@2x.png</string>
+		<string>AppIcon40x40.png</string>
+		<string>AppIcon40x40@2x.png</string>
+		<string>AppIcon50x50.png</string>
+		<string>AppIcon50x50@2x.png</string>
+		<string>AppIcon57x57.png</string>
+		<string>AppIcon57x57@2x.png</string>
+		<string>AppIcon60x60.png</string>
+		<string>AppIcon60x60@2x.png</string>
+		<string>AppIcon72x72.png</string>
+		<string>AppIcon72x72@2x.png</string>
+		<string>AppIcon76x76.png</string>
+		<string>AppIcon76x76@2x.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -31,20 +31,20 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Icon-29.png</string>
-				<string>Icon-29@2x.png</string>
-				<string>Icon-40.png</string>
-				<string>Icon-40@2x.png</string>
-				<string>Icon-50.png</string>
-				<string>Icon-50@2x.png</string>
-				<string>Icon-57.png</string>
-				<string>Icon-57@2x.png</string>
-				<string>Icon-60.png</string>
-				<string>Icon-60@2x.png</string>
-				<string>Icon-72.png</string>
-				<string>Icon-72@2x.png</string>
-				<string>Icon-76.png</string>
-				<string>Icon-76@2x.png</string>
+				<string>AppIcon29x29.png</string>
+				<string>AppIcon29x29@2x.png</string>
+				<string>AppIcon40x40.png</string>
+				<string>AppIcon40x40@2x.png</string>
+				<string>AppIcon50x50.png</string>
+				<string>AppIcon50x50@2x.png</string>
+				<string>AppIcon57x57.png</string>
+				<string>AppIcon57x57@2x.png</string>
+				<string>AppIcon60x60.png</string>
+				<string>AppIcon60x60@2x.png</string>
+				<string>AppIcon72x72.png</string>
+				<string>AppIcon72x72@2x.png</string>
+				<string>AppIcon76x76.png</string>
+				<string>AppIcon76x76@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -67,6 +67,10 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIRequiresPersistentWiFi</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

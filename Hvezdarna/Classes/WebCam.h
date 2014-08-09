@@ -19,7 +19,7 @@
 @property (nonatomic) float                 minimumScale;
 @property (nonatomic) float                 maximumScale;
 
-+ (id)webCamWithURL:(NSString*)URL andImageViewFrame:(CGRect)frame andInsertToSuperView:(UIView*)view;
++ (id)webCamWithURL:(NSString *)URL andImageViewFrame:(CGRect)frame andInsertToSuperView:(UIView*)view;
 
 + (id)webCamZoomableWithURL:(NSString *)URL andImageViewFrame:(CGRect)frame andInsertToSuperView:(UIView*)view;
 

@@ -18,7 +18,7 @@
 @synthesize maximumScale    = _maximumScale;
 @synthesize scrollView      = _scrollView;
 
-+ (id)webCamWithURL:(NSString*)URL andImageViewFrame:(CGRect)frame andInsertToSuperView:(UIView*)view {
++ (id)webCamWithURL:(NSString *)URL andImageViewFrame:(CGRect)frame andInsertToSuperView:(UIView*)view {
     
     WebCam *cam    = [[WebCam alloc] init];
     if (cam) {

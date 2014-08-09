@@ -8,18 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface Program : NSObject
 
-@property (nonatomic,retain) NSString *title;
-@property (nonatomic,retain) NSString *description;
-@property (nonatomic) NSInteger day;
-@property (nonatomic) NSInteger timestamp;
-@property (nonatomic,retain) NSString *price;
-@property (nonatomic,retain) NSString *link;
-@property (nonatomic,retain) NSArray *opts;
+@property (atomic) NSInteger ID;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *shortDescription;
+@property (nonatomic, copy) NSString *description;
+@property (atomic) NSInteger day;
+@property (atomic) NSInteger timestamp;
+@property (nonatomic, copy) NSString *price;
+@property (nonatomic, copy) NSString *link;
+@property (nonatomic, strong) NSArray *opts;
 
-+ (id) programWithTitle:(NSString*)title description:(NSString*)description day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString*)price link:(NSString*)link opts:(NSString*)opts;
++ (instancetype)programFromDictionary:(NSDictionary *)dictionary;
+- (instancetype)initFromDictionary:(NSDictionary *)dictionary;
 
-- (NSString*)smallDescription;
+- (NSString *)smallDescription;
 
 @end

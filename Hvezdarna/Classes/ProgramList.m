@@ -6,126 +6,121 @@
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#define DB_VERSION 10 // DB scheme version
+#define DB_VERSION 11 // DB scheme version
 #define DISPLAYED_DAYS 7 // Number of days to be taken from the DB
 
 #import "ProgramList.h"
 #import "Utils.h"
-//#import "AFNetworking/AFJSONRequestOperation.h"
 #import "AFJSONRequestOperation.h"
-//#import "FMDatabase/FMDatabase.h"
 #import "FMDatabase.h"
 
-@interface ProgramList ()
-{
-	FMDatabase *db;
-	NSMutableArray *working_data;
-	NSLock *working_data_lock;
-	NSString *search_condition;
-}
-@property(nonatomic,retain) FMDatabase *db;
-@property(nonatomic,retain) NSMutableArray *working_data;
-@property(nonatomic,retain) NSLock *working_data_lock;
-@property(nonatomic,retain) NSString *search_condition;
 
-- (id) init;
+@interface ProgramList ()
+
+@property (nonatomic, strong) FMDatabase *db;
+@property (nonatomic, strong) NSMutableArray *workingData;
+@property (nonatomic, strong) NSLock *workingDataLock;
+@property (nonatomic, strong) NSString *searchCondition;
 
 @end
+
 
 @implementation ProgramList
 
 - (id) init {
-	
+
 	self = [super init];
 	if (!self) return nil;
 	
-	NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *path = [NSString stringWithFormat:@"%@%@", [dirPaths objectAtIndex:0], @"/program.db"];
+	NSString *path = [NSLibraryPath() stringByAppendingPathComponent:@"Database.sqlite"];
 	
-	db = [FMDatabase databaseWithPath:path];
-	[db setLogsErrors:YES];
-	[db open];
-	FMResultSet *s = [db executeQuery:@"SELECT * FROM options;"];
-	if (!s || ![s next] || [s intForColumnIndex:1] < DB_VERSION) {
+	_db = [FMDatabase databaseWithPath:path];
+	[_db setLogsErrors:YES];
+	[_db open];
+
+	FMResultSet *s = [_db executeQuery:@"SELECT * FROM options;"];
+	if (!s || ![s next] || [s intForColumn:@"db_version"] < DB_VERSION) {
 		NSLog(@"DB is not up-to-date, updating…");
 		/// ---- Clear old DB structure ----
-		[db executeUpdate:@"DROP TABLE IF EXISTS options;"];
-		[db executeUpdate:@"DROP TABLE IF EXISTS events;"];
+		[_db executeUpdate:@"DROP TABLE IF EXISTS options;"];
+		[_db executeUpdate:@"DROP TABLE IF EXISTS events;"];
 		/// ---- Create DB structure ----
-		[db executeUpdate:@"CREATE TABLE options (initialized int, db_version int, last_update int);"];
-		[db executeUpdate:@"INSERT INTO options VALUES(1, ?, 0);", [NSNumber numberWithInt:DB_VERSION]];
-		[db executeUpdate:@"CREATE TABLE events (id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name text, day int, \"time\" int, \"desc\" text, opts text, price text, link text);"];
+		[_db executeUpdate:@"CREATE TABLE options (initialized integer NOT NULL, db_version integer NOT NULL, last_update integer NOT NULL);"];
+		[_db executeUpdate:@"INSERT INTO options VALUES(1, ?, 0);", @(DB_VERSION)];
+		[_db executeUpdate:@"CREATE TABLE events (id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name text NOT NULL, day integer NOT NULL, 'time' integer NOT NULL, 'desc' text, 'short_desc' text, opts text, price text, link text);"];
 	}
-	search_condition = @"%";
-	working_data = [NSMutableArray array];
+
+	_searchCondition = @"%";
+	_workingData = [NSMutableArray array];
 	[self dailyCleanup];
 	[self updateWorkingCopy];
-	working_data_lock = [NSLock new];
+	_workingDataLock = [NSLock new];
 	[self checkForUpdates];
 
 	return self;
 }
 
 - (void) clearCalendarData {
-	[working_data_lock lock];
-	[db executeUpdate:@"DELETE FROM events;"];
-	[working_data_lock unlock];
+	[_workingDataLock lock];
+	[_db executeUpdate:@"DELETE FROM events;"];
+	[_workingDataLock unlock];
 }
 
 - (void) clearCalendarDataForDay:(NSInteger)day {
-	[working_data_lock lock];
-	[db executeUpdate:@"DELETE FROM events WHERE day = ?;", day];
-	[working_data_lock unlock];
+	[_workingDataLock lock];
+	[_db executeUpdate:@"DELETE FROM events WHERE day = ?;", day];
+	[_workingDataLock unlock];
 }
 
 - (void) dailyCleanup {
-	[working_data_lock lock];
-	[db executeUpdate:@"DELETE FROM events WHERE time < ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
-	[working_data_lock unlock];
+	[_workingDataLock lock];
+	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
+	[_workingDataLock unlock];
 }
 
-- (void) insertEventWithName:(NSString*)name desc:(NSString*)desc day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString*)price link:(NSString*)link opts:(NSString*)opts {
-	[working_data_lock lock];
-	[db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);",
-	 name, [NSNumber numberWithInt:day], [NSNumber numberWithInt:timestamp], desc, opts, price, link];
-	[working_data_lock unlock];
+- (void) insertEventWithName:(NSString *)name desc:(NSString *)desc shortDesc:(NSString *)shortDesc day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString *)price link:(NSString *)link opts:(NSArray *)opts {
+	[_workingDataLock lock];
+    NSString *optsString = [opts componentsJoinedByString:@"|"];
+	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
+	 name, [NSNumber numberWithInt:day], [NSNumber numberWithInt:timestamp], desc, shortDesc, optsString, price, link];
+	[_workingDataLock unlock];
 }
 
-- (int) numberOfDays {
-	return [working_data count];
+- (NSUInteger) numberOfDays {
+	return _workingData.count;
 }
 
-- (int) numberOfEventsOnDayIndex:(NSInteger)idx {
-	NSDictionary *day = [working_data objectAtIndex:idx];
+- (NSUInteger) numberOfEventsOnDayIndex:(NSInteger)idx {
+	NSDictionary *day = [_workingData objectAtIndex:idx];
 	NSArray *events = [day objectForKey:@"Events"];
-	return [events count];
+	return events.count;
 }
 
 - (NSInteger) dayAtIndex:(NSInteger)idx {
-	NSDictionary *day = [working_data objectAtIndex:idx];
+	NSDictionary *day = [_workingData objectAtIndex:idx];
 	NSString *day_id = [day objectForKey:@"Day ID"];
 	return [day_id intValue];
 }
 
 - (Program*) programOnDayIdx:(NSInteger)day_idx atIdx:(NSInteger)idx
 {
-	NSDictionary *day = [working_data objectAtIndex:day_idx];
+	NSDictionary *day = [_workingData objectAtIndex:day_idx];
 	NSArray *events = [day objectForKey:@"Events"];
 	return [events objectAtIndex:idx];
 }
 
 
 - (void) checkForUpdates {
-	[self checkForUpdatesForce:FALSE];
+	[self checkForUpdatesForce:NO];
 }
 
 - (void) checkForUpdatesForce:(BOOL)force {
-	FMResultSet* r = [db executeQuery:@"SELECT last_update FROM options;"];
+	FMResultSet* r = [_db executeQuery:@"SELECT last_update FROM options;"];
 	[r next];
 	int last_update = [r intForColumnIndex:0];
 	
 	// Stop if not forced or updated in last 5 days
-	if (!force && [Utils unixTimestamp] - last_update < 86400 * 5)
+	if (!force && [Utils unixTimestamp] - last_update < 5 * kTimeDayInSeconds)
 		return;
 	
 	NSLog(@"Trying to update calendar data…");
@@ -142,7 +137,7 @@
 		
 		if ([events count] == 0) return;
 		
-		[db beginTransaction];
+		[_db beginTransaction];
 		[self clearCalendarData];
 
 		for (NSDictionary *event in events) {
@@ -151,17 +146,18 @@
 			if (time < [Utils unixTimestamp]) continue;
 
 			int day_id = [Utils getLocalDayTimestampFromTimestamp:time];
-			NSString *name = [event objectForKey:@"name"];
-			NSString *price = [event objectForKey:@"price"];
-			NSString *desc = [event objectForKey:@"desc"];
-			NSString *link = [event objectForKey:@"link"];
-			NSString *opts = [event objectForKey:@"options"];
+			NSString *name = event[@"name"];
+			NSString *price = event[@"price"];
+			NSString *desc = event[@"desc"];
+			NSString *shortDesc = event[@"short_desc"];
+			NSString *link = event[@"link"];
+			NSArray *opts = event[@"options"];
 		
-			[self insertEventWithName:name desc:desc day:day_id timestamp:time price:price link:link opts:opts];
+			[self insertEventWithName:name desc:desc shortDesc:shortDesc day:day_id timestamp:time price:price link:link opts:opts];
 		}
 		
-		[db executeUpdate:@"UPDATE options SET last_update = ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
-		[db commit];
+		[_db executeUpdate:@"UPDATE options SET last_update = ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
+		[_db commit];
 		[self updateWorkingCopy];
 
 		NSLog(@"Calendar data updated.");
@@ -173,53 +169,59 @@
 
 - (void) updateWorkingCopy {
 	
-	[working_data_lock lock];
+	[_workingDataLock lock];
 	// #-----
-	[working_data removeAllObjects];
+	[_workingData removeAllObjects];
 	
 	NSNumber *now = [NSNumber numberWithInt:[Utils unixTimestamp]];
 	
-	FMResultSet *days_data = [db executeQuery:@"SELECT DISTINCT day FROM events WHERE name LIKE ? AND time >= ? LIMIT ?;", search_condition, now, [NSNumber numberWithInt:DISPLAYED_DAYS]];
-	while ([days_data next]) {
+	FMResultSet *daysData = [_db executeQuery:@"SELECT DISTINCT day FROM events WHERE name LIKE ? AND time >= ? LIMIT ?;", _searchCondition, now, [NSNumber numberWithInt:DISPLAYED_DAYS]];
+	while ([daysData next]) {
 
-		NSString* day_id = [days_data stringForColumnIndex:0];
+		NSString * dayID = [daysData stringForColumnIndex:0];
 		NSMutableDictionary *day = [NSMutableDictionary dictionary];
-		[day setValue:day_id forKey:@"Day ID"];
+		[day setValue:dayID forKey:@"Day ID"];
 		NSMutableArray *events = [NSMutableArray array];
 
-		FMResultSet *events_data = [db executeQuery:@"SELECT * FROM events WHERE day = ? AND name LIKE ? AND time >= ?;", day_id, search_condition, now];
-		while ([events_data next]) {
+		FMResultSet *eventsData = [_db executeQuery:@"SELECT * FROM events WHERE day = ? AND name LIKE ? AND time >= ?;", dayID, _searchCondition, now];
 
-			Program* program = [Program programWithTitle:[events_data stringForColumnIndex:1] description:[events_data stringForColumnIndex:4] day:[day_id intValue] timestamp:[events_data intForColumnIndex:3] price:[events_data stringForColumnIndex:6] link:[events_data stringForColumnIndex:7] opts:[events_data stringForColumnIndex:5]];
+		while ([eventsData next]) {
+
+			NSDictionary *dict = [eventsData resultDictionary];
+			if (!dict) continue;
+
+			Program* program = [Program programFromDictionary:dict];
+			if (!program) continue;
 			
 			[events addObject:program];
-		
+
 		}
+
 		[day setValue:events forKey:@"Events"];
-		[working_data addObject:day];
+		[_workingData addObject:day];
 	}
-	
+
 	// -----#
-	[working_data_lock unlock];
+	[_workingDataLock unlock];
 }
 
-- (void) processSearchWord:(NSString*)word
+- (void) processSearchWord:(NSString *)word
 {
 	word = [word stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
 	if ([word length])
-		search_condition = [NSString stringWithFormat:@"%%%@%%", word];
+		_searchCondition = [NSString stringWithFormat:@"%%%@%%", word];
 	else
-		search_condition = @"%";
+		_searchCondition = @"%";
 
 	[self updateWorkingCopy];
 }
 
 - (void) dealloc
 {
-	[working_data_lock lock];
-	[db close];
-	[working_data_lock unlock];
+	[_workingDataLock lock];
+	[_db close];
+	[_workingDataLock unlock];
 }
 
 @end
