@@ -80,9 +80,9 @@
 
 - (void) insertEventWithName:(NSString *)name desc:(NSString *)desc shortDesc:(NSString *)shortDesc day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString *)price link:(NSString *)link opts:(NSArray *)opts {
 	[_workingDataLock lock];
-    NSString *optsString = [opts componentsJoinedByString:@"|"];
+    id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
 	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
-	 name, [NSNumber numberWithInt:day], [NSNumber numberWithInt:timestamp], desc, shortDesc, optsString, price, link];
+	 name, [NSNumber numberWithInt:day], [NSNumber numberWithInt:timestamp], desc, shortDesc, optsObject, price, link];
 	[_workingDataLock unlock];
 }
 
