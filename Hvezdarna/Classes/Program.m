@@ -25,7 +25,7 @@
 
 		_ID = [dictionary[@"id"] integerValue];
 		_title = dictionary[@"name"];
-		_description = dictionary[@"desc"];
+		_longDescription = dictionary[@"desc"];
 		_shortDescription = dictionary[@"short_desc"];
 		_day = [dictionary[@"day"] integerValue];
 		_timestamp = [dictionary[@"time"] integerValue];
@@ -39,10 +39,10 @@
 
 - (NSString *)smallDescription
 {
-    if (_description.length > kSmallTextLength)
-        return [[_description substringToIndex:kSmallTextLength ] stringByAppendingString:@"…"];
+    if (_longDescription.length > kSmallTextLength)
+        return [[_longDescription substringToIndex:kSmallTextLength ] stringByAppendingString:@"…"];
 
-	return _description;
+	return _longDescription;
 }
 
 @end

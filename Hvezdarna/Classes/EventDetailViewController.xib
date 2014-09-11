@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -8,10 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventDetailViewController">
             <connections>
                 <outlet property="date" destination="39" id="35e-8A-Y6Y"/>
-                <outlet property="description" destination="QRh-ad-Tt0" id="0jv-xI-iYK"/>
                 <outlet property="detailsView" destination="56" id="517-3z-pvL"/>
                 <outlet property="eventTitle" destination="19" id="0AT-tb-hkK"/>
                 <outlet property="infoView" destination="60" id="n1D-jF-6OJ"/>
+                <outlet property="longDescription" destination="QRh-ad-Tt0" id="evd-1R-Rwk"/>
                 <outlet property="price" destination="38" id="45"/>
                 <outlet property="scrollView" destination="6" id="zj7-Ll-2to"/>
                 <outlet property="shortDescription" destination="pMD-dX-fbe" id="7WT-1N-71p"/>

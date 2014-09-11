@@ -80,8 +80,8 @@
     _shortDescription.text = _program.shortDescription;
     _shortDescription.accessibilityLabel = _program.shortDescription;
 
-	_description.text = _program.description;
-	_description.accessibilityLabel = _program.description;
+	_longDescription.text = _program.longDescription;
+	_longDescription.accessibilityLabel = _program.longDescription;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
@@ -96,18 +96,18 @@
 		}];
 
 	NSAttributedString *attrDescription = [[NSAttributedString alloc]
-        initWithString:_description.text attributes:@{
+        initWithString:_longDescription.text attributes:@{
             NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: [_description.font fontWithSize:17],
+            NSFontAttributeName: [_longDescription.font fontWithSize:17],
             NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
         }];
 
 	_shortDescription.attributedText = attrShortDescription;
 	_shortDescription.height = [_shortDescription sizeThatFits:CGSizeMake(_shortDescription.width, INT_MAX)].height;
 
-	_description.attributedText = attrDescription;
-    _description.top = _shortDescription.bottom+4.0f;
-	_description.height = [_description sizeThatFits:CGSizeMake(_description.width, INT_MAX)].height;
+	_longDescription.attributedText = attrDescription;
+    _longDescription.top = _shortDescription.bottom+4.0f;
+	_longDescription.height = [_longDescription sizeThatFits:CGSizeMake(_longDescription.width, INT_MAX)].height;
 
 	_detailsView.top = _infoView.bottom;
 
@@ -116,7 +116,7 @@
 		if ([view isKindOfClass:[ProgramDetailCellView class]])
 			[view removeFromSuperview];
 
-	int currentY = _description.bottom+16.0f;
+	int currentY = _longDescription.bottom+16.0f;
 	for (NSString *option in _program.opts)
 	{
 		UINib *nibForCells = [UINib nibWithNibName:@"ProgramDetailCellView" bundle:nil];

@@ -13,7 +13,7 @@
 @interface ProgramCellView : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *title;
-@property (nonatomic, strong) IBOutlet UILabel *description;
+@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *time;
 
 @property (nonatomic, strong) Program *program;

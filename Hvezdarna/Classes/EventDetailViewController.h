@@ -18,7 +18,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UILabel *eventTitle;
 @property (nonatomic, strong) IBOutlet UITextView *shortDescription;
-@property (nonatomic, strong) IBOutlet UITextView *description;
+@property (nonatomic, strong) IBOutlet UITextView *longDescription;
 @property (nonatomic, strong) IBOutlet UIView *infoView;
 @property (nonatomic, strong) IBOutlet UIView *detailsView;
 @property (nonatomic, strong) IBOutlet UILabel *price;

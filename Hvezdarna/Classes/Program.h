@@ -14,7 +14,7 @@
 @property (atomic) NSInteger ID;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *shortDescription;
-@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *longDescription;
 @property (atomic) NSInteger day;
 @property (atomic) NSInteger timestamp;
 @property (nonatomic, copy) NSString *price;
