@@ -1,0 +1,31 @@
+http://www.hvezdarna.cz/meteo/lastmeteodata :
+
+20121030150504 2012-Oct-30 15:05:04 23.7 5.5 -0.4 31 66 1.3 180.0 S 5.5 0.00 0.00 265.21 1008.200 Falling Cloudy 
+
+
+
+
+FORMAT DAT:
+-----------
+-casova znacka
+-datum
+-cas
+-vnitrni teplota
+-venkovni teplota
+-rosny bod
+-vnitrni vlhkost
+-venkovni vlhkost
+-rychlost vetru
+-smer vetru ve stupnich
+-smer vetru textove (N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW)
+-pocitova teplota (wind chill)
+-srazky za posledni hodinu
+-srazky za poslednich 24hodin
+-srazky celkove
+-tlak
+-tlakovatendence textove (Falling atp.)
+-predpoved textove (Cloudy atp.)
+
+priklad:
+--------
+20120301125307 2012-Mar-01 12:53:07 23.0 21.9 8.0 39 41 0.0 22.5 NNE 21.9 0.00 0.00 3.10 1025.400 Rising Sunny
