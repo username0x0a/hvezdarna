@@ -1,6 +1,6 @@
-// AFJSONUtilities.h
+// AFNetworking.h
 //
-// Copyright (c) 2011 Gowalla (http://gowalla.com/)
+// Copyright (c) 2013 AFNetworking (http://afnetworking.com/)
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,24 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import <Availability.h>
 
-extern NSData * AFJSONEncode(id object, NSError **error);
-extern id AFJSONDecode(NSData *data, NSError **error);
+#ifndef _AFNETWORKING_
+    #define _AFNETWORKING_
+
+    #import "AFURLRequestSerialization.h"
+    #import "AFURLResponseSerialization.h"
+    #import "AFSecurityPolicy.h"
+    #import "AFNetworkReachabilityManager.h"
+
+    #import "AFURLConnectionOperation.h"
+    #import "AFHTTPRequestOperation.h"
+    #import "AFHTTPRequestOperationManager.h"
+
+#if ( ( defined(__MAC_OS_X_VERSION_MAX_ALLOWED) && __MAC_OS_X_VERSION_MAX_ALLOWED >= 1090) || \
+      ( defined(__IPHONE_OS_VERSION_MAX_ALLOWED) && __IPHONE_OS_VERSION_MAX_ALLOWED >= 70000 ) )
+    #import "AFURLSessionManager.h"
+    #import "AFHTTPSessionManager.h"
+#endif
+
+#endif /* _AFNETWORKING_ */

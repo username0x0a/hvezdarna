@@ -11,8 +11,8 @@
 
 #import "ProgramList.h"
 #import "Utils.h"
-#import "AFJSONRequestOperation.h"
 #import "FMDatabase.h"
+#import "AFNetworking.h"
 
 
 @interface ProgramList ()
@@ -127,8 +127,10 @@
 	
 	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.misacek.net/program.json"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
-	AFJSONRequestOperation *operation = [[AFJSONRequestOperation alloc] initWithRequest:request];
-	
+
+	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+	operation.responseSerializer = [AFJSONResponseSerializer serializer];
+
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
 		
 		if (!response) return;

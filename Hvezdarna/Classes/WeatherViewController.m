@@ -14,8 +14,6 @@
 #import "Utils.h"
 #import "AFHTTPRequestOperation.h"
 
-#define kInfoButtonPadding  10
-
 
 @interface WeatherViewController ()
 
@@ -241,18 +239,5 @@
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
-
-#pragma mark UIScrollView
-
-
-- (IBAction)openTwitterLink:(id)sender
-{
-	[Utils openURL:self.twitter_link inDelegate:self withStyle:UtilsWebBrowserModal];
-}
-
-- (IBAction)openHomepage
-{
-	[Utils openURL:@"http://hvezdarna.cz/" inDelegate:self withStyle:UtilsWebBrowserModal];
-}
 
 @end
