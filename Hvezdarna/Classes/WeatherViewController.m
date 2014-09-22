@@ -68,6 +68,18 @@
 
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)]];
 
+	if (isIPad())
+	{
+		_temperatureHeadingLabel.top += 32;
+		_temperatureLabel.top += 32;
+		_windSpeedHeadingLabel.top += 40;
+		_windSpeedLabel.top += 40;
+		_pressureHeadingLabel.top += 40;
+		_pressureLabel.top += 40;
+		_humidityHeadingLabel.top += 40;
+		_humidityLabel.top += 40;
+	}
+
 	_blurView = [[MaskAutoAdjustingView alloc] initWithFrame:self.view.frame];
 	_blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //	NSTimeInterval dayInterval = (NSInteger)([[NSDate new] timeIntervalSince1970] + 2*60*60) % 86400;
