@@ -14,10 +14,52 @@
 #import "ProgramList.h"
 #import "Utils.h"
 
+#import <objc/runtime.h>
+
+
+@interface PositionedSearchBar : UISearchBar
+@end
+
+@implementation PositionedSearchBar
+
+- (void)customize
+{
+	self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
+
+	for (UITextField *field in self.allSubviews)
+		if ([field isKindOfClass:[UITextField class]])
+		{
+			UIView *container = field;
+			for (UIView *v in container.subviews)
+				v.hidden = YES;
+			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
+			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+			background.backgroundColor = [UIColor whiteColor];
+			background.layer.cornerRadius = 4;
+			[container addSubview:background];
+		}
+}
+
+- (void)setFrame:(CGRect)frame
+{
+	if (!isIOS(8))
+		[super setFrame:CGRectMake(0, 0, 320, frame.size.height)];
+	else
+		super.frame = frame;
+
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		[self customize];
+	});
+}
+
+@end
+
+
 @interface EventsListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
 
 @property(nonatomic,strong) ProgramList *list;
-@property(nonatomic,copy) NSString *search_string;
+@property(nonatomic,copy) NSString *searchString;
 
 @end
 
@@ -35,12 +77,12 @@
 		if (isIOS7) {
 			self.automaticallyAdjustsScrollViewInsets = NO;
 			self.extendedLayoutIncludesOpaqueBars = NO;
-			self.edgesForExtendedLayout = UIRectEdgeNone;
+			self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
 		}
 
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
-		self.list = [[ProgramList alloc] init];
-		self.search_string = @"";
+		_list = [[ProgramList alloc] init];
+		_searchString = @"";
     }
 
     return self;
@@ -53,25 +95,15 @@
 	if (isIOS7) {
 		self.view.backgroundColor = [UIColor whiteColor];
 		_searchBar.clipsToBounds = NO;
-		_searchBar.top += kUIStatusBarHeight;
-		_searchBar.backgroundImage = [UIImage new];
-		_searchBar.backgroundColor = [UIColor colorWithRed:199/255.0 green:199/255.0 blue:204/255.0 alpha:1.0];
-		UIView *statusBarCover = [[UIView alloc] initWithFrame:_searchBar.bounds];
-		statusBarCover.backgroundColor = _searchBar.backgroundColor;
-		statusBarCover.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		[self.view addSubview:statusBarCover];
-		statusBarCover.height = kUIStatusBarHeight;
-		_tableView.frame = self.view.bounds;
-		_tableView.top += kUIStatusBarHeight;
-		_tableView.height -= kUIStatusBarHeight-kUITabBarHeight;
+		CGFloat topOffset = kUINavigationBarHeight;
+		if (isIOS7) topOffset += kUIStatusBarHeight;
 		_tableView.contentInset = _tableView.scrollIndicatorInsets =
-			UIEdgeInsetsMake(kUINavigationBarHeight, 0, kUITabBarHeight, 0);
+			UIEdgeInsetsMake(topOffset, 0, kUITabBarHeight, 0);
 	}
 
-//	_searchBar.backgroundImage = [UIImage imageNamed:@"navigation"];
-//	[self.searchDisplayController setActive:self.searchWasActive];
-//	[self.searchDisplayController.searchBar setSelectedScopeButtonIndex:self.savedScopeButtonIndex];
-//	[self.searchDisplayController.searchBar setText:savedSearchTerm];
+	object_setClass(_searchBar, [PositionedSearchBar class]);
+	self.navigationItem.titleView = _searchBar;
+	_searchBar.width = _searchBar.superview.width;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,8 +112,12 @@
 
 	if (isIOS7)
 		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-    [self.navigationController setNavigationBarHidden:YES animated:YES]; // ??
-    
+
+	if (isIOS7) {
+		self.navigationController.navigationBar.translucent = YES;
+		self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
+	}
+
     NSIndexPath *selection = [_tableView indexPathForSelectedRow];
 
     if (selection)
@@ -216,7 +252,7 @@
 		[_tableView reloadData];
 	}
 	else
-		[searchBar setText:_search_string];
+		[searchBar setText:_searchString];
 }
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
@@ -240,7 +276,7 @@
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar_ {
-	_search_string = [searchBar_ text];
+	_searchString = [searchBar_ text];
     [searchBar_ setShowsCancelButton:NO animated:YES];
     [searchBar_ resignFirstResponder];
 	[self.list processSearchWord:[searchBar_ text]];

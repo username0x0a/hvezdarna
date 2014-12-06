@@ -38,7 +38,9 @@
 	observatory = [[AboutObservatoryViewController alloc] initWithNibName:@"AboutObservatoryViewController" bundle:nil];
 
 	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-		eventsList = [[UINavigationController alloc]initWithRootViewController:[[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil]];
+		UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil]];
+		navVC.navigationBar.translucent = YES;
+		eventsList = navVC;
 	} else {
 		[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
 		eventsList = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController_iPad" bundle:nil];
@@ -60,18 +62,38 @@
 
 - (void)refreshTabBarAppearance
 {
+	static BOOL isInitialDraw = YES;
+
+	CGFloat firstDelay = (isInitialDraw) ? .05:.25;
+
 	if (isIOS7) {
 
 		BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
-
-		[_tabBarController.tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
-		[_tabBarController.tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
-		_tabBarController.tabBar.translucent = YES;
-		[_tabBarController.tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
-		[_tabBarController.tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
-		[_tabBarController.tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
+		UITabBar *tabBar = _tabBarController.tabBar;
 
 		[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
+
+		[UIView animateWithDuration:firstDelay animations:^{
+
+			tabBar.alpha = 0;
+			tabBar.transform = CGAffineTransformMakeTranslation(0, tabBar.height/5);
+
+		} completion:^(BOOL f){
+
+			[tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
+			[tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
+			tabBar.translucent = YES;
+			[tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
+			[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
+			[tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
+
+			[UIView animateWithDuration:firstDelay animations:^{
+
+				tabBar.alpha = 1;
+				tabBar.transform = CGAffineTransformMakeTranslation(0, 0);
+
+			}];
+		}];
 
 	} else {
 
@@ -92,6 +114,8 @@
 		});
 
 	}
+
+	isInitialDraw = NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -128,7 +152,14 @@
 - (void)tabBarController:(UITabBarController *)tabBarController
  didSelectViewController:(UIViewController *)viewController
 {
-	[self refreshTabBarAppearance];
+	static UIViewController *lastViewController;
+
+	if (!lastViewController ||
+		[viewController isKindOfClass:[WeatherViewController class]] ||
+		[lastViewController isKindOfClass:[WeatherViewController class]])
+		[self refreshTabBarAppearance];
+
+	lastViewController = viewController;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
@@ -151,7 +182,7 @@ shouldSelectViewController:(UIViewController *)viewController
 
 	if (isIOS7)
 	[UIView animateWithDuration:.2 animations:^{
-		self.window.transform = CGAffineTransformMakeScale(.92, .92);
+		self.window.transform = CGAffineTransformMakeScale(1.05, 1.05);
 	} completion:^(BOOL finished) {
 		[UIView animateWithDuration:.15 animations:^{
 			self.window.transform = CGAffineTransformMakeScale(1, 1);

@@ -68,7 +68,7 @@
 
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapped:)]];
 
-	if (isIPad())
+	if (isIPad() || isWidescreen())
 	{
 		_temperatureHeadingLabel.top += 32;
 		_temperatureLabel.top += 32;

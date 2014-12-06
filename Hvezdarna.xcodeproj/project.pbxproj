@@ -14,6 +14,7 @@
 		B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */; };
 		EF01346E163BE4DB00AB0FD4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01346D163BE4DB00AB0FD4 /* libsqlite3.dylib */; };
 		EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13F0B0164AA7450040328A /* MessageUI.framework */; };
+		EF4EE6281A336B8A00F811B2 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF4EE6271A336B8A00F811B2 /* Reveal.framework */; };
 		EF59282C196B1CAD00578709 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF59282B196B1CAD00578709 /* RTLabel.m */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
@@ -96,7 +97,6 @@
 		EFEACFF519CEB80800422569 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEACFEC19CEB80800422569 /* AFURLRequestSerialization.m */; };
 		EFEACFF619CEB80800422569 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEACFEE19CEB80800422569 /* AFURLResponseSerialization.m */; };
 		EFEACFF719CEB80800422569 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFEACFF019CEB80800422569 /* AFURLSessionManager.m */; };
-		EFECB9EE196DD24D00D524FD /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFECB9ED196DD24D00D524FD /* Reveal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +110,7 @@
 		B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EF01346D163BE4DB00AB0FD4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EF13F0B0164AA7450040328A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EF4EE6271A336B8A00F811B2 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = Hvezdarna/Libraries/Reveal.framework; sourceTree = "<group>"; };
 		EF59282A196B1CAD00578709 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
 		EF59282B196B1CAD00578709 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -225,7 +226,6 @@
 		EFEACFEE19CEB80800422569 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		EFEACFEF19CEB80800422569 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		EFEACFF019CEB80800422569 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		EFECB9ED196DD24D00D524FD /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = Hvezdarna/Libraries/Reveal.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,13 +236,13 @@
 				EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */,
 				EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */,
 				EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */,
+				EF4EE6281A336B8A00F811B2 /* Reveal.framework in Frameworks */,
 				EFC2DC3019646C06006902DE /* Accelerate.framework in Frameworks */,
 				EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */,
 				EF01346E163BE4DB00AB0FD4 /* libsqlite3.dylib in Frameworks */,
 				B0AC4C2715DA75B80075D628 /* UIKit.framework in Frameworks */,
 				B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */,
 				B0AC4C2915DA75B80075D628 /* Foundation.framework in Frameworks */,
-				EFECB9EE196DD24D00D524FD /* Reveal.framework in Frameworks */,
 				B0AC4C2B15DA75B80075D628 /* CoreGraphics.framework in Frameworks */,
 				EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */,
 			);
@@ -275,7 +275,6 @@
 				EF844B9C19CEBEA100CE392B /* fmdb */,
 				EF592829196B1CAD00578709 /* RTLabel */,
 				EFC2DC06196336C4006902DE /* SVWebViewController */,
-				EFECB9ED196DD24D00D524FD /* Reveal.framework */,
 				EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */,
 				EF844B9819CEBA5900CE392B /* Security.framework */,
 				EFC2DC2F19646C06006902DE /* Accelerate.framework */,
@@ -285,6 +284,7 @@
 				EF01346D163BE4DB00AB0FD4 /* libsqlite3.dylib */,
 				EF13F0B0164AA7450040328A /* MessageUI.framework */,
 				B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */,
+				EF4EE6271A336B8A00F811B2 /* Reveal.framework */,
 				EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */,
 				B0AC4C2615DA75B80075D628 /* UIKit.framework */,
 			);
@@ -732,6 +732,7 @@
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Hvezdarna/Lib/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = armv7;
 			};

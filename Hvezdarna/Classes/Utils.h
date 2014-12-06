@@ -42,6 +42,14 @@ typedef NSUInteger UtilsWebBrowserStyle;
 + (UIFont *)systemFontOfSize:(CGFloat)size;
 + (UIFont *)lightSystemFontOfSize:(CGFloat)size;
 + (UIFont *)boldSystemFontOfSize:(CGFloat)size;
++ (UIFont *)preferredFontForTextStyle:(NSString *)style;
+
+@end
+
+
+@interface UIImage (Utils)
+
++ (UIImage *)pixelImageWithColor:(UIColor *)color;
 
 @end
 
@@ -49,6 +57,13 @@ typedef NSUInteger UtilsWebBrowserStyle;
 @interface NSDictionary (Utils)
 
 - (NSDictionary *)dictionaryExcludingNSNull;
+
+@end
+
+
+@interface UIView (UTils)
+
+- (NSArray *)allSubviews;
 
 @end
 

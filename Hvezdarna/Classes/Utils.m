@@ -228,7 +228,44 @@
 	return [UIFont fontWithName:@"Avenir-Heavy" size:size];
 }
 
++ (UIFont *)preferredFontForTextStyle:(NSString *)style
+{
+	if ([style isEqualToString:UIFontTextStyleBody])
+		return [UIFont systemFontOfSize:17];
+	if ([style isEqualToString:UIFontTextStyleHeadline])
+		return [UIFont boldSystemFontOfSize:17];
+	if ([style isEqualToString:UIFontTextStyleSubheadline])
+		return [UIFont systemFontOfSize:15];
+	if ([style isEqualToString:UIFontTextStyleFootnote])
+		return [UIFont systemFontOfSize:13];
+	if ([style isEqualToString:UIFontTextStyleCaption1])
+		return [UIFont systemFontOfSize:12];
+	if ([style isEqualToString:UIFontTextStyleCaption2])
+		return [UIFont systemFontOfSize:11];
+	return [UIFont systemFontOfSize:17];
+}
+
 #pragma clang diagnostic pop
+
+@end
+
+
+@implementation UIImage (Utils)
+
++ (UIImage *)pixelImageWithColor:(UIColor *)color
+{
+	CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+	UIGraphicsBeginImageContext(rect.size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+
+	CGContextSetFillColorWithColor(context, [color CGColor]);
+	CGContextFillRect(context, rect);
+
+	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+
+	return image;
+}
 
 @end
 
@@ -247,6 +284,23 @@
 	[mutable removeObjectsForKeys:keysToRemove];
 
 	return [mutable copy];
+}
+
+@end
+
+
+@implementation UIView (Utils)
+
+- (NSArray *)allSubviews
+{
+	NSMutableArray *all = [NSMutableArray array];
+
+	[all addObjectsFromArray:self.subviews];
+
+	for (UIView *v in self.subviews)
+		[all addObjectsFromArray:v.allSubviews];
+
+	return all;
 }
 
 @end
