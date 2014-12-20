@@ -35,7 +35,9 @@
 	NSString *path = [NSLibraryPath() stringByAppendingPathComponent:@"Database.sqlite"];
 	
 	_db = [FMDatabase databaseWithPath:path];
+#ifdef DEBUG
 	[_db setLogsErrors:YES];
+#endif
 	[_db open];
 
 	FMResultSet *s = [_db executeQuery:@"SELECT * FROM options;"];
@@ -125,7 +127,7 @@
 	
 	NSLog(@"Trying to update calendar data…");
 	
-	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.misacek.net/program.json"];
+	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.tk/program.json"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];

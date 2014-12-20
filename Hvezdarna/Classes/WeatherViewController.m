@@ -197,6 +197,8 @@
 		
 		// Set temperature
 		double temperature = [[values objectAtIndex:4] doubleValue];
+		temperature = round(temperature);
+		if (temperature == 0) temperature = 0;
 		NSString *temperatureString = [NSString stringWithFormat:@"%.0f °C", temperature];
 		_temperatureLabel.text = temperatureString;
 		_temperatureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
