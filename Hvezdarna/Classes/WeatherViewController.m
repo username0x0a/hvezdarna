@@ -44,7 +44,8 @@
 
 		hidden = !hidden;
 
-		[[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationSlide];
+		if (isIOS7)
+			[[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:UIStatusBarAnimationSlide];
 
 		for (UIView *v in self.view.subviews)
 			if (v != _backgroundView)

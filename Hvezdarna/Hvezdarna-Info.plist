@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
+	<string>cs-CZ</string>
 	<key>CFBundleDisplayName</key>
 	<string>Hvězdárna</string>
 	<key>CFBundleExecutable</key>
@@ -51,7 +51,7 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>net.misacek.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>net.misacek.hvezdarna</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

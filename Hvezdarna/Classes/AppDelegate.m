@@ -50,6 +50,11 @@
 	_tabBarController.delegate = self;
 	_tabBarController.viewControllers = @[ weather, eventsList, observatory ];
 
+//	UIView *mask = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//	mask.backgroundColor = [UIColor whiteColor];
+//	mask.layer.cornerRadius = 4.0;
+//	_tabBarController.view.layer.mask = mask.layer;
+
 	[self refreshTabBarAppearance];
 
 	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];

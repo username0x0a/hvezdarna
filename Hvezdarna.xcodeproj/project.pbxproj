@@ -587,7 +587,7 @@
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
-						DevelopmentTeam = WZAKCTX75Z;
+						DevelopmentTeam = BQ7YQ94D2F;
 					};
 				};
 			};

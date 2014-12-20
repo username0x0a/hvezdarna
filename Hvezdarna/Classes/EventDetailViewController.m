@@ -53,6 +53,23 @@
 	}
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+
+	if (isIOS7)
+	{
+		self.navigationController.navigationBar.barTintColor =
+			[UIColor colorWithWhite:1 alpha:.9];
+		self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
+		self.navigationController.navigationBar.titleTextAttributes = @{
+			UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
+		};
+		//		_scrollView.contentInset = _scrollView.scrollIndicatorInsets =
+		//			UIEdgeInsetsMake(kUIStatusBarHeight+kUINavigationBarHeight, 0, kUITabBarHeight, 0);
+	}
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
