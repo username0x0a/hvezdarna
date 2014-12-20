@@ -41,7 +41,7 @@ nepodařilo načíst</string>
                     </connections>
                 </tableView>
                 <searchBar contentMode="redraw" searchBarStyle="minimal" text="" placeholder="Hledání v programu" id="23">
-                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textInputTraits key="textInputTraits" autocorrectionType="yes"/>
                     <connections>

@@ -48,9 +48,11 @@
 		self.navigationController.navigationBar.titleTextAttributes = @{
 			UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
 		};
-//		_scrollView.contentInset = _scrollView.scrollIndicatorInsets =
-//			UIEdgeInsetsMake(kUIStatusBarHeight+kUINavigationBarHeight, 0, kUITabBarHeight, 0);
 	}
+
+	if (!isIOS7)
+		_scrollView.contentInset = _scrollView.scrollIndicatorInsets =
+			UIEdgeInsetsMake(kUINavigationBarHeight, 0, 0, 0);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,8 +67,6 @@
 		self.navigationController.navigationBar.titleTextAttributes = @{
 			UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
 		};
-		//		_scrollView.contentInset = _scrollView.scrollIndicatorInsets =
-		//			UIEdgeInsetsMake(kUIStatusBarHeight+kUINavigationBarHeight, 0, kUITabBarHeight, 0);
 	}
 }
 

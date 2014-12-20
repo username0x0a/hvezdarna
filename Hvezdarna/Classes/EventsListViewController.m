@@ -24,20 +24,31 @@
 
 - (void)customize
 {
-	self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
+	if (isIOS7)
+	{
+		// Set tint color of bar elements
+		self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
 
-	for (UITextField *field in self.allSubviews)
-		if ([field isKindOfClass:[UITextField class]])
-		{
-			UIView *container = field;
-			for (UIView *v in container.subviews)
-				v.hidden = YES;
-			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
-			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-			background.backgroundColor = [UIColor whiteColor];
-			background.layer.cornerRadius = 4;
-			[container addSubview:background];
-		}
+		// Hide text field subviews and add custom-styled background
+		for (UITextField *field in self.allSubviews)
+			if ([field isKindOfClass:[UITextField class]])
+			{
+				UIView *container = field;
+				for (UIView *v in container.subviews)
+					v.hidden = YES;
+				UIView *background = [[UIView alloc] initWithFrame:container.bounds];
+				background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+				background.backgroundColor = [UIColor whiteColor];
+				background.layer.cornerRadius = 4;
+				[container addSubview:background];
+			}
+	}
+
+	else
+	{
+		// Just remove the bar background
+		[self.subviews.firstObject removeFromSuperview];
+	}
 }
 
 - (void)setFrame:(CGRect)frame
@@ -92,14 +103,14 @@
 {
 	[super viewDidLoad];
 
-	if (isIOS7) {
-		self.view.backgroundColor = [UIColor whiteColor];
-		_searchBar.clipsToBounds = NO;
-		CGFloat topOffset = kUINavigationBarHeight;
-		if (isIOS7) topOffset += kUIStatusBarHeight;
-		_tableView.contentInset = _tableView.scrollIndicatorInsets =
-			UIEdgeInsetsMake(topOffset, 0, kUITabBarHeight, 0);
-	}
+	self.view.backgroundColor = [UIColor whiteColor];
+	_searchBar.clipsToBounds = NO;
+	CGFloat topOffset = kUINavigationBarHeight;
+	CGFloat bottomOffset = 0;
+	if (isIOS7) topOffset += kUIStatusBarHeight;
+	if (isIOS7) bottomOffset += kUITabBarHeight;
+	_tableView.contentInset = _tableView.scrollIndicatorInsets =
+		UIEdgeInsetsMake(topOffset, 0, bottomOffset, 0);
 
 	object_setClass(_searchBar, [PositionedSearchBar class]);
 	self.navigationItem.titleView = _searchBar;
