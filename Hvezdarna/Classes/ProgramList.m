@@ -35,8 +35,8 @@
 	NSString *path = [NSLibraryPath() stringByAppendingPathComponent:@"Database.sqlite"];
 	
 	_db = [FMDatabase databaseWithPath:path];
-#ifdef DEBUG
-	[_db setLogsErrors:YES];
+#ifndef DEBUG
+	_db.logsErrors = NO;
 #endif
 	[_db open];
 
@@ -47,9 +47,9 @@
 		[_db executeUpdate:@"DROP TABLE IF EXISTS options;"];
 		[_db executeUpdate:@"DROP TABLE IF EXISTS events;"];
 		/// ---- Create DB structure ----
-		[_db executeUpdate:@"CREATE TABLE options (initialized integer NOT NULL, db_version integer NOT NULL, last_update integer NOT NULL);"];
+		[_db executeUpdate:@"CREATE TABLE options (initialized INTEGER NOT NULL, db_version INTEGER NOT NULL, last_update INTEGER NOT NULL);"];
 		[_db executeUpdate:@"INSERT INTO options VALUES(1, ?, 0);", @(DB_VERSION)];
-		[_db executeUpdate:@"CREATE TABLE events (id integer NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name text NOT NULL, day integer NOT NULL, 'time' integer NOT NULL, 'desc' text, 'short_desc' text, opts text, price text, link text);"];
+		[_db executeUpdate:@"CREATE TABLE events (id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, day INTEGER NOT NULL, 'time' INTEGER NOT NULL, 'desc' TEXT, 'short_desc' TEXT, opts TEXT, price TEXT, link TEXT);"];
 	}
 
 	_searchCondition = @"%";
