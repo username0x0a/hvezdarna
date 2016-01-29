@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UILabel *title;
 
+- (void)setTitleText:(NSString *)text;
+
 @end

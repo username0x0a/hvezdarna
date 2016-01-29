@@ -30,11 +30,16 @@
 
 - (id)initWithURL:(NSURL *)URL {
     self.webViewController = [[SVWebViewController alloc] initWithURL:URL];
-	self.webViewController.view.multipleTouchEnabled = YES;
     if (self = [super initWithRootViewController:self.webViewController]) {
-        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:webViewController action:@selector(doneButtonClicked:)];
+        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/close"] style:UIBarButtonItemStyleDone target:webViewController action:@selector(doneButtonClicked:)];
     }
     return self;
+}
+
+- (void)viewDidLoad
+{
+	[super viewDidLoad];
+	self.webViewController.view.multipleTouchEnabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

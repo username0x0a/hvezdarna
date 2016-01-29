@@ -247,6 +247,10 @@
     
     else {
         NSArray *items;
+
+		self.backBarButtonItem.tintColor = self.forwardBarButtonItem.tintColor =
+			self.stopBarButtonItem.tintColor = self.actionBarButtonItem.tintColor =
+			self.refreshBarButtonItem.tintColor = self.navigationController.navigationBar.tintColor;
         
         if(self.availableActions == 0) {
             items = [NSArray arrayWithObjects:

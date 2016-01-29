@@ -23,7 +23,7 @@ typedef NSUInteger UtilsWebBrowserStyle;
 + (NSInteger) getDayTimestampFromCustomLocalDate:(NSString *)date;
 + (NSInteger) getDayTimestampFromCustomLocalTime:(NSString *)time;
 + (NSInteger) getLocalDayTimestampFromTimestamp:(NSInteger)timestamp;
-+ (NSInteger) unixTimestamp;
++ (NSTimeInterval) unixTimestamp;
 + (NSString *) getLocalTimeStringFromTimestamp:(NSInteger)timestamp;
 + (NSString *) getLocalDateStringFromTimestamp:(NSInteger)timestamp;
 + (NSString *) getLocalMoneyValueFromString:(NSString *)price;

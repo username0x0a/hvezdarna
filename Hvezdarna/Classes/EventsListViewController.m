@@ -157,8 +157,8 @@
 	}
 	return NO;
 }
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 68.0;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -173,22 +173,23 @@
 
 	NSInteger timestamp = [self.list dayAtIndex:section];
 
-
-	view.title.text = [[NSString stringWithFormat:@"%@   %@",
+	NSString *title = [[NSString stringWithFormat:@"%@   %@",
 		[Utils getLocalDayOfWeekStringFromTimestamp:timestamp],
 		[Utils getLocalDateStringFromTimestamp:timestamp]]
 		uppercaseString];
+
+	[view setTitleText:title];
 
 	return view;
 }
 
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	return [self.list numberOfEventsOnDayIndex:section];
 }
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 	NSInteger count = [self.list numberOfDays];
 

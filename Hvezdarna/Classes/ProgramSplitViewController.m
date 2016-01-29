@@ -10,13 +10,14 @@
 #import "EventsListViewController.h"
 #import "EventDetailViewController.h"
 
+
 @implementation ProgramSplitViewController
 
-- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
-        self.title = @"Program";
+		self.title = @"Program";
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
 
 		EventsListViewController *root = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
@@ -29,7 +30,8 @@
 		self.delegate = detail;
 		root.splitViewController = self;
 	}
-    return self;
+
+	return self;
 }
 
 /*
@@ -37,7 +39,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+	// Drawing code
 }
 */
 

@@ -19,10 +19,10 @@
 @implementation EventDetailViewController
 
 
-#pragma mark Initialization
+#pragma mark - Initialization
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 		self.splitViewController.delegate = self;
@@ -31,7 +31,7 @@
 }
 
 
-#pragma mark View Lifecycle
+#pragma mark - View Lifecycle
 
 
 - (void)viewDidLoad
@@ -158,7 +158,7 @@
 }
 
 
-#pragma mark Other View-related
+#pragma mark - Other View-related
 
 
 - (void)didReceiveMemoryWarning
@@ -168,28 +168,29 @@
 }
 
 
-#pragma mark Functions
+#pragma mark - Actions
 
 
 - (void)openLink
 {
 	SVModalWebViewController *vc = [[SVModalWebViewController alloc]
-									initWithURL:[NSURL URLWithString:_program.link]];
+		initWithURL:[NSURL URLWithString:_program.link]];
 	if (isIPad()) vc.modalPresentationStyle = UIModalPresentationPageSheet;
+	if (isIOS7) vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
 }
 
 
-#pragma mark Split View Delegate
+#pragma mark - Split View Delegate
 
 
 - (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
     id detailVC = [self.splitViewController.viewControllers lastObject];
-    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]) {
+    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)])
         detailVC = nil;
-    }
-    return detailVC;
+
+	return detailVC;
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc

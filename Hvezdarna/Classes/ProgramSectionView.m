@@ -31,4 +31,20 @@
 	return self;
 }
 
+- (void)setTitleText:(NSString *)text
+{
+	if (!text.length) _title.text = text;
+	if (!text.length) return;
+
+	NSAttributedString *attrText = [[NSAttributedString alloc]
+	initWithString:text attributes:@{
+		NSForegroundColorAttributeName: _title.textColor,
+		NSBackgroundColorAttributeName: _title.backgroundColor,
+		NSFontAttributeName: _title.font,
+		NSKernAttributeName: @1,
+	}];
+
+	_title.attributedText = attrText;
+}
+
 @end

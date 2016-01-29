@@ -76,7 +76,7 @@
 
 - (void) dailyCleanup {
 	[_workingDataLock lock];
-	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
+	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", [NSNumber numberWithDouble:[Utils unixTimestamp]]];
 	[_workingDataLock unlock];
 }
 
@@ -84,7 +84,7 @@
 	[_workingDataLock lock];
     id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
 	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
-	 name, [NSNumber numberWithInt:day], [NSNumber numberWithInt:timestamp], desc, shortDesc, optsObject, price, link];
+	 name, [NSNumber numberWithInteger:day], [NSNumber numberWithInteger:timestamp], desc, shortDesc, optsObject, price, link];
 	[_workingDataLock unlock];
 }
 
@@ -119,7 +119,7 @@
 - (void) checkForUpdatesForce:(BOOL)force {
 	FMResultSet* r = [_db executeQuery:@"SELECT last_update FROM options;"];
 	[r next];
-	int last_update = [r intForColumnIndex:0];
+	NSTimeInterval last_update = [r doubleForColumn:@"last_update"];
 	
 	// Stop if not forced or updated in last 5 days
 	if (!force && [Utils unixTimestamp] - last_update < 5 * kTimeDayInSeconds)
@@ -146,10 +146,10 @@
 
 		for (NSDictionary *event in events) {
 		
-			int time = [[event objectForKey:@"time"] integerValue];
+			NSTimeInterval time = [[event objectForKey:@"time"] doubleValue];
 			if (time < [Utils unixTimestamp]) continue;
 
-			int day_id = [Utils getLocalDayTimestampFromTimestamp:time];
+			NSInteger day_id = [Utils getLocalDayTimestampFromTimestamp:time];
 			NSString *name = event[@"name"];
 			NSString *price = event[@"price"];
 			NSString *desc = event[@"desc"];
@@ -160,7 +160,7 @@
 			[self insertEventWithName:name desc:desc shortDesc:shortDesc day:day_id timestamp:time price:price link:link opts:opts];
 		}
 		
-		[_db executeUpdate:@"UPDATE options SET last_update = ?;", [NSNumber numberWithInt:[Utils unixTimestamp]]];
+		[_db executeUpdate:@"UPDATE options SET last_update = ?;", [NSNumber numberWithDouble:[Utils unixTimestamp]]];
 		[_db commit];
 		[self updateWorkingCopy];
 
@@ -177,7 +177,7 @@
 	// #-----
 	[_workingData removeAllObjects];
 	
-	NSNumber *now = [NSNumber numberWithInt:[Utils unixTimestamp]];
+	NSNumber *now = [NSNumber numberWithDouble:[Utils unixTimestamp]];
 	
 	FMResultSet *daysData = [_db executeQuery:@"SELECT DISTINCT day FROM events WHERE name LIKE ? AND time >= ? LIMIT ?;", _searchCondition, now, [NSNumber numberWithInt:DISPLAYED_DAYS]];
 	while ([daysData next]) {

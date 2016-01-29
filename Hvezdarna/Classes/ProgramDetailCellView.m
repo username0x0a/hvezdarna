@@ -15,9 +15,15 @@
 
 @implementation ProgramDetailCellView
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    return (self = [super init]);
+    if (self = [super initWithStyle:style reuseIdentifier:nil])
+	{
+		[self.textLabel removeFromSuperview];
+		[self.detailTextLabel removeFromSuperview];
+	}
+
+	return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -72,7 +72,7 @@
 	return timestamp / kTimeDayInSeconds * kTimeDayInSeconds;
 }
 
-+ (NSInteger) unixTimestamp {
++ (NSTimeInterval) unixTimestamp {
 	return [[NSDate date] timeIntervalSince1970];
 }
 
@@ -82,7 +82,7 @@
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
 	NSDateComponents *c = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
-	return [NSString stringWithFormat:@"%d.%02d", c.hour, c.minute];
+	return [NSString stringWithFormat:@"%zd.%02zd", c.hour, c.minute];
 }
 
 + (NSString *) getLocalDayOfWeekStringFromTimestamp:(NSInteger)timestamp {
@@ -98,7 +98,7 @@
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
 	NSDateComponents *c = [cal components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:date];
-	return [NSString stringWithFormat:@"%d. %@", [c day], [self getLocalMonthNameFromNumber:[c month]]];
+	return [NSString stringWithFormat:@"%zd. %@", [c day], [self getLocalMonthNameFromNumber:[c month]]];
 }
 
 + (NSString *) getLocalMoneyValueFromString:(NSString *)price {
@@ -109,7 +109,7 @@
 + (NSString *) getLocalUnitValueFromFloat:(float)value {
 	NSInteger int_value =[[NSNumber numberWithFloat:value] intValue];
 	if (value == int_value)
-		return [NSString stringWithFormat:@"%d", int_value];
+		return [NSString stringWithFormat:@"%zd", int_value];
 	NSString *ret = [NSString stringWithFormat:@"%.1f", value];
 	return [ret stringByReplacingOccurrencesOfString:@"." withString:@","];
 }
@@ -174,6 +174,8 @@
 		SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
 		webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
 		webViewController.availableActions = SVWebViewControllerAvailableActionsOpenInSafari | SVWebViewControllerAvailableActionsCopyLink | SVWebViewControllerAvailableActionsMailLink;
+		if (isIOS7) webViewController.barsTintColor =
+			[UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
 		[delegate.tabBarController presentViewController:webViewController animated:YES completion:nil];
 	}
 	else if (style == UtilsWebBrowserNavigation)
