@@ -45,16 +45,26 @@
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
 		initWithTarget:self action:@selector(backgroundTapped:)]];
 
-	if (isIPad() || isWidescreen())
+	if (isIPad() || isWidescreen() || isUltraWidescreen())
 	{
 		_temperatureHeadingLabel.top += 32;
 		_temperatureLabel.top += 32;
-		_windSpeedHeadingLabel.top += 40;
-		_windSpeedLabel.top += 40;
-		_pressureHeadingLabel.top += 40;
-		_pressureLabel.top += 40;
-		_humidityHeadingLabel.top += 40;
-		_humidityLabel.top += 40;
+		_detailsContainer.top += 40;
+	}
+
+	if (isIPad())
+	{
+		_detailsContainer.left -= 50;
+		_detailsContainer.width += 100;
+	}
+
+	if (isUltraWidescreen())
+	{
+		_temperatureHeadingLabel.top += 16;
+		_temperatureLabel.top += 16;
+		_detailsContainer.top += 16;
+		_detailsContainer.left -= 20;
+		_detailsContainer.width += 40;
 	}
 
 	_blurView = [[MaskAutoAdjustingView alloc] initWithFrame:self.view.frame];

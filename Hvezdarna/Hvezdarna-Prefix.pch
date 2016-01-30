@@ -57,6 +57,7 @@
 // Screen macros
 #define isRetina() ((int)[UIScreen mainScreen].scale > 1)
 #define isWidescreen() ((int)[[UIScreen mainScreen] bounds].size.height == 568)
+#define isUltraWidescreen() ((int)[[UIScreen mainScreen] bounds].size.height >= 667)
 
 // App-related paths
 #define NSDocumentsPath() (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0])

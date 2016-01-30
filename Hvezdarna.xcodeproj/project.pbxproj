@@ -51,6 +51,7 @@
 		EFA48E291C5BF30400164EB3 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA48E1E1C5BF30400164EB3 /* AFURLRequestSerialization.m */; };
 		EFA48E2A1C5BF30400164EB3 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA48E201C5BF30400164EB3 /* AFURLResponseSerialization.m */; };
 		EFA48E2B1C5BF30400164EB3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA48E221C5BF30400164EB3 /* AFURLSessionManager.m */; };
+		EFA48E2D1C5C326800164EB3 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */; };
 		EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */; };
 		EFB64467197474E100F51C8F /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64459197474E100F51C8F /* AppIcon29x29.png */; };
 		EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */; };
@@ -159,6 +160,7 @@
 		EFA48E201C5BF30400164EB3 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		EFA48E211C5BF30400164EB3 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		EFA48E221C5BF30400164EB3 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EFB64459197474E100F51C8F /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				EF94345B1879D7C4003D7BEF /* weather */,
 				EFC2DC2119634EDB006902DE /* background-default.jpg */,
 				EF9434331879D7C4003D7BEF /* Default-568h@2x.png */,
+				EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */,
 				EF9434341879D7C4003D7BEF /* Default-Landscape@2x~ipad.png */,
 				EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */,
 				EF9434361879D7C4003D7BEF /* Default.png */,
@@ -631,6 +634,7 @@
 				EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */,
 				EFB6446F197474E100F51C8F /* AppIcon60x60.png in Resources */,
 				EFB6446D197474E100F51C8F /* AppIcon57x57.png in Resources */,
+				EFA48E2D1C5C326800164EB3 /* Default-667h@2x.png in Resources */,
 				EF94349F1879D7C4003D7BEF /* Default-Landscape~ipad.png in Resources */,
 				EF9434A01879D7C4003D7BEF /* Default.png in Resources */,
 			);

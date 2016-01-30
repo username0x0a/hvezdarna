@@ -16,6 +16,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *temperatureHeadingLabel;
 @property (nonatomic, strong) IBOutlet UILabel *temperatureLabel;
 
+@property (nonatomic, strong) IBOutlet UIView *detailsContainer;
 @property (nonatomic, strong) IBOutlet UILabel *windSpeedHeadingLabel;
 @property (nonatomic, strong) IBOutlet UILabel *windSpeedLabel;
 @property (nonatomic, strong) IBOutlet UILabel *humidityHeadingLabel;
