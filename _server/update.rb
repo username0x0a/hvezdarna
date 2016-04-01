@@ -24,7 +24,24 @@ class String
 
 	def removeHTML
 		out = self
-		out = out.gsub( /<[^>]+>/, '')
+		out = out.gsub /<[^>]+>/, ''
+		return out
+	end
+
+	def removeEntities
+		out = self
+		occurrences = out.scan(/&#[0-9]{1,4};/).uniq
+		occurrences.each{|o|
+			n = o.sub('&#','').to_i
+			s = '%4.4x' % n
+			c = [s.to_i(16)].pack('U')
+			out = out.gsub o, c
+		}
+
+
+
+#		out = out.gsub /&#(8192|8193|8194|8195|8196|8197|8198|8199|8200);/, ' '
+#		out = out.gsub /&#[0-9]{1,4};/, ''
 		return out
 	end
 
@@ -84,8 +101,8 @@ events = [ ]
 			e['time'] = Time.at(day.to_i + e['time'][0].to_i*60*60 + e['time'][1].to_i*60).to_i
 			e['short_desc'] = p.getValue(['cal-day-desc','>'], '</div')
 			e['desc'] = p.getValue(['cal-day-item-desc-inner','>','>'], /(<div|<\/div)/)
-			e['short_desc'] = e['short_desc'].removeHTML if e['short_desc']
-			e['desc'] = e['desc'].removeHTML if e['desc']
+			e['short_desc'] = e['short_desc'].removeHTML.removeEntities if e['short_desc']
+			e['desc'] = e['desc'].removeHTML.removeEntities if e['desc']
 
 			while e['short_desc'][-1] == "\n" || e['short_desc'][-1] == "\r"
 				e['short_desc'] = e['short_desc'][0..-2]
@@ -98,7 +115,11 @@ events = [ ]
 			e['short_desc'].strip!
 			e['desc'].strip!
 
-			e['link'] = p.getValue(['<a href="'], '"')
+			link = nil
+			programID = p.getValue(['<a href="', 'prdID='], '"')
+			link = 'http://vstupenky.hvezdarna.cz/incoming.aspx?mrsid=2&eventid='+ programID if programID != nil
+			e['link'] = link
+
 			e['options'] = p.getValue(['<P','align=right>'],'</div')
 			if (e['options'])
 				e['options'] = e['options'].split('<br>')
