@@ -27,7 +27,19 @@
 
 @implementation ProgramList
 
-- (id) init {
++ (ProgramList *) sharedList {
+
+	static ProgramList *sharedList = nil;
+
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		sharedList = [[self alloc] init];
+	});
+
+	return sharedList;
+}
+
+- (instancetype) init {
 
 	self = [super init];
 	if (!self) return nil;
@@ -42,7 +54,7 @@
 
 	FMResultSet *s = [_db executeQuery:@"SELECT * FROM options;"];
 	if (!s || ![s next] || [s intForColumn:@"db_version"] < DB_VERSION) {
-		NSLog(@"DB is not up-to-date, updating…");
+		DebugLog(@"DB is not up-to-date, updating…");
 		/// ---- Clear old DB structure ----
 		[_db executeUpdate:@"DROP TABLE IF EXISTS options;"];
 		[_db executeUpdate:@"DROP TABLE IF EXISTS events;"];
@@ -113,19 +125,22 @@
 
 
 - (void) checkForUpdates {
-	[self checkForUpdatesForce:NO];
+	[self checkForUpdatesForce:NO completion:nil];
 }
 
-- (void) checkForUpdatesForce:(BOOL)force {
+- (void) checkForUpdatesForce:(BOOL)force completion:(void (^)(ProgramListUpdateResult))completion {
+
 	FMResultSet* r = [_db executeQuery:@"SELECT last_update FROM options;"];
 	[r next];
 	NSTimeInterval last_update = [r doubleForColumn:@"last_update"];
 	
 	// Stop if not forced or updated in last 5 days
-	if (!force && [Utils unixTimestamp] - last_update < 5 * kTimeDayInSeconds)
+	if (!force && [Utils unixTimestamp] - last_update < 5 * kTimeDayInSeconds) {
+		if (completion) completion(ProgramListUpdateResultNoChange);
 		return;
+	}
 	
-	NSLog(@"Trying to update calendar data…");
+	DebugLog(@"Trying to update calendar data…");
 	
 	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.tk/program.json"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -135,11 +150,17 @@
 
 	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
 		
-		if (!response) return;
+		if (!response) {
+			if (completion) completion(ProgramListUpdateResultNoChange);
+			return;
+		}
 		
 		NSArray *events = [response objectForKey:@"events"];
 		
-		if ([events count] == 0) return;
+		if ([events count] == 0) {
+			if (completion) completion(ProgramListUpdateResultNoChange);
+			return;
+		}
 		
 		[_db beginTransaction];
 		[self clearCalendarData];
@@ -164,11 +185,17 @@
 		[_db commit];
 		[self updateWorkingCopy];
 
-		NSLog(@"Calendar data updated.");
+		DebugLog(@"Calendar data updated.");
+
+		if (completion) completion(ProgramListUpdateResultNewData);
 					
-	} failure:nil];
+	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+		if (completion) completion(ProgramListUpdateResultFailure);
+
+	}];
+
 	[operation start];
-	
 }
 
 - (void) updateWorkingCopy {

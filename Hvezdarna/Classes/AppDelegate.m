@@ -14,6 +14,8 @@
 #import "AboutObservatoryViewController.h"
 #import "SVWebViewController.h"
 
+#import "ProgramList.h"
+
 
 @interface AppDelegate () <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -29,6 +31,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	// Set Background Fetch interval
+	if (isIOS7)
+		[application setMinimumBackgroundFetchInterval:MAX(UIApplicationBackgroundFetchIntervalMinimum, 60*60*24)];
+
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 	// Declare tabbed view controllers
@@ -67,29 +73,49 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+	// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application
+	performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+	// Called irregularly to allow the application to fetch some update data in the background.
+
+	ProgramList *list = [ProgramList sharedList];
+
+	[list checkForUpdatesForce:YES completion:^(ProgramListUpdateResult result) {
+
+		UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultNoData;
+		if (result == ProgramListUpdateResultNewData)
+			fetchResult = UIBackgroundFetchResultNewData;
+		if (result == ProgramListUpdateResultFailure)
+			fetchResult = UIBackgroundFetchResultFailed;
+
+		if (completionHandler)
+			completionHandler(fetchResult);
+	}];
 }
 
 
@@ -126,7 +152,7 @@
 			[UIView animateWithDuration:firstDelay animations:^{
 
 				tabBar.alpha = 1;
-				tabBar.transform = CGAffineTransformMakeTranslation(0, 0);
+				tabBar.transform = CGAffineTransformIdentity;
 
 			}];
 		}];
@@ -174,14 +200,14 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
 shouldSelectViewController:(UIViewController *)viewController
 {
-    NSArray *tabViewControllers = tabBarController.viewControllers;
-    UIView *fromView = tabBarController.selectedViewController.view;
-    UIView *toView = viewController.view;
+	NSArray *tabViewControllers = tabBarController.viewControllers;
+	UIView *fromView = tabBarController.selectedViewController.view;
+	UIView *toView = viewController.view;
 
-    if (fromView == toView)
-        return NO;
+	if (fromView == toView)
+		return NO;
 
-    NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
+	NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
 
 	[UIView transitionFromView:fromView toView:toView duration:0.3
 		options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {
@@ -194,11 +220,11 @@ shouldSelectViewController:(UIViewController *)viewController
 		self.window.transform = CGAffineTransformMakeScale(1.05, 1.05);
 	} completion:^(BOOL finished) {
 		[UIView animateWithDuration:.15 animations:^{
-			self.window.transform = CGAffineTransformMakeScale(1, 1);
+			self.window.transform = CGAffineTransformIdentity;
 		}];
 	}];
 
-    return YES;
+	return YES;
 }
 
 

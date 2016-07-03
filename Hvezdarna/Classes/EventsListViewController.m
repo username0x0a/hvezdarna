@@ -92,7 +92,7 @@
 		}
 
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
-		_list = [[ProgramList alloc] init];
+		_list = [ProgramList sharedList];
 		_searchString = @"";
     }
 

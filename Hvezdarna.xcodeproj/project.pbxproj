@@ -562,11 +562,15 @@
 		B0AC4C1915DA75B80075D628 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
-						DevelopmentTeam = BQ7YQ94D2F;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -748,9 +752,11 @@
 		B0AC4C5515DA75B80075D628 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
 				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -759,9 +765,11 @@
 		B0AC4C5615DA75B80075D628 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
 				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
