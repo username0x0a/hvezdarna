@@ -14,7 +14,6 @@
 		B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */; };
 		EF01346E163BE4DB00AB0FD4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */; };
 		EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13F0B0164AA7450040328A /* MessageUI.framework */; };
-		EF59282C196B1CAD00578709 /* RTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF59282B196B1CAD00578709 /* RTLabel.m */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
@@ -106,8 +105,6 @@
 		B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = ../iPhoneOS.sdk/usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EF13F0B0164AA7450040328A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		EF59282A196B1CAD00578709 /* RTLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTLabel.h; sourceTree = "<group>"; };
-		EF59282B196B1CAD00578709 /* RTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTLabel.m; sourceTree = "<group>"; };
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -264,7 +261,6 @@
 			children = (
 				EFC2DBEB196336C4006902DE /* AFNetworking */,
 				EF844B9C19CEBEA100CE392B /* fmdb */,
-				EF592829196B1CAD00578709 /* RTLabel */,
 				EFC2DC06196336C4006902DE /* SVWebViewController */,
 				EFC2DC2F19646C06006902DE /* Accelerate.framework */,
 				B0AC4C2A15DA75B80075D628 /* CoreGraphics.framework */,
@@ -309,16 +305,6 @@
 				EF94342A1879D7C4003D7BEF /* Images */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		EF592829196B1CAD00578709 /* RTLabel */ = {
-			isa = PBXGroup;
-			children = (
-				EF59282A196B1CAD00578709 /* RTLabel.h */,
-				EF59282B196B1CAD00578709 /* RTLabel.m */,
-			);
-			name = RTLabel;
-			path = Hvezdarna/Libraries/RTLabel;
 			sourceTree = "<group>";
 		};
 		EF844B9C19CEBEA100CE392B /* fmdb */ = {
@@ -674,7 +660,6 @@
 				EFA48E241C5BF30400164EB3 /* AFHTTPRequestOperationManager.m in Sources */,
 				EFA48E291C5BF30400164EB3 /* AFURLRequestSerialization.m in Sources */,
 				EFC2DBA9196335D7006902DE /* Program.m in Sources */,
-				EF59282C196B1CAD00578709 /* RTLabel.m in Sources */,
 				EFC2DBB1196335D7006902DE /* ProgramSectionView.m in Sources */,
 				EFC2DBB9196335D7006902DE /* Utils.m in Sources */,
 				EF844BA919CEBEA100CE392B /* FMDatabaseAdditions.m in Sources */,
