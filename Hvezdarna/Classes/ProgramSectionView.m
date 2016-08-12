@@ -18,12 +18,22 @@
 	{
 		self.backgroundColor = [UIColor colorWithWhite:.9f alpha:.9f];
 
+		for (int i = 0; i < 2; i++) {
+			UIView *line = [[UIView alloc] initWithFrame:self.bounds];
+			line.height = (isRetina()) ? .5:1;
+			line.backgroundColor = [UIColor colorWithWhite:.85f alpha:.9f];
+			line.autoresizingMask = (i) ? UIViewAutoresizingFlexibleTopMargin : UIViewAutoresizingFlexibleBottomMargin;
+			line.autoresizingMask |= UIViewAutoresizingFlexibleWidth;
+			[self addSubview:line];
+			if (i) line.top = self.height;
+		}
+
 		_title = [[UILabel alloc] initWithFrame:self.bounds];
 		_title.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_title.textAlignment = NSTextAlignmentCenter;
 		_title.backgroundColor = [UIColor clearColor];
 		_title.textColor = [UIColor lightGrayColor];
-		_title.font = [UIFont boldSystemFontOfSize:14.0];
+		_title.font = [UIFont boldSystemFontOfSize:15.0];
 		_title.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
 		[self addSubview:_title];
 	}

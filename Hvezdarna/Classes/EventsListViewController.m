@@ -163,7 +163,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 31.0;
+	return 42.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -173,7 +173,7 @@
 
 	NSInteger timestamp = [self.list dayAtIndex:section];
 
-	NSString *title = [[NSString stringWithFormat:@"%@   %@",
+	NSString *title = [[NSString stringWithFormat:@"%@  %@",
 		[Utils getLocalDayOfWeekStringFromTimestamp:timestamp],
 		[Utils getLocalDateStringFromTimestamp:timestamp]]
 		uppercaseString];
@@ -242,6 +242,12 @@
 		[[self.splitViewController.viewControllers objectAtIndex:1] setViewControllers:viewControllerArray animated:NO];
 		[self.splitViewController viewWillAppear:YES];
 	}
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	if ([_searchBar isFirstResponder])
+		[_searchBar resignFirstResponder];
 }
 
 

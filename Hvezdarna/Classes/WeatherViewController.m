@@ -262,7 +262,8 @@
 {
 	static BOOL hidden = NO;
 
-	[UIView animateWithDuration:.233 animations:^{
+	[UIView animateWithDuration:.233 delay:0 options:UIViewAnimationOptionBeginFromCurrentState|
+	 UIViewAnimationOptionAllowUserInteraction animations:^{
 
 		hidden = !hidden;
 
@@ -280,7 +281,7 @@
 		self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0,
 			(hidden) ? kUITabBarHeight:0);
 
-	}];
+	} completion:nil];
 }
 
 - (void)startImageActivity

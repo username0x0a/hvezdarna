@@ -121,12 +121,13 @@
 
 #pragma mark - Tab bar actions
 
+static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
 
 - (void)refreshTabBarAppearance
 {
 	static BOOL isInitialDraw = YES;
 
-	CGFloat firstDelay = (isInitialDraw) ? .05:.25;
+	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
 
 	if (isIOS7) {
 
@@ -135,7 +136,7 @@
 
 		[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
 
-		[UIView animateWithDuration:firstDelay animations:^{
+		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
 			tabBar.alpha = 0;
 			tabBar.transform = CGAffineTransformMakeTranslation(0, tabBar.height/5);
@@ -149,12 +150,12 @@
 			[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
 			[tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
 
-			[UIView animateWithDuration:firstDelay animations:^{
+			[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
 				tabBar.alpha = 1;
 				tabBar.transform = CGAffineTransformIdentity;
 
-			}];
+			} completion:nil];
 		}];
 
 	} else {
@@ -204,8 +205,14 @@ shouldSelectViewController:(UIViewController *)viewController
 	UIView *fromView = tabBarController.selectedViewController.view;
 	UIView *toView = viewController.view;
 
-	if (fromView == toView)
+	if (fromView == toView) {
+		id fromController = tabBarController.selectedViewController;
+		UINavigationController *nc = ([fromController isKindOfClass:[UINavigationController class]]) ?
+			fromController : nil;
+		if (nc.viewControllers.count > 1)
+			[nc popToRootViewControllerAnimated:YES];
 		return NO;
+	}
 
 	NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
 
@@ -216,12 +223,12 @@ shouldSelectViewController:(UIViewController *)viewController
 	}];
 
 	if (isIOS7)
-	[UIView animateWithDuration:.2 animations:^{
-		self.window.transform = CGAffineTransformMakeScale(1.05, 1.05);
+	[UIView animateWithDuration:.12 delay:0 options:quickAnimation animations:^{
+		self.window.transform = CGAffineTransformMakeScale(1.02, 1.02);
 	} completion:^(BOOL finished) {
-		[UIView animateWithDuration:.15 animations:^{
+		[UIView animateWithDuration:.12 delay:0 options:quickAnimation animations:^{
 			self.window.transform = CGAffineTransformIdentity;
-		}];
+		} completion:nil];
 	}];
 
 	return YES;
