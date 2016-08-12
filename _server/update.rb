@@ -88,7 +88,7 @@ events = [ ]
 		year+=1 if month < tm.month
 		day = Time.new(year, month, day)
 
-		programs = d.split('<div class="cal-day-item-desc-outer"')
+		programs = d.split('<div class="cal-day-item-desc-outer')
 		programs.each {|p|
 
 			name = p.getValue(['cal-title-','<h5>'], '</h5')
@@ -150,9 +150,12 @@ if events.count then
 	db.commit
 =end
 
+	events = events.to_json
+	events.gsub! "\\r\\n", "\\n"
+
 	File.open('program.json', 'w') {}
 	f = File.open('program.json','w')
-	f << '{"events":' + events.to_json + '}'
+	f << '{"events":' + events + '}'
 	f.close
 
 end
