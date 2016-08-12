@@ -552,6 +552,7 @@
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
+						DevelopmentTeam = BQ7YQ94D2F;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
