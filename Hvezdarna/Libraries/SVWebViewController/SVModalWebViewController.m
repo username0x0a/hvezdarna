@@ -38,8 +38,8 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
-	self.webViewController.view.multipleTouchEnabled = YES;
+    [super viewDidLoad];
+    self.webViewController.view.multipleTouchEnabled = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -48,7 +48,7 @@
     if (!backBarButtonItem) {
         backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/back"] style:UIBarButtonItemStylePlain target:self action:@selector(goBackClicked:)];
         backBarButtonItem.imageInsets = UIEdgeInsetsMake(2.0f, 0.0f, -2.0f, 0.0f);
-		backBarButtonItem.width = 18.0f;
+        backBarButtonItem.width = 18.0f;
     }
     return backBarButtonItem;
 }
@@ -58,7 +58,7 @@
     if (!forwardBarButtonItem) {
         forwardBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/forward"] style:UIBarButtonItemStylePlain target:self action:@selector(goForwardClicked:)];
         forwardBarButtonItem.imageInsets = UIEdgeInsetsMake(2.0f, 0.0f, -2.0f, 0.0f);
-		forwardBarButtonItem.width = 18.0f;
+        forwardBarButtonItem.width = 18.0f;
     }
     return forwardBarButtonItem;
 }
@@ -137,12 +137,12 @@
     mainWebView.delegate = self;
     self.view = mainWebView;
     mainWebView.scalesPageToFit = YES;
-	mainWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin;
+    mainWebView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleBottomMargin;
     [mainWebView loadRequest:[NSURLRequest requestWithURL:self.URL]];
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
     [self updateToolbarItems];
 }
 
@@ -160,8 +160,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     NSAssert(self.navigationController, @"SVWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
     
-	[super viewWillAppear:animated];
-	
+    [super viewWillAppear:animated];
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.navigationController setToolbarHidden:NO animated:animated];
     }
@@ -181,19 +181,19 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 
-	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-		return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
-	}
-	else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-		return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-	}
-	return NO;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
+    }
+    else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+    }
+    return NO;
 }
 
 - (void)dealloc
 {
     [mainWebView stopLoading];
- 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     mainWebView.delegate = nil;
 }
 
@@ -248,9 +248,9 @@
     else {
         NSArray *items;
 
-		self.backBarButtonItem.tintColor = self.forwardBarButtonItem.tintColor =
-			self.stopBarButtonItem.tintColor = self.actionBarButtonItem.tintColor =
-			self.refreshBarButtonItem.tintColor = self.navigationController.navigationBar.tintColor;
+        self.backBarButtonItem.tintColor = self.forwardBarButtonItem.tintColor =
+            self.stopBarButtonItem.tintColor = self.actionBarButtonItem.tintColor =
+            self.refreshBarButtonItem.tintColor = self.navigationController.navigationBar.tintColor;
         
         if(self.availableActions == 0) {
             items = [NSArray arrayWithObjects:
@@ -284,20 +284,20 @@
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [self updateToolbarItems];
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     
     self.navigationItem.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self updateToolbarItems];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     [self updateToolbarItems];
 }
 
@@ -317,14 +317,14 @@
 
 - (void)stopClicked:(UIBarButtonItem *)sender {
     [mainWebView stopLoading];
-	[self updateToolbarItems];
+    [self updateToolbarItems];
 }
 
 - (void)actionButtonClicked:(id)sender {
     
     if(pageActionSheet)
         return;
-	
+    
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
         [self.pageActionSheet showFromBarButtonItem:self.actionBarButtonItem animated:YES];
     else
@@ -344,11 +344,14 @@
 #pragma mark UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
     
-	if([title isEqualToString:NSLocalizedString(@"Open in Safari", @"")])
-        [[UIApplication sharedApplication] openURL:self.mainWebView.request.URL];
-    
+    if([title isEqualToString:NSLocalizedString(@"Open in Safari", @"")])
+    {
+        NSURL *url = [mainWebView canGoBack] ? mainWebView.request.URL : self.URL;
+        [[UIApplication sharedApplication] openURL:url];
+    }
+
     if([title isEqualToString:NSLocalizedString(@"Copy Link", @"")]) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = self.mainWebView.request.URL.absoluteString;
@@ -356,19 +359,19 @@
     
     else if([title isEqualToString:NSLocalizedString(@"Mail Link to this Page", @"")]) {
         
-		MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+        MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         
-		mailViewController.mailComposeDelegate = self;
+        mailViewController.mailComposeDelegate = self;
         [mailViewController setSubject:[self.mainWebView stringByEvaluatingJavaScriptFromString:@"document.title"]];
-  		[mailViewController setMessageBody:self.mainWebView.request.URL.absoluteString isHTML:NO];
-		mailViewController.modalPresentationStyle = UIModalPresentationPageSheet;
+          [mailViewController setMessageBody:self.mainWebView.request.URL.absoluteString isHTML:NO];
+        mailViewController.modalPresentationStyle = UIModalPresentationPageSheet;
         
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
-		[self presentModalViewController:mailViewController animated:YES];
+        [self presentModalViewController:mailViewController animated:YES];
 #else
         [self presentViewController:mailViewController animated:YES completion:NULL];
 #endif
-	}
+    }
     
     pageActionSheet = nil;
 }
@@ -382,7 +385,7 @@
 {
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 #else
     [self dismissViewControllerAnimated:YES completion:NULL];
 #endif
