@@ -12,6 +12,7 @@
 #import "ProgramList.h"
 #import "Utils.h"
 #import "FMDatabase.h"
+#import "FMDatabaseAdditions.h"
 #import "AFNetworking.h"
 
 
@@ -52,8 +53,16 @@
 #endif
 	[_db open];
 
-	FMResultSet *s = [_db executeQuery:@"SELECT * FROM options;"];
-	if (!s || ![s next] || [s intForColumn:@"db_version"] < DB_VERSION) {
+	BOOL isOK = [_db tableExists:@"options"];
+	if (isOK) isOK = [_db columnExists:@"initialized" inTableWithName:@"options"];
+	if (isOK) isOK = [_db columnExists:@"db_version" inTableWithName:@"options"];
+	if (isOK) isOK = [_db columnExists:@"last_update" inTableWithName:@"options"];
+
+	FMResultSet *s = nil;
+
+	if (isOK) s = [_db executeQuery:@"SELECT * FROM options;"];
+
+	if (!isOK || !s || ![s next] || [s intForColumn:@"db_version"] < DB_VERSION) {
 		DebugLog(@"DB is not up-to-date, updating…");
 		/// ---- Clear old DB structure ----
 		[_db executeUpdate:@"DROP TABLE IF EXISTS options;"];
@@ -94,7 +103,7 @@
 
 - (void) insertEventWithName:(NSString *)name desc:(NSString *)desc shortDesc:(NSString *)shortDesc day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString *)price link:(NSString *)link opts:(NSArray *)opts {
 	[_workingDataLock lock];
-    id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
+	id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
 	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
 	 name, [NSNumber numberWithInteger:day], [NSNumber numberWithInteger:timestamp], desc, shortDesc, optsObject, price, link];
 	[_workingDataLock unlock];
