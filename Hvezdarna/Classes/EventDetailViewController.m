@@ -40,34 +40,27 @@
 
 	self.title = @"Představení";
 
-	if (isIOS7)
-	{
-		self.navigationController.navigationBar.barTintColor =
-			[UIColor colorWithWhite:1 alpha:.9];
-		self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
-		self.navigationController.navigationBar.titleTextAttributes = @{
-			UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
-		};
-	}
+	if (isUltraWidescreen())
+		_eventTitle.font = [_eventTitle.font fontWithSize:_eventTitle.font.pointSize+3];
 
-	if (!isIOS7)
-		_scrollView.contentInset = _scrollView.scrollIndicatorInsets =
-			UIEdgeInsetsMake(kUINavigationBarHeight, 0, 0, 0);
+	self.navigationController.navigationBar.barTintColor =
+		[UIColor colorWithWhite:1 alpha:.9];
+	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
+	self.navigationController.navigationBar.titleTextAttributes = @{
+		UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
+	};
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 
-	if (isIOS7)
-	{
-		self.navigationController.navigationBar.barTintColor =
-			[UIColor colorWithWhite:1 alpha:.9];
-		self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
-		self.navigationController.navigationBar.titleTextAttributes = @{
-			UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
-		};
-	}
+	self.navigationController.navigationBar.barTintColor =
+		[UIColor colorWithWhite:1 alpha:.9];
+	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
+	self.navigationController.navigationBar.titleTextAttributes = @{
+		UITextAttributeTextColor: [UIColor colorWithWhite:.46 alpha:1]
+	};
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -176,7 +169,7 @@
 	SVModalWebViewController *vc = [[SVModalWebViewController alloc]
 		initWithURL:[NSURL URLWithString:_program.link]];
 	if (isIPad()) vc.modalPresentationStyle = UIModalPresentationPageSheet;
-	if (isIOS7) vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+	vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
 }
 

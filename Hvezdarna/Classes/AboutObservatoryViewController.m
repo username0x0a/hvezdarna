@@ -66,7 +66,7 @@
 	SVModalWebViewController *vc = [[SVModalWebViewController alloc]
 		initWithURL:[NSURL URLWithString:@"http://hvezdarna.cz/"]];
 	if (isIPad()) vc.modalPresentationStyle = UIModalPresentationPageSheet;
-	if (isIOS7) vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+	vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
 	[self presentViewController:vc animated:YES completion:nil];
 }
 

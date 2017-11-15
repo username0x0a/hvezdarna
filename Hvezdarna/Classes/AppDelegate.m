@@ -32,8 +32,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Set Background Fetch interval
-	if (isIOS7)
-		[application setMinimumBackgroundFetchInterval:MAX(UIApplicationBackgroundFetchIntervalMinimum, 60*60*24)];
+	[application setMinimumBackgroundFetchInterval:MAX(UIApplicationBackgroundFetchIntervalMinimum, 60*60*24)];
 
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
@@ -129,54 +128,34 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 
 	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
 
-	if (isIOS7) {
+	BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
+	UITabBar *tabBar = _tabBarController.tabBar;
 
-		BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
-		UITabBar *tabBar = _tabBarController.tabBar;
+	[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
 
-		[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
+	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
+
+		tabBar.alpha = 0;
+		if (!isInitialDraw)
+			tabBar.transform = CGAffineTransformMakeTranslation(0, tabBar.height/5);
+
+	} completion:^(BOOL f){
+
+		[tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
+		[tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
+		tabBar.translucent = YES;
+		[tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
+		[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
+		[tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
 
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
-			tabBar.alpha = 0;
-			tabBar.transform = CGAffineTransformMakeTranslation(0, tabBar.height/5);
-
-		} completion:^(BOOL f){
-
-			[tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
-			[tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
-			tabBar.translucent = YES;
-			[tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
-			[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
-			[tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
-
-			[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
-
-				tabBar.alpha = 1;
+			tabBar.alpha = 1;
+			if (!isInitialDraw)
 				tabBar.transform = CGAffineTransformIdentity;
 
-			} completion:nil];
-		}];
-
-	} else {
-
-		static dispatch_once_t once;
-		dispatch_once(&once, ^{
-
-			[[UIToolbar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
-			[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigation"] forBarMetrics:UIBarMetricsDefault];
-
-			[[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
-
-			UIImageView *tabBarBackground = [[UIImageView alloc] initWithFrame:_tabBarController.tabBar.bounds];
-			tabBarBackground.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-			tabBarBackground.image = [[UIImage imageNamed:@"tabbar-bg"] resizableImageWithCapInsets:UIEdgeInsetsMake(1, 1, 1, 1)];
-
-			[_tabBarController.tabBar insertSubview:tabBarBackground atIndex:1];
-
-		});
-
-	}
+		} completion:nil];
+	}];
 
 	isInitialDraw = NO;
 }
@@ -222,7 +201,6 @@ shouldSelectViewController:(UIViewController *)viewController
 				tabBarController.selectedIndex = toIndex;
 	}];
 
-	if (isIOS7)
 	[UIView animateWithDuration:.12 delay:0 options:quickAnimation animations:^{
 		self.window.transform = CGAffineTransformMakeScale(1.02, 1.02);
 	} completion:^(BOOL finished) {

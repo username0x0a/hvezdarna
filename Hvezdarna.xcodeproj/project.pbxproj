@@ -52,6 +52,7 @@
 		EFA48E2B1C5BF30400164EB3 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EFA48E221C5BF30400164EB3 /* AFURLSessionManager.m */; };
 		EFA48E2D1C5C326800164EB3 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */; };
 		EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */; };
+		EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */; };
 		EFB64467197474E100F51C8F /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64459197474E100F51C8F /* AppIcon29x29.png */; };
 		EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */; };
 		EFB64469197474E100F51C8F /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445B197474E100F51C8F /* AppIcon40x40.png */; };
@@ -159,6 +160,7 @@
 		EFA48E221C5BF30400164EB3 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-812h@3x.png"; sourceTree = "<group>"; };
 		EFB64459197474E100F51C8F /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		EFB6445B197474E100F51C8F /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				EFC2DC2119634EDB006902DE /* background-default.jpg */,
 				EF9434331879D7C4003D7BEF /* Default-568h@2x.png */,
 				EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */,
+				EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */,
 				EF9434341879D7C4003D7BEF /* Default-Landscape@2x~ipad.png */,
 				EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */,
 				EF9434361879D7C4003D7BEF /* Default.png */,
@@ -595,6 +598,7 @@
 				EF9434A31879D7C4003D7BEF /* hvezdarna-logo@2x.png in Resources */,
 				EF9434A21879D7C4003D7BEF /* hvezdarna-logo.png in Resources */,
 				EFB6446C197474E100F51C8F /* AppIcon50x50@2x.png in Resources */,
+				EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */,
 				EF9434A11879D7C4003D7BEF /* Default@2x.png in Resources */,
 				EF9434A71879D7C4003D7BEF /* about@2x.png in Resources */,
 				EFB64473197474E100F51C8F /* AppIcon76x76.png in Resources */,
