@@ -151,8 +151,8 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
 			tabBar.alpha = 1;
-			if (!isInitialDraw)
-				tabBar.transform = CGAffineTransformIdentity;
+			tabBar.transform = CGAffineTransformIdentity;
+			tabBar.top = tabBar.superview.height-tabBar.height;
 
 		} completion:nil];
 	}];

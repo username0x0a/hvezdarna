@@ -37,7 +37,7 @@
 					v.hidden = YES;
 			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
 			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-			background.backgroundColor = [UIColor colorWithWhite:.9f alpha:.9f];
+			background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
 			background.layer.cornerRadius = (isIOS(11)) ? 10:4;
 			[container insertSubview:background atIndex:0];
 		}
