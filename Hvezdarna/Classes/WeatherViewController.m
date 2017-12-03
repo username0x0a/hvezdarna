@@ -65,6 +65,7 @@
 		_detailsContainer.top += 16;
 		_detailsContainer.left -= 20;
 		_detailsContainer.width += 40;
+		_conditionImage.top -= 40;
 	}
 
 	_blurView = [[MaskAutoAdjustingView alloc] initWithFrame:self.view.frame];
@@ -267,9 +268,8 @@
 
 		hidden = !hidden;
 
-		if (isIOS7)
-			[[UIApplication sharedApplication] setStatusBarHidden:hidden
-				withAnimation:UIStatusBarAnimationSlide];
+		[[UIApplication sharedApplication] setStatusBarHidden:hidden
+			withAnimation:UIStatusBarAnimationSlide];
 
 		for (UIView *v in self.view.subviews)
 			if (v != _backgroundView) {

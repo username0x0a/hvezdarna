@@ -81,8 +81,6 @@
 #define NSCalendarUnitDay  kCFCalendarUnitDay
 #endif
 
-#define isIOS7 ([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)
-#define isIOS6 ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0f)
 #define isIOS(x) ([[UIDevice currentDevice].systemVersion floatValue] >= x)
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 

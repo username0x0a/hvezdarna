@@ -24,31 +24,23 @@
 
 - (void)customize
 {
-	if (isIOS7)
-	{
-		// Set tint color of bar elements
-		self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
+	// Set tint color of bar elements
+	self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
 
-		// Hide text field subviews and add custom-styled background
-		for (UITextField *field in self.allSubviews)
-			if ([field isKindOfClass:[UITextField class]])
-			{
-				UIView *container = field;
-				for (UIView *v in container.subviews)
+	// Hide text field subviews and add custom-styled background
+	for (UITextField *field in self.allSubviews)
+		if ([field isKindOfClass:[UITextField class]])
+		{
+			UIView *container = field;
+			for (UIView *v in container.subviews)
+				if ([NSStringFromClass(v.class) containsString:@"Background"])
 					v.hidden = YES;
-				UIView *background = [[UIView alloc] initWithFrame:container.bounds];
-				background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-				background.backgroundColor = [UIColor whiteColor];
-				background.layer.cornerRadius = 4;
-				[container addSubview:background];
-			}
-	}
-
-	else
-	{
-		// Just remove the bar background
-		[self.subviews.firstObject removeFromSuperview];
-	}
+			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
+			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+			background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
+			background.layer.cornerRadius = (isIOS(11)) ? 10:4;
+			[container insertSubview:background atIndex:0];
+		}
 }
 
 - (void)setFrame:(CGRect)frame
@@ -85,11 +77,9 @@
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
 		self.title = @"Program";
-		if (isIOS7) {
-			self.automaticallyAdjustsScrollViewInsets = NO;
-			self.extendedLayoutIncludesOpaqueBars = NO;
-			self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
-		}
+		self.automaticallyAdjustsScrollViewInsets = NO;
+		self.extendedLayoutIncludesOpaqueBars = NO;
+		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
 
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
 		_list = [ProgramList sharedList];
@@ -105,12 +95,12 @@
 
 	self.view.backgroundColor = [UIColor whiteColor];
 	_searchBar.clipsToBounds = NO;
-	CGFloat topOffset = kUINavigationBarHeight;
-	CGFloat bottomOffset = 0;
-	if (isIOS7) topOffset += kUIStatusBarHeight;
-	if (isIOS7) bottomOffset += kUITabBarHeight;
-	_tableView.contentInset = _tableView.scrollIndicatorInsets =
-		UIEdgeInsetsMake(topOffset, 0, bottomOffset, 0);
+//	CGFloat topOffset = kUINavigationBarHeight;
+//	CGFloat bottomOffset = 0;
+//	topOffset += kUIStatusBarHeight;
+//	bottomOffset += kUITabBarHeight;
+//	_tableView.contentInset = _tableView.scrollIndicatorInsets =
+//		UIEdgeInsetsMake(topOffset, 0, bottomOffset, 0);
 
 	object_setClass(_searchBar, [PositionedSearchBar class]);
 	self.navigationItem.titleView = _searchBar;
@@ -121,13 +111,10 @@
 {
     [super viewWillAppear:animated];
 
-	if (isIOS7)
-		[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 
-	if (isIOS7) {
-		self.navigationController.navigationBar.translucent = YES;
-		self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
-	}
+	self.navigationController.navigationBar.translucent = YES;
+	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
 
     NSIndexPath *selection = [_tableView indexPathForSelectedRow];
 

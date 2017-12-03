@@ -39,10 +39,7 @@ typedef NSUInteger UtilsWebBrowserStyle;
 
 @interface UIFont (Utils)
 
-+ (UIFont *)systemFontOfSize:(CGFloat)size;
 + (UIFont *)lightSystemFontOfSize:(CGFloat)size;
-+ (UIFont *)boldSystemFontOfSize:(CGFloat)size;
-+ (UIFont *)preferredFontForTextStyle:(NSString *)style;
 
 @end
 
