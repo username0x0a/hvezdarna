@@ -18,8 +18,6 @@
 
 @implementation SVModalWebViewController
 
-@synthesize barsTintColor, availableActions, webViewController;
-
 
 #pragma mark - Initialization
 
@@ -31,7 +29,7 @@
 - (id)initWithURL:(NSURL *)URL {
     self.webViewController = [[SVWebViewController alloc] initWithURL:URL];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/close"] style:UIBarButtonItemStyleDone target:webViewController action:@selector(doneButtonClicked:)];
+        self.webViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"SVWebViewController.bundle/iPhone/close"] style:UIBarButtonItemStyleDone target:_webViewController action:@selector(doneButtonClicked:)];
     }
     return self;
 }

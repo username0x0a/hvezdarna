@@ -35,9 +35,7 @@
 - (void) setTextOfDetail:(NSString *)text
 {
 	_detailText.text = text;
-	CGSize expectedLabelSize = [text sizeWithFont:_detailText.font
-								constrainedToSize:CGSizeMake(_detailText.width, 9999)
-									lineBreakMode:_detailText.lineBreakMode];
+	CGSize expectedLabelSize = [_detailText sizeThatFits:CGSizeMake(_detailText.width, 9999)];
 	
 	// Adjust the label the the new height.
 	_detailText.height = expectedLabelSize.height;
