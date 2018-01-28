@@ -278,8 +278,6 @@
 					(hidden) ? v == _conditionImage ? 120:-100:0); }
 
 		self.tabBarController.tabBar.alpha = (hidden) ? 0.0 : 1.0;
-		self.tabBarController.tabBar.transform = CGAffineTransformMakeTranslation(0,
-			(hidden) ? kUITabBarHeight:0);
 
 	} completion:nil];
 }

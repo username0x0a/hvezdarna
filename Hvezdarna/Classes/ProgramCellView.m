@@ -18,7 +18,8 @@
 {
     _program = program;
 	_title.text = program.title;
-	_descriptionLabel.text = program.shortDescription;
+	_descriptionLabel.text = [program.shortDescription
+		stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
 	_time.text = [Utils getLocalTimeStringFromTimestamp:program.timestamp];
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
