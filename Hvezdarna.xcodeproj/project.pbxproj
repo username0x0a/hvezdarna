@@ -34,11 +34,7 @@
 		EF9434A91879D7C4003D7BEF /* actual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434401879D7C4003D7BEF /* actual@2x.png */; };
 		EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434421879D7C4003D7BEF /* programme@2x.png */; };
 		EF9434AD1879D7C4003D7BEF /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434441879D7C4003D7BEF /* twitter@2x.png */; };
-		EF9434B81879D7C4003D7BEF /* navigation.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94344F1879D7C4003D7BEF /* navigation.png */; };
-		EF9434B91879D7C4003D7BEF /* navigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434501879D7C4003D7BEF /* navigation@2x.png */; };
 		EF9434BC1879D7C4003D7BEF /* o-hvezdarne-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */; };
-		EF9434C21879D7C4003D7BEF /* tabbar-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434591879D7C4003D7BEF /* tabbar-bg.png */; };
-		EF9434C31879D7C4003D7BEF /* tabbar-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94345A1879D7C4003D7BEF /* tabbar-bg@2x.png */; };
 		EF9434C71879D7C4003D7BEF /* clear_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94345F1879D7C4003D7BEF /* clear_sun@2x.png */; };
 		EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434611879D7C4003D7BEF /* cloudy@2x.png */; };
 		EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94346F1879D7C4003D7BEF /* rain@2x.png */; };
@@ -94,6 +90,7 @@
 		EFC2DC3019646C06006902DE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2DC2F19646C06006902DE /* Accelerate.framework */; };
 		EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC351964724A006902DE /* WeatherViewController.xib */; };
 		EFC2DC381965F160006902DE /* clear_moon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC371965F160006902DE /* clear_moon@2x.png */; };
+		EFED7454202F8FA000886E86 /* AppIcon83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -133,11 +130,7 @@
 		EF9434401879D7C4003D7BEF /* actual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actual@2x.png"; sourceTree = "<group>"; };
 		EF9434421879D7C4003D7BEF /* programme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "programme@2x.png"; sourceTree = "<group>"; };
 		EF9434441879D7C4003D7BEF /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
-		EF94344F1879D7C4003D7BEF /* navigation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation.png; sourceTree = "<group>"; };
-		EF9434501879D7C4003D7BEF /* navigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation@2x.png"; sourceTree = "<group>"; };
 		EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o-hvezdarne-bg@2x.png"; sourceTree = "<group>"; };
-		EF9434591879D7C4003D7BEF /* tabbar-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-bg.png"; sourceTree = "<group>"; };
-		EF94345A1879D7C4003D7BEF /* tabbar-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-bg@2x.png"; sourceTree = "<group>"; };
 		EF94345F1879D7C4003D7BEF /* clear_sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear_sun@2x.png"; sourceTree = "<group>"; };
 		EF9434611879D7C4003D7BEF /* cloudy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudy@2x.png"; sourceTree = "<group>"; };
 		EF94346F1879D7C4003D7BEF /* rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rain@2x.png"; sourceTree = "<group>"; };
@@ -219,6 +212,7 @@
 		EFC2DC2F19646C06006902DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		EFC2DC351964724A006902DE /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		EFC2DC371965F160006902DE /* clear_moon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear_moon@2x.png"; sourceTree = "<group>"; };
+		EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon83.5x83.5@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +342,7 @@
 				EFB64464197474E100F51C8F /* AppIcon72x72@2x.png */,
 				EFB64465197474E100F51C8F /* AppIcon76x76.png */,
 				EFB64466197474E100F51C8F /* AppIcon76x76@2x.png */,
+				EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -367,11 +362,7 @@
 				EF9434371879D7C4003D7BEF /* Default@2x.png */,
 				EF9434381879D7C4003D7BEF /* hvezdarna-logo.png */,
 				EF9434391879D7C4003D7BEF /* hvezdarna-logo@2x.png */,
-				EF94344F1879D7C4003D7BEF /* navigation.png */,
-				EF9434501879D7C4003D7BEF /* navigation@2x.png */,
 				EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */,
-				EF9434591879D7C4003D7BEF /* tabbar-bg.png */,
-				EF94345A1879D7C4003D7BEF /* tabbar-bg@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -554,7 +545,7 @@
 		B0AC4C1915DA75B80075D628 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
@@ -592,7 +583,6 @@
 			files = (
 				EFB64470197474E100F51C8F /* AppIcon60x60@2x.png in Resources */,
 				EFB64474197474E100F51C8F /* AppIcon76x76@2x.png in Resources */,
-				EF9434C21879D7C4003D7BEF /* tabbar-bg.png in Resources */,
 				EFB64469197474E100F51C8F /* AppIcon40x40.png in Resources */,
 				EFC2DBA7196335D7006902DE /* AboutObservatoryViewController.xib in Resources */,
 				EFC2DBAB196335D7006902DE /* ProgramCellView.xib in Resources */,
@@ -612,6 +602,7 @@
 				EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */,
 				EFB64467197474E100F51C8F /* AppIcon29x29.png in Resources */,
 				EFC2DBAD196335D7006902DE /* ProgramDetailCellView.xib in Resources */,
+				EFED7454202F8FA000886E86 /* AppIcon83.5x83.5@2x.png in Resources */,
 				EF9434A91879D7C4003D7BEF /* actual@2x.png in Resources */,
 				EFB6446E197474E100F51C8F /* AppIcon57x57@2x.png in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
@@ -621,15 +612,12 @@
 				EFB6446A197474E100F51C8F /* AppIcon40x40@2x.png in Resources */,
 				EFB6446B197474E100F51C8F /* AppIcon50x50.png in Resources */,
 				EF94349D1879D7C4003D7BEF /* Default-568h@2x.png in Resources */,
-				EF9434B81879D7C4003D7BEF /* navigation.png in Resources */,
 				EF9434AD1879D7C4003D7BEF /* twitter@2x.png in Resources */,
-				EF9434B91879D7C4003D7BEF /* navigation@2x.png in Resources */,
 				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
 				EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */,
 				EFC2DC381965F160006902DE /* clear_moon@2x.png in Resources */,
 				EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */,
 				EFC2DBB3196335D7006902DE /* ProgramSplitViewController_iPad.xib in Resources */,
-				EF9434C31879D7C4003D7BEF /* tabbar-bg@2x.png in Resources */,
 				EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */,
 				EFB6446F197474E100F51C8F /* AppIcon60x60.png in Resources */,
 				EFB6446D197474E100F51C8F /* AppIcon57x57.png in Resources */,
