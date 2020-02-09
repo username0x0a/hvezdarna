@@ -151,7 +151,7 @@
 	
 	DebugLog(@"Trying to update calendar data…");
 	
-	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.tk/program.json"];
+	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.misacek.net/program.json"];
 	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
 	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
