@@ -138,8 +138,6 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
 		tabBar.alpha = 0;
-		if (!isInitialDraw)
-			tabBar.transform = CGAffineTransformMakeTranslation(0, tabBar.height/5);
 
 	} completion:^(BOOL f){
 
@@ -148,13 +146,11 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 		tabBar.translucent = YES;
 		[tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
 		[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
-		[tabBar setBarTintColor:(isClear) ? nil : [UIColor whiteColor]];
+		[tabBar setBarTintColor:(isClear) ? [UIColor lightGrayColor] : [UIColor whiteColor]];
 
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
 			tabBar.alpha = 1;
-			tabBar.transform = CGAffineTransformIdentity;
-			tabBar.top = tabBar.superview.height-tabBar.height;
 
 		} completion:nil];
 	}];

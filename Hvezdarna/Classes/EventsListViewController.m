@@ -45,10 +45,7 @@
 
 - (void)setFrame:(CGRect)frame
 {
-	if (!isIOS(8))
-		[super setFrame:CGRectMake(0, 0, 320, frame.size.height)];
-	else
-		super.frame = frame;
+	super.frame = frame;
 
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -118,15 +115,8 @@
 
     NSIndexPath *selection = [_tableView indexPathForSelectedRow];
 
-    if (selection)
-        [_tableView deselectRowAtIndexPath:selection animated:YES];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	if (selection)
+		[_tableView deselectRowAtIndexPath:selection animated:YES];
 }
 
 
@@ -134,18 +124,8 @@
 #pragma mark Table view delegate
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-		return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
-	}
-	else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-		return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-	}
-	return NO;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.0;
+	return 80.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -264,12 +244,8 @@
 	NSLog(@"Filter content");
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString {
-	return YES;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar_ textDidChange:(NSString *)searchText {
-	[self.list processSearchWord:[searchBar_ text]];
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	[self.list processSearchWord:searchBar.text];
 	[_tableView reloadData];
 }
 

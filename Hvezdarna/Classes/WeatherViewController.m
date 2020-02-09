@@ -105,15 +105,6 @@
 	[self reloadScreenData];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	if (isIPad())
-		return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft ||
-				interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-
-	return NO;
-}
-
 
 #pragma mark - Data reloading
 
@@ -272,10 +263,10 @@
 			withAnimation:UIStatusBarAnimationSlide];
 
 		for (UIView *v in self.view.subviews)
-			if (v != _backgroundView) {
+			if (v != self->_backgroundView) {
 				v.alpha = (hidden) ? 0.0 : 1.0;
-				if (v != _blurView) v.transform = CGAffineTransformMakeTranslation(0,
-					(hidden) ? v == _conditionImage ? 120:-100:0); }
+				if (v != self->_blurView) v.transform = CGAffineTransformMakeTranslation(0,
+					(hidden) ? v == self->_conditionImage ? 120:-100:0); }
 
 		self.tabBarController.tabBar.alpha = (hidden) ? 0.0 : 1.0;
 
@@ -286,6 +277,7 @@
 {
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
+
 - (void)stopImageActivity
 {
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

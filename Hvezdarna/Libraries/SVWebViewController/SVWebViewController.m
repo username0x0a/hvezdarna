@@ -146,17 +146,6 @@
     [self updateToolbarItems];
 }
 
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    mainWebView = nil;
-    backBarButtonItem = nil;
-    forwardBarButtonItem = nil;
-    refreshBarButtonItem = nil;
-    stopBarButtonItem = nil;
-    actionBarButtonItem = nil;
-    pageActionSheet = nil;
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     NSAssert(self.navigationController, @"SVWebViewController needs to be contained in a UINavigationController. If you are presenting SVWebViewController modally, use SVModalWebViewController instead.");
     
@@ -181,22 +170,18 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation == UIInterfaceOrientationPortrait || interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
-    }
-    else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
-    }
-    return NO;
-}
-
 - (void)dealloc
 {
     [mainWebView stopLoading];
      [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     mainWebView.delegate = nil;
+    mainWebView = nil;
+    backBarButtonItem = nil;
+    forwardBarButtonItem = nil;
+    refreshBarButtonItem = nil;
+    stopBarButtonItem = nil;
+    actionBarButtonItem = nil;
+    pageActionSheet = nil;
 }
 
 #pragma mark - Toolbar
@@ -367,12 +352,8 @@
         [mailViewController setSubject:[self.mainWebView stringByEvaluatingJavaScriptFromString:@"document.title"]];
           [mailViewController setMessageBody:self.mainWebView.request.URL.absoluteString isHTML:NO];
         mailViewController.modalPresentationStyle = UIModalPresentationPageSheet;
-        
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
-        [self presentModalViewController:mailViewController animated:YES];
-#else
+
         [self presentViewController:mailViewController animated:YES completion:NULL];
-#endif
     }
     
     pageActionSheet = nil;

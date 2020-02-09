@@ -4,9 +4,9 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_6_0
-#warning "This project uses features only available in iOS SDK 6.0 and later."
-#endif // __IPHONE_6_0
+#ifndef __IPHONE_13_0
+#warning "This project uses features only available in iOS SDK 13.0 and later."
+#endif // __IPHONE_13_0
 
 #ifdef __OBJC__
 
@@ -71,24 +71,7 @@
 // Application macros
 #define BUNDLE_IDENTIFIER  [[NSBundle mainBundle] bundleIdentifier]
 
-// OS version check
-#ifdef __IPHONE_7_0
-#define USING_IOS7_SDK
-#else // iOS 6 SDK compatibility definitions
-#define UIStatusBarStyleLightContent 1
-#define NSCalendarUnitYear  kCFCalendarUnitYear
-#define NSCalendarUnitMonth  kCFCalendarUnitMonth
-#define NSCalendarUnitDay  kCFCalendarUnitDay
-#endif
-
 #define isIOS(x) ([[UIDevice currentDevice].systemVersion floatValue] >= x)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
-#ifdef USING_IOS7_SDK
-#define useIOS7Style isIOS7
-#else
-#define useIOS7Style 0
-#endif
 
 // MINIAPPS related
 // - extract macro value

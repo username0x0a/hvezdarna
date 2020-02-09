@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		B0AC4C3315DA75B80075D628 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC4C3215DA75B80075D628 /* main.m */; };
 		B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */; };
 		EF01346E163BE4DB00AB0FD4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */; };
+		EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */; };
 		EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13F0B0164AA7450040328A /* MessageUI.framework */; };
 		EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
@@ -103,6 +104,7 @@
 		B0AC4C3415DA75B80075D628 /* Hvezdarna-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hvezdarna-Prefix.pch"; sourceTree = "<group>"; };
 		B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = ../iPhoneOS.sdk/usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF13F0B0164AA7450040328A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EF401A031FD4AB25008F62C6 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -302,6 +304,7 @@
 				EF9434151879D7C4003D7BEF /* Icons */,
 				EF94342A1879D7C4003D7BEF /* Images */,
 				EF401A031FD4AB25008F62C6 /* Media.xcassets */,
+				EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -545,7 +548,7 @@
 		B0AC4C1915DA75B80075D628 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
@@ -559,12 +562,13 @@
 				};
 			};
 			buildConfigurationList = B0AC4C1C15DA75B80075D628 /* Build configuration list for PBXProject "Hvezdarna" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				cs,
+				Base,
 			);
 			mainGroup = B0AC4C1715DA75B80075D628;
 			productRefGroup = B0AC4C2315DA75B80075D628 /* Products */;
@@ -590,6 +594,7 @@
 				EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */,
 				EF9434A31879D7C4003D7BEF /* hvezdarna-logo@2x.png in Resources */,
 				EF9434A21879D7C4003D7BEF /* hvezdarna-logo.png in Resources */,
+				EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */,
 				EFB6446C197474E100F51C8F /* AppIcon50x50@2x.png in Resources */,
 				EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */,
 				EF9434A11879D7C4003D7BEF /* Default@2x.png in Resources */,
@@ -673,12 +678,13 @@
 		B0AC4C5215DA75B80075D628 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -714,7 +720,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Hvezdarna/Libraries/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
@@ -725,12 +731,13 @@
 		B0AC4C5315DA75B80075D628 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
@@ -758,7 +765,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Hvezdarna/Libraries/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;

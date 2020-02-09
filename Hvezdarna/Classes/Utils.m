@@ -52,7 +52,7 @@
 	else if ([date rangeOfString:@"list"].location != NSNotFound)  [dc setMonth:11];
 	else if ([date rangeOfString:@"pros"].location != NSNotFound)   [dc setMonth:12];
 	else return 0;
-	NSDateComponents *now = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+	NSDateComponents *now = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
 	[dc setYear:[now year]];
 	if ([dc month] < [now month]) [dc setYear:[now year]+1];
 	[dc setHour:0]; [dc setMinute:0]; [dc setSecond:0];
@@ -81,7 +81,7 @@
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
-	NSDateComponents *c = [cal components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:date];
+	NSDateComponents *c = [cal components:NSCalendarUnitHour|NSCalendarUnitMinute fromDate:date];
 	return [NSString stringWithFormat:@"%zd.%02zd", c.hour, c.minute];
 }
 
@@ -97,7 +97,7 @@
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
-	NSDateComponents *c = [cal components:NSDayCalendarUnit|NSMonthCalendarUnit|NSYearCalendarUnit fromDate:date];
+	NSDateComponents *c = [cal components:NSCalendarUnitDay|NSCalendarUnitMonth|NSCalendarUnitYear fromDate:date];
 	return [NSString stringWithFormat:@"%zd. %@", [c day], [self getLocalMonthNameFromNumber:[c month]]];
 }
 
@@ -135,7 +135,7 @@
 	// WS-2300 forecast values: "Rainy", "Cloudy", "Sunny"
 
 	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:[NSDate new]];
+	NSDateComponents *components = [calendar components:NSCalendarUnitHour fromDate:[NSDate new]];
 	NSInteger hour = [components hour];
 
 	BOOL night = hour < 6 || hour >= 22;
