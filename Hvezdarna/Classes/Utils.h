@@ -9,13 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-enum {
-    UtilsWebBrowserNavigation = 0,
-    UtilsWebBrowserModal
-};
-
-typedef NSUInteger UtilsWebBrowserStyle;
-
 
 @interface Utils : NSObject
 
@@ -31,7 +24,7 @@ typedef NSUInteger UtilsWebBrowserStyle;
 + (NSString *) getLocalDayOfWeekStringFromTimestamp:(NSInteger)timestamp;
 + (NSString *) getVerboseStringFromConditionString:(NSString *)condition;
 + (NSString *) getWeatherIconFromConditionString:(NSString *)condition;
-+ (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate withStyle:(UtilsWebBrowserStyle)style;
++ (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate;
 + (BOOL) connectionAvailable;
 
 @end

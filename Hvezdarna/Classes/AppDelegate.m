@@ -12,7 +12,6 @@
 #import "EventsListViewController.h"
 #import "ProgramSplitViewController.h"
 #import "AboutObservatoryViewController.h"
-#import "SVWebViewController.h"
 
 #import "ProgramList.h"
 

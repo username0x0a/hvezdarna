@@ -7,13 +7,14 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <SafariServices/SafariServices.h>
+
 #import "EventDetailViewController.h"
 #import "ProgramDetailCellView.h"
 #import "Program.h"
 #import "Utils.h"
 #import "UIView+position.h"
 #import "SplitViewBarButtonItemPresenter.h"
-#import <SVModalWebViewController.h>
 
 
 @implementation EventDetailViewController
@@ -167,10 +168,8 @@
 
 - (void)openLink
 {
-	SVModalWebViewController *vc = [[SVModalWebViewController alloc]
-		initWithURL:[NSURL URLWithString:_program.link]];
-	if (isIPad()) vc.modalPresentationStyle = UIModalPresentationPageSheet;
-	vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_program.link]];
+	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
 }
 

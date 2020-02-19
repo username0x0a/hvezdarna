@@ -11,6 +11,7 @@
 @interface AboutObservatoryViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundView;
+@property (nonatomic, strong) IBOutlet UIImageView *logoView;
 @property (nonatomic, strong) IBOutlet UIView *textContentView;
 @property (nonatomic, strong) IBOutlet UITextView *textField;
 @property (nonatomic, strong) IBOutlet UIButton *webButton;

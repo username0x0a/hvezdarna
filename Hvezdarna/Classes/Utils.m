@@ -6,11 +6,11 @@
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#include <netinet/in.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
+#import <SafariServices/SafariServices.h>
+#import <netinet/in.h>
+
 #import "Utils.h"
-#import "SVWebViewController.h"
-#import "SVModalWebViewController.h"
 
 @implementation Utils
 
@@ -165,25 +165,13 @@
 	return nil;
 }
 
-+ (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate withStyle:(UtilsWebBrowserStyle)style {
++ (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate {
 		
 	NSURL *URL = [NSURL URLWithString:url];
 	
-	if (style == UtilsWebBrowserModal)
-	{
-		SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:URL];
-		webViewController.modalPresentationStyle = UIModalPresentationPageSheet;
-		webViewController.availableActions = SVWebViewControllerAvailableActionsOpenInSafari | SVWebViewControllerAvailableActionsCopyLink | SVWebViewControllerAvailableActionsMailLink;
-		webViewController.barsTintColor =
-			[UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
-		[delegate.tabBarController presentViewController:webViewController animated:YES completion:nil];
-	}
-	else if (style == UtilsWebBrowserNavigation)
-	{
-		SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:URL];
-		[delegate.navigationController pushViewController:webViewController animated:YES];
-	}
-
+	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL];
+	vc.modalPresentationStyle = UIModalPresentationPageSheet;
+	[delegate.tabBarController presentViewController:vc animated:YES completion:nil];
 }
 
 + (BOOL) connectionAvailable {

@@ -7,10 +7,11 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <SafariServices/SafariServices.h>
+
 #import "AboutObservatoryViewController.h"
 #import "Utils.h"
 
-#import "SVWebViewController.h"
 #import <objc/runtime.h>
 
 
@@ -46,17 +47,30 @@
 	l.startPoint = CGPointMake(0.5f, 0.0f);
 	l.endPoint = CGPointMake(0.5f, 1.0f);
 	_textContentView.layer.mask = l;
+}
 
-    if (isIPad())
-    { _textField.width = 580; [_textField centerHorizontallyInSuperview]; }
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+
+	CGFloat width = self.view.width;
+	CGFloat height = _webButton.top - _logoView.bottom - 2*17;
+
+	if (width > 500) width = 486;
+	else width -= 2*17;
+
+	_textContentView.width = width;
+	[_textContentView centerHorizontallyInSuperview];
+
+	_textContentView.height = height;
+	_textContentView.top = _logoView.bottom + 17;
 }
 
 - (IBAction)webButtonTapped:(id)sender
 {
-	SVModalWebViewController *vc = [[SVModalWebViewController alloc]
+	SFSafariViewController *vc = [[SFSafariViewController alloc]
 		initWithURL:[NSURL URLWithString:@"http://hvezdarna.cz/"]];
-	if (isIPad()) vc.modalPresentationStyle = UIModalPresentationPageSheet;
-	vc.barsTintColor = [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self presentViewController:vc animated:YES completion:nil];
 }
 

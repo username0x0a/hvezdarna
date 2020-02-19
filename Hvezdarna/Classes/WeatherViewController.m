@@ -12,7 +12,6 @@
 #import "WebCam.h"
 #import "UIView+position.h"
 #import "Utils.h"
-#import "AFHTTPRequestOperation.h"
 
 
 @interface WeatherViewController ()
@@ -120,40 +119,44 @@
 	lastUpdate = [NSDate new];
 
 	// @"http://www.hvezdarna.cz/ryba/ryba512.jpg"
+	NSURL *url = [NSURL URLWithString:@"http://www.hvezdarna.cz/kamera/kamera1920.jpg"];
 
-	AFHTTPRequestOperation *request = [[AFHTTPRequestOperation alloc]
-		initWithRequest:[NSURLRequest requestWithURL:
-			[NSURL URLWithString:@"http://www.hvezdarna.cz/kamera/kamera1920.jpg"]]];
+	[[[NSURLSession sharedSession] dataTaskWithURL:url
+		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
-	[request setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
+		NSHTTPURLResponse *resp = (id)response;
 
-		UIImage *image = [UIImage imageWithData:operation.responseData];
+		if (![resp isKindOfClass:[NSHTTPURLResponse class]] || resp.statusCode != 200) return;
+
+		UIImage *image = [UIImage imageWithData:data];
 
 		if (!image) return;
 
-		UIImageView *imageView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
-		imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		imageView.contentMode = UIViewContentModeScaleAspectFill;
-		imageView.alpha = 0.0;
-		imageView.image = image;
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
-		[_backgroundView addSubview:imageView];
-		[UIView animateWithDuration:1.3 animations:^{
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
+			imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+			imageView.contentMode = UIViewContentModeScaleAspectFill;
+			imageView.alpha = 0.0;
+			imageView.image = image;
 
-			imageView.alpha = 1.0;
+			[_backgroundView addSubview:imageView];
+			[UIView animateWithDuration:1.3 animations:^{
 
-		} completion:^(BOOL finished) {
+				imageView.alpha = 1.0;
 
-			NSArray *layers = [_backgroundView.subviews copy];
+			} completion:^(BOOL finished) {
 
-			for (UIView *v in layers)
-				if (v != imageView)
-					[v removeFromSuperview];
+				NSArray *layers = [_backgroundView.subviews copy];
+
+				for (UIView *v in layers)
+					if (v != imageView)
+						[v removeFromSuperview];
+			}];
+
 		}];
 
-	} failure:nil];
-
-	[request start];
+	}] resume];
 }
 
 - (void)reloadScreenData
@@ -166,59 +169,70 @@
 
 	lastUpdate = [NSDate new];
 
-	AFHTTPRequestOperation *request = [[AFHTTPRequestOperation alloc]
-		initWithRequest:[NSURLRequest requestWithURL:
-			[NSURL URLWithString:@"http://www.hvezdarna.cz/meteo/lastmeteodata"]]];
+	NSURL *url = [NSURL URLWithString:@"https://www.hvezdarna.cz/meteo/lastmeteodatanew"];
 
-	[request setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response){
+	[[[NSURLSession sharedSession] dataTaskWithURL:url
+		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
 
-		NSLog(@"Updating actual temperature and data…");
-		
-		// Separate values
-		NSArray *values = [operation.responseString componentsSeparatedByString:@" "];
+		NSHTTPURLResponse *resp = (id)response;
 
-		// Do basic values number check
-		if (values.count < 18) return;
-		
-		// Set temperature
-		double temperature = [[values objectAtIndex:4] doubleValue];
-		temperature = round(temperature);
-		if (temperature == 0) temperature = 0;
-		NSString *temperatureString = [NSString stringWithFormat:@"%.0f °C", temperature];
-		_temperatureLabel.text = temperatureString;
-		_temperatureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-			_temperatureHeadingLabel.text, _temperatureLabel.text];
+		if (![resp isKindOfClass:[NSHTTPURLResponse class]] || resp.statusCode != 200) return;
 
-		// Set wind speed
-		NSString *windSpeed = [Utils getLocalUnitValueFromFloat:[[values objectAtIndex:8] floatValue]];
-		_windSpeedLabel.text =  [NSString stringWithFormat:@"%@ m/s", windSpeed];
-		_windSpeedLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-			_windSpeedHeadingLabel.text, _windSpeedLabel.text];
+		NSString *respString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
-		// Set pressure
-		int pressure = [[values objectAtIndex:15] intValue];
-		_pressureLabel.text = [NSString stringWithFormat:@"%d hPa", pressure];
-		_pressureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-			_pressureHeadingLabel.text, _pressureLabel.text];
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 
-		// Set humidity
-		int humidity = [[values objectAtIndex:7] intValue];
-		_humidityLabel.text = [NSString stringWithFormat:@"%d %%", humidity];
-		_humidityLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-			_humidityHeadingLabel.text, _humidityLabel.text];
+			NSLog(@"Updating actual temperature and data…");
 
-		// Set weather icon
-		NSString *condition = [values objectAtIndex:17];
-		NSString *imageName = [Utils getWeatherIconFromConditionString:condition];
-		_conditionImage.image = [UIImage imageNamed:imageName];
+			// Separate values
+			NSArray *values = [respString componentsSeparatedByString:@" "];
 
-		_conditionImage.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-			NSLocalizedString(@"The weather is", @"Condition label -- appendable options: clear, cloudy, rainy"),
-			[Utils getVerboseStringFromConditionString:condition]];
+			// Do basic values number check
+			if (values.count < 8) return;
 
-	} failure:nil];
+			// Set temperature
+			double temperature = [[values objectAtIndex:3] doubleValue];
+			temperature = round(temperature);
+			if (temperature == 0) temperature = 0;
+			NSString *temperatureString = [NSString stringWithFormat:@"%.0f °C", temperature];
+			_temperatureLabel.text = temperatureString;
+			_temperatureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+				_temperatureHeadingLabel.text, _temperatureLabel.text];
 
-	[request start];
+			// Set wind speed
+			NSString *windSpeed = [Utils getLocalUnitValueFromFloat:[[values objectAtIndex:5] floatValue]];
+			_windSpeedLabel.text =  [NSString stringWithFormat:@"%@ m/s", windSpeed];
+			_windSpeedLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+				_windSpeedHeadingLabel.text, _windSpeedLabel.text];
+
+			// Set pressure
+			int pressure = [[values objectAtIndex:7] intValue];
+			_pressureLabel.text = [NSString stringWithFormat:@"%d hPa", pressure];
+			_pressureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+				_pressureHeadingLabel.text, _pressureLabel.text];
+
+			// Set humidity
+			int humidity = [[values objectAtIndex:4] intValue];
+			_humidityLabel.text = [NSString stringWithFormat:@"%d %%", humidity];
+			_humidityLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+				_humidityHeadingLabel.text, _humidityLabel.text];
+
+			// Set weather icon
+			// Options: "Rainy", "Cloudy", "Sunny"
+			NSString *condition = @"Sunny";
+			if (humidity > 50) condition = @"Cloudy";
+			if (humidity > 70) condition = @"Rainy";
+
+			NSString *imageName = [Utils getWeatherIconFromConditionString:condition];
+			_conditionImage.image = [UIImage imageNamed:imageName];
+
+			_conditionImage.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+				NSLocalizedString(@"The weather is", @"Condition label -- appendable options: clear, cloudy, rainy"),
+				[Utils getVerboseStringFromConditionString:condition]];
+
+		}];
+
+	}] resume];
 }
 
 //- (void)reloadTwitterStuff

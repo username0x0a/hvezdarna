@@ -13,7 +13,6 @@
 #import "Utils.h"
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
-#import "AFNetworking.h"
 
 
 @interface ProgramList ()
@@ -152,17 +151,16 @@
 	DebugLog(@"Trying to update calendar data…");
 	
 	NSURL *url = [NSURL URLWithString:@"http://hvezdarna.misacek.net/program.json"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:url];
 
-	AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-	operation.responseSerializer = [AFJSONResponseSerializer serializer];
+	[[[NSURLSession sharedSession] dataTaskWithURL:url
+		completionHandler:^(NSData *data, NSURLResponse *resp, NSError *error) {
 
-	[operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-		
-		if (!response) {
-			if (completion) completion(ProgramListUpdateResultNoChange);
+		if (!data.length) {
+			if (completion) completion(ProgramListUpdateResultFailure);
 			return;
 		}
+
+		NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 		
 		NSArray *events = [response objectForKey:@"events"];
 		
@@ -198,13 +196,7 @@
 
 		if (completion) completion(ProgramListUpdateResultNewData);
 					
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-		if (completion) completion(ProgramListUpdateResultFailure);
-
-	}];
-
-	[operation start];
+	}] resume];
 }
 
 - (void) updateWorkingCopy {
