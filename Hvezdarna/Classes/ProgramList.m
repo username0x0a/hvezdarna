@@ -96,7 +96,7 @@
 
 - (void) dailyCleanup {
 	[_workingDataLock lock];
-	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", [NSNumber numberWithDouble:[Utils unixTimestamp]]];
+	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", @([Utils unixTimestamp])];
 	[_workingDataLock unlock];
 }
 
@@ -104,7 +104,7 @@
 	[_workingDataLock lock];
 	id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
 	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
-	 name, [NSNumber numberWithInteger:day], [NSNumber numberWithInteger:timestamp], desc, shortDesc, optsObject, price, link];
+	 name, @(day), @(timestamp), desc, shortDesc, optsObject, price, link];
 	[_workingDataLock unlock];
 }
 
@@ -185,10 +185,11 @@
 			NSString *link = event[@"link"];
 			NSArray *opts = event[@"options"];
 		
-			[self insertEventWithName:name desc:desc shortDesc:shortDesc day:day_id timestamp:time price:price link:link opts:opts];
+			[self insertEventWithName:name desc:desc shortDesc:shortDesc
+				day:day_id timestamp:time price:price link:link opts:opts];
 		}
 		
-		[_db executeUpdate:@"UPDATE options SET last_update = ?;", [NSNumber numberWithDouble:[Utils unixTimestamp]]];
+		[_db executeUpdate:@"UPDATE options SET last_update = ?;", @([Utils unixTimestamp])];
 		[_db commit];
 		[self updateWorkingCopy];
 
@@ -205,9 +206,9 @@
 	// #-----
 	[_workingData removeAllObjects];
 	
-	NSNumber *now = [NSNumber numberWithDouble:[Utils unixTimestamp]];
+	NSNumber *now = @([Utils unixTimestamp]);
 	
-	FMResultSet *daysData = [_db executeQuery:@"SELECT DISTINCT day FROM events WHERE name LIKE ? AND time >= ? LIMIT ?;", _searchCondition, now, [NSNumber numberWithInt:DISPLAYED_DAYS]];
+	FMResultSet *daysData = [_db executeQuery:@"SELECT DISTINCT day FROM events WHERE name LIKE ? AND time >= ? LIMIT ?;", _searchCondition, now, @(DISPLAYED_DAYS)];
 	while ([daysData next]) {
 
 		NSString * dayID = [daysData stringForColumnIndex:0];

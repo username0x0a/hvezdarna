@@ -59,7 +59,7 @@
 	NSCalendar *cal = [NSCalendar currentCalendar];
 	[cal setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
 	[cal setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"cs_CZ"]];
-	NSNumber *n = [NSNumber numberWithDouble:[[cal dateFromComponents:dc] timeIntervalSince1970]];
+	NSNumber *n = @([[cal dateFromComponents:dc] timeIntervalSince1970]);
 	return [n intValue];
 }
 
@@ -107,9 +107,9 @@
 }
 
 + (NSString *) getLocalUnitValueFromFloat:(float)value {
-	NSInteger int_value =[[NSNumber numberWithFloat:value] intValue];
-	if (value == int_value)
-		return [NSString stringWithFormat:@"%zd", int_value];
+	NSInteger intValue = [@(value) integerValue];
+	if (value == intValue)
+		return [NSString stringWithFormat:@"%zd", intValue];
 	NSString *ret = [NSString stringWithFormat:@"%.1f", value];
 	return [ret stringByReplacingOccurrencesOfString:@"." withString:@","];
 }

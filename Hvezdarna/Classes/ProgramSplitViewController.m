@@ -15,15 +15,25 @@
 
 @end
 
-@interface BlankViewController : UIViewController @end
+@interface NoProgramSelectedViewController : UIViewController @end
 
-@implementation BlankViewController
+@implementation NoProgramSelectedViewController
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 
 	self.view.backgroundColor = [UIColor whiteColor];
+
+	UILabel *labe = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 100)];
+	labe.autoresizingMask =
+		UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin |
+		UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+	labe.font = [UIFont systemFontOfSize:18];
+	labe.textColor = [UIColor lightGrayColor];
+	labe.textAlignment = NSTextAlignmentCenter;
+	labe.text = @"Vyberte pořad ze seznamu";
+	[self.view addCenteredSubview:labe];
 }
 
 @end
@@ -39,7 +49,7 @@
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
 
 		EventsListViewController *root = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
-		BlankViewController *blank = [BlankViewController new];
+		NoProgramSelectedViewController *blank = [NoProgramSelectedViewController new];
 		
 		UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:root];
 		UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:blank];
@@ -54,12 +64,14 @@
 	return self;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showViewController:(UIViewController *)vc sender:(id)sender
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+         showViewController:(UIViewController *)vc sender:(id)sender
 {
 	return NO;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController showDetailViewController:(UIViewController *)vc sender:(id)sender
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+   showDetailViewController:(UIViewController *)vc sender:(id)sender
 {
 	if (splitViewController.collapsed == NO)
 	{
@@ -67,7 +79,7 @@
 		UINavigationController *navController = splitViewController.viewControllers[1];
 
 		UIViewController *topDetailViewController = [navController.viewControllers lastObject];
-		if ([topDetailViewController isKindOfClass:[BlankViewController class]] ||
+		if ([topDetailViewController isKindOfClass:[NoProgramSelectedViewController class]] ||
 			[topDetailViewController isKindOfClass:[EventDetailViewController class]])
 		{
 			// Replace the (expanded) detail view with this new view controller.
@@ -90,12 +102,14 @@
 	return YES;
 }
 
-- (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController
+- (BOOL)splitViewController:(UISplitViewController *)splitViewController
+collapseSecondaryViewController:(UIViewController *)secondaryViewController
+  ontoPrimaryViewController:(UIViewController *)primaryViewController
 {
 	UINavigationController *primaryNavController = (UINavigationController *)primaryViewController;
 	UINavigationController *secondaryNavController = (UINavigationController *)secondaryViewController;
 	UIViewController *bottomSecondaryView = [secondaryNavController.viewControllers firstObject];
-	if ([bottomSecondaryView isKindOfClass:[BlankViewController class]])
+	if ([bottomSecondaryView isKindOfClass:[NoProgramSelectedViewController class]])
 	{
 		NSAssert([secondaryNavController.viewControllers count] == 1, @"BlankViewController is not only detail view controller");
 		// If our secondary controller is blank, do the collapse ourself by doing nothing.
@@ -112,7 +126,8 @@
 	return YES;
 }
 
-- (UIViewController *)splitViewController:(UISplitViewController *)splitViewController separateSecondaryViewControllerFromPrimaryViewController:(UIViewController *)primaryViewController
+- (UIViewController *)splitViewController:(UISplitViewController *)splitViewController
+separateSecondaryViewControllerFromPrimaryViewController:(UIViewController *)primaryViewController
 {
 	UINavigationController *primaryNavController = (UINavigationController *)primaryViewController;
 
@@ -134,7 +149,7 @@
 	if (newDetailViewControllers.count == 0)
 	{
 		// If there's no detailed views on the top of the navigation stack, return a blank view  (in navigation controller) for detailed side.
-		UINavigationController *blankDetailNavController = [[UINavigationController alloc] initWithRootViewController:[[BlankViewController alloc] init]];
+		UINavigationController *blankDetailNavController = [[UINavigationController alloc] initWithRootViewController:[[NoProgramSelectedViewController alloc] init]];
 		return blankDetailNavController;
 	}
 

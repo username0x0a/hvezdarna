@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,18 +21,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="o-hvezdarne-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-3i-MCA">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloudy-bg" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-3i-MCA" userLabel="Background">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="656"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="hvezdarna-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="12">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="hvezdarna-logo" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="Logo">
                     <rect key="frame" x="26.5" y="19" width="255" height="95"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="95" id="DnN-K9-UOv"/>
                         <constraint firstAttribute="width" constant="255" id="ZD7-FS-USy"/>
                     </constraints>
                 </imageView>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHK-lV-eQn">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHK-lV-eQn" userLabel="Content container">
                     <rect key="frame" x="17" y="116" width="286" height="337"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
@@ -106,7 +106,7 @@ Cg
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43" userLabel="Web Button">
                     <rect key="frame" x="53" y="469" width="214" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <state key="normal" title="Oficiální web hvězdárny">
@@ -129,7 +129,7 @@ Cg
         </view>
     </objects>
     <resources>
-        <image name="hvezdarna-logo.png" width="275" height="100"/>
-        <image name="o-hvezdarne-bg.png" width="1024" height="768"/>
+        <image name="cloudy-bg" width="1024" height="768"/>
+        <image name="hvezdarna-logo" width="275" height="100"/>
     </resources>
 </document>

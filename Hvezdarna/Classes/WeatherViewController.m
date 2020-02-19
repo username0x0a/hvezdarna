@@ -67,11 +67,11 @@
 		_conditionImage.top -= 40;
 	}
 
+	NSInteger hour = [[NSCalendar currentCalendar] component:NSCalendarUnitHour fromDate:[NSDate new]];
+	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
+
 	_blurView = [[MaskAutoAdjustingView alloc] initWithFrame:self.view.frame];
 	_blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-//	NSTimeInterval dayInterval = (NSInteger)([[NSDate new] timeIntervalSince1970] + 2*60*60) % 86400;
-//	CGFloat colorIntensity = (dayInterval < 6.5*60*60 || dayInterval > 22*60*60) ? .11 : .22;
-	CGFloat colorIntensity = .22;
 	_blurView.backgroundColor = [UIColor colorWithWhite:colorIntensity alpha:.84];
 	[self.view insertSubview:_blurView aboveSubview:_backgroundView];
 
@@ -152,6 +152,7 @@
 				for (UIView *v in layers)
 					if (v != imageView)
 						[v removeFromSuperview];
+
 			}];
 
 		}];

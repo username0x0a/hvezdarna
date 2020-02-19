@@ -30,13 +30,10 @@
 		EF94349F1879D7C4003D7BEF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */; };
 		EF9434A01879D7C4003D7BEF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434361879D7C4003D7BEF /* Default.png */; };
 		EF9434A11879D7C4003D7BEF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434371879D7C4003D7BEF /* Default@2x.png */; };
-		EF9434A21879D7C4003D7BEF /* hvezdarna-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434381879D7C4003D7BEF /* hvezdarna-logo.png */; };
-		EF9434A31879D7C4003D7BEF /* hvezdarna-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434391879D7C4003D7BEF /* hvezdarna-logo@2x.png */; };
 		EF9434A71879D7C4003D7BEF /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94343E1879D7C4003D7BEF /* about@2x.png */; };
 		EF9434A91879D7C4003D7BEF /* actual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434401879D7C4003D7BEF /* actual@2x.png */; };
 		EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434421879D7C4003D7BEF /* programme@2x.png */; };
 		EF9434AD1879D7C4003D7BEF /* twitter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434441879D7C4003D7BEF /* twitter@2x.png */; };
-		EF9434BC1879D7C4003D7BEF /* o-hvezdarne-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */; };
 		EF9434C71879D7C4003D7BEF /* clear_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94345F1879D7C4003D7BEF /* clear_sun@2x.png */; };
 		EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434611879D7C4003D7BEF /* cloudy@2x.png */; };
 		EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94346F1879D7C4003D7BEF /* rain@2x.png */; };
@@ -116,16 +113,14 @@
 		EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		EF9434361879D7C4003D7BEF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EF9434371879D7C4003D7BEF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EF9434381879D7C4003D7BEF /* hvezdarna-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hvezdarna-logo.png"; sourceTree = "<group>"; };
-		EF9434391879D7C4003D7BEF /* hvezdarna-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hvezdarna-logo@2x.png"; sourceTree = "<group>"; };
 		EF94343E1879D7C4003D7BEF /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		EF9434401879D7C4003D7BEF /* actual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actual@2x.png"; sourceTree = "<group>"; };
 		EF9434421879D7C4003D7BEF /* programme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "programme@2x.png"; sourceTree = "<group>"; };
 		EF9434441879D7C4003D7BEF /* twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter@2x.png"; sourceTree = "<group>"; };
-		EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "o-hvezdarne-bg@2x.png"; sourceTree = "<group>"; };
 		EF94345F1879D7C4003D7BEF /* clear_sun@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear_sun@2x.png"; sourceTree = "<group>"; };
 		EF9434611879D7C4003D7BEF /* cloudy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudy@2x.png"; sourceTree = "<group>"; };
 		EF94346F1879D7C4003D7BEF /* rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rain@2x.png"; sourceTree = "<group>"; };
+		EF9BD33923FDF261000FF4A3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-812h@3x.png"; sourceTree = "<group>"; };
@@ -259,6 +254,7 @@
 				B0AC4C2E15DA75B80075D628 /* Hvezdarna-Info.plist */,
 				B0AC4C3215DA75B80075D628 /* main.m */,
 				B0AC4C3415DA75B80075D628 /* Hvezdarna-Prefix.pch */,
+				EF9BD33923FDF261000FF4A3 /* Config.xcconfig */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -328,9 +324,6 @@
 				EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */,
 				EF9434361879D7C4003D7BEF /* Default.png */,
 				EF9434371879D7C4003D7BEF /* Default@2x.png */,
-				EF9434381879D7C4003D7BEF /* hvezdarna-logo.png */,
-				EF9434391879D7C4003D7BEF /* hvezdarna-logo@2x.png */,
-				EF9434531879D7C4003D7BEF /* o-hvezdarne-bg@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -363,7 +356,7 @@
 				EFC2DC1B19633920006902DE /* Weather view */,
 				EFECB9EB196DB59900D524FD /* Events List view */,
 				EFC2DC1C19633928006902DE /* Event Detail view */,
-				EFC2DC1E1963399B006902DE /* About views */,
+				EFC2DC1E1963399B006902DE /* About view */,
 				EFECB9EC196DB5C800D524FD /* Models */,
 				EFC2DB79196335D7006902DE /* AppDelegate.h */,
 				EFC2DB7A196335D7006902DE /* AppDelegate.m */,
@@ -406,14 +399,14 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		EFC2DC1E1963399B006902DE /* About views */ = {
+		EFC2DC1E1963399B006902DE /* About view */ = {
 			isa = PBXGroup;
 			children = (
 				EFC2DB7B196335D7006902DE /* AboutObservatoryViewController.h */,
 				EFC2DB7C196335D7006902DE /* AboutObservatoryViewController.m */,
 				EFC2DB7D196335D7006902DE /* AboutObservatoryViewController.xib */,
 			);
-			name = "About views";
+			name = "About view";
 			sourceTree = "<group>";
 		};
 		EFECB9EB196DB59900D524FD /* Events List view */ = {
@@ -516,8 +509,6 @@
 				EFC2DBAB196335D7006902DE /* ProgramCellView.xib in Resources */,
 				EFC2DC2219634EDB006902DE /* background-default.jpg in Resources */,
 				EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */,
-				EF9434A31879D7C4003D7BEF /* hvezdarna-logo@2x.png in Resources */,
-				EF9434A21879D7C4003D7BEF /* hvezdarna-logo.png in Resources */,
 				EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */,
 				EFB6446C197474E100F51C8F /* AppIcon50x50@2x.png in Resources */,
 				EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */,
@@ -536,7 +527,6 @@
 				EFB6446E197474E100F51C8F /* AppIcon57x57@2x.png in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
 				EFB64471197474E100F51C8F /* AppIcon72x72.png in Resources */,
-				EF9434BC1879D7C4003D7BEF /* o-hvezdarne-bg@2x.png in Resources */,
 				EFB6446A197474E100F51C8F /* AppIcon40x40@2x.png in Resources */,
 				EFB6446B197474E100F51C8F /* AppIcon50x50.png in Resources */,
 				EF94349D1879D7C4003D7BEF /* Default-568h@2x.png in Resources */,
@@ -589,6 +579,7 @@
 /* Begin XCBuildConfiguration section */
 		B0AC4C5215DA75B80075D628 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF9BD33923FDF261000FF4A3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -642,6 +633,7 @@
 		};
 		B0AC4C5315DA75B80075D628 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF9BD33923FDF261000FF4A3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
