@@ -71,7 +71,7 @@
 		EFC2DBB0196335D7006902DE /* ProgramList.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8B196335D7006902DE /* ProgramList.m */; };
 		EFC2DBB1196335D7006902DE /* ProgramSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8D196335D7006902DE /* ProgramSectionView.m */; };
 		EFC2DBB2196335D7006902DE /* ProgramSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8F196335D7006902DE /* ProgramSplitViewController.m */; };
-		EFC2DBB3196335D7006902DE /* ProgramSplitViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DB90196335D7006902DE /* ProgramSplitViewController_iPad.xib */; };
+		EFC2DBB3196335D7006902DE /* ProgramSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DB90196335D7006902DE /* ProgramSplitViewController.xib */; };
 		EFC2DBB4196335D7006902DE /* EventsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB92196335D7006902DE /* EventsListViewController.m */; };
 		EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DB93196335D7006902DE /* EventsListViewController.xib */; };
 		EFC2DBB8196335D7006902DE /* UIView+position.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9A196335D7006902DE /* UIView+position.m */; };
@@ -167,11 +167,10 @@
 		EFC2DB8D196335D7006902DE /* ProgramSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ProgramSectionView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB8E196335D7006902DE /* ProgramSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ProgramSplitViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB8F196335D7006902DE /* ProgramSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ProgramSplitViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		EFC2DB90196335D7006902DE /* ProgramSplitViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramSplitViewController_iPad.xib; sourceTree = "<group>"; };
+		EFC2DB90196335D7006902DE /* ProgramSplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgramSplitViewController.xib; sourceTree = "<group>"; };
 		EFC2DB91196335D7006902DE /* EventsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EventsListViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB92196335D7006902DE /* EventsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EventsListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB93196335D7006902DE /* EventsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsListViewController.xib; sourceTree = "<group>"; };
-		EFC2DB94196335D7006902DE /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB99196335D7006902DE /* UIView+position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIView+position.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB9A196335D7006902DE /* UIView+position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+position.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB9B196335D7006902DE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Utils.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -428,10 +427,9 @@
 				EFC2DB83196335D7006902DE /* ProgramCellView.xib */,
 				EFC2DB8C196335D7006902DE /* ProgramSectionView.h */,
 				EFC2DB8D196335D7006902DE /* ProgramSectionView.m */,
-				EFC2DB90196335D7006902DE /* ProgramSplitViewController_iPad.xib */,
+				EFC2DB90196335D7006902DE /* ProgramSplitViewController.xib */,
 				EFC2DB8E196335D7006902DE /* ProgramSplitViewController.h */,
 				EFC2DB8F196335D7006902DE /* ProgramSplitViewController.m */,
-				EFC2DB94196335D7006902DE /* SplitViewBarButtonItemPresenter.h */,
 			);
 			name = "Events List view";
 			sourceTree = "<group>";
@@ -547,7 +545,7 @@
 				EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */,
 				EFC2DC381965F160006902DE /* clear_moon@2x.png in Resources */,
 				EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */,
-				EFC2DBB3196335D7006902DE /* ProgramSplitViewController_iPad.xib in Resources */,
+				EFC2DBB3196335D7006902DE /* ProgramSplitViewController.xib in Resources */,
 				EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */,
 				EFB6446F197474E100F51C8F /* AppIcon60x60.png in Resources */,
 				EFB6446D197474E100F51C8F /* AppIcon57x57.png in Resources */,

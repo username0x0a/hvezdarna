@@ -101,7 +101,7 @@
 
 	object_setClass(_searchBar, [PositionedSearchBar class]);
 	self.navigationItem.titleView = _searchBar;
-	_searchBar.width = _searchBar.superview.width;
+//	_searchBar.width = _searchBar.superview.width;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -194,21 +194,7 @@
 
 	vc.program = cell.program;
 
-	if (isIPhone())
-		[self.navigationController pushViewController:vc animated:YES];
-
-	else if (isIPad())
-	{
-		///// FIXXXXXX THIIIIIISSSS STUFFFFFFF!.,:!
-		[self.splitViewController viewWillAppear:YES];
-		[self.splitViewController viewWillDisappear:YES];
-		NSMutableArray *viewControllerArray = [[NSMutableArray alloc] initWithArray:[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers]];
-		[viewControllerArray removeLastObject];
-		[viewControllerArray addObject:vc];
-		self.splitViewController.delegate = vc;
-		[[self.splitViewController.viewControllers objectAtIndex:1] setViewControllers:viewControllerArray animated:NO];
-		[self.splitViewController viewWillAppear:YES];
-	}
+	[_splitViewController showDetailViewController:vc sender:nil];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

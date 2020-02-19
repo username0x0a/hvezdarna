@@ -11,7 +11,7 @@
 @class Program;
 
 
-@interface EventDetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface EventDetailViewController : UIViewController
 
 @property (nonatomic, strong) Program *program;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;

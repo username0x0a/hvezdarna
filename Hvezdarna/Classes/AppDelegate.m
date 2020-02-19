@@ -40,15 +40,7 @@
 
 	weather = [[WeatherViewController alloc] initWithNibName:@"WeatherViewController" bundle:nil];
 	observatory = [[AboutObservatoryViewController alloc] initWithNibName:@"AboutObservatoryViewController" bundle:nil];
-
-	if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-		UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil]];
-		navVC.navigationBar.translucent = YES;
-		eventsList = navVC;
-	} else {
-		[[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft];
-		eventsList = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController_iPad" bundle:nil];
-	}
+	eventsList = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController" bundle:nil];
 
 	_tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.delegate = self;

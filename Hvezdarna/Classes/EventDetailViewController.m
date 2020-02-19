@@ -14,7 +14,6 @@
 #import "Program.h"
 #import "Utils.h"
 #import "UIView+position.h"
-#import "SplitViewBarButtonItemPresenter.h"
 
 
 @implementation EventDetailViewController
@@ -26,7 +25,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
-		self.splitViewController.delegate = self;
+	{ }
 
 	return self;
 }
@@ -79,14 +78,28 @@
 		style:UIBarButtonItemStylePlain target:self action:@selector(openLink)];
 	self.navigationItem.rightBarButtonItem.enabled = _program.link.length > 0;
 
+	[self recalculateContent];
+}
+
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+	[self recalculateContent];
+}
+
+- (void)recalculateContent
+{
+	CGFloat width = self.view.width - 2*20;
+
 	_eventTitle.numberOfLines = 0;
-	_eventTitle.frame = CGRectMake(20, 12, 280, 31);
 	_eventTitle.text = _program.title;
-	[_eventTitle sizeToFit];
+	_eventTitle.width = width;
+	_eventTitle.height = [_eventTitle sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
 
 	_date.text = [Utils getLocalDateStringFromTimestamp:_program.day];
 	_price.text = [Utils getLocalMoneyValueFromString:_program.price];
 	_time.text = [Utils getLocalTimeStringFromTimestamp:_program.timestamp];
+	_infoView.width = width;
 	_infoView.top = _eventTitle.bottom+2.0f;
 
     _shortDescription.text = _program.shortDescription;
@@ -108,16 +121,20 @@
 		}];
 
 	NSAttributedString *attrDescription = [[NSAttributedString alloc]
-        initWithString:_longDescription.text attributes:@{
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: [_longDescription.font fontWithSize:17],
-            NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
-        }];
+		initWithString:_longDescription.text attributes:@{
+			NSParagraphStyleAttributeName: paragraphStyle,
+			NSFontAttributeName: [_longDescription.font fontWithSize:17],
+			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
+		}];
+
+	_detailsView.width = width;
 
 	_shortDescription.attributedText = attrShortDescription;
+	_shortDescription.width = width;
 	_shortDescription.height = [_shortDescription sizeThatFits:CGSizeMake(_shortDescription.width, INT_MAX)].height;
 
 	_longDescription.attributedText = attrDescription;
+	_longDescription.width = width;
     _longDescription.top = _shortDescription.bottom+4.0f;
 	_longDescription.height = [_longDescription sizeThatFits:CGSizeMake(_longDescription.width, INT_MAX)].height;
 
@@ -134,17 +151,17 @@
 		UINib *nibForCells = [UINib nibWithNibName:@"ProgramDetailCellView" bundle:nil];
 		NSArray *topLevelObjects = [nibForCells instantiateWithOwner:self options:nil];
 		ProgramDetailCellView *cell = [topLevelObjects objectAtIndex:0];
+		cell.width = _detailsView.width;
 		NSString *val = [option stringByReplacingOccurrencesOfString:@": " withString:@" je "];
 		[cell setTextOfDetail:val];
-		cell.width = _detailsView.width;
 		[_detailsView addSubview:cell];
 		cell.top = currentY;
 		currentY = cell.bottom;
 	}
 	_detailsView.height = currentY;
 
-    // set the content size to be the size our our whole frame
-	_scrollView.contentSize = CGSizeMake(self.view.width, _detailsView.bottom + 10);
+	// Set the content size to be the size our our whole frame
+	_scrollView.contentSize = CGSizeMake(self.view.width, _detailsView.bottom + 14);
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -172,41 +189,5 @@
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
 }
-
-
-#pragma mark - Split View Delegate
-
-
-- (id <SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
-{
-    id detailVC = [self.splitViewController.viewControllers lastObject];
-    if (![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)])
-        detailVC = nil;
-
-	return detailVC;
-}
-
-//- (BOOL)splitViewController:(UISplitViewController *)svc
-//   shouldHideViewController:(UIViewController *)vc
-//              inOrientation:(UIInterfaceOrientation)orientation
-//{
-//    return [self splitViewBarButtonItemPresenter] ? UIInterfaceOrientationIsPortrait(orientation) : NO;
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)svc
-//     willHideViewController:(UIViewController *)aViewController
-//          withBarButtonItem:(UIBarButtonItem *)barButtonItem
-//       forPopoverController:(UIPopoverController *)pc
-//{
-//    barButtonItem.title = self.title;
-//    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = barButtonItem;
-//}
-//
-//- (void)splitViewController:(UISplitViewController *)svc
-//     willShowViewController:(UIViewController *)aViewController
-//  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-//{
-//    [self splitViewBarButtonItemPresenter].splitViewBarButtonItem = nil;
-//}
 
 @end
