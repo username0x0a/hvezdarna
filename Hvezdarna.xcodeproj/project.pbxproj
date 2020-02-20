@@ -25,11 +25,6 @@
 		EF844BAA19CEBEA100CE392B /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA219CEBEA100CE392B /* FMDatabasePool.m */; };
 		EF844BAB19CEBEA100CE392B /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA419CEBEA100CE392B /* FMDatabaseQueue.m */; };
 		EF844BAC19CEBEA100CE392B /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA719CEBEA100CE392B /* FMResultSet.m */; };
-		EF94349D1879D7C4003D7BEF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434331879D7C4003D7BEF /* Default-568h@2x.png */; };
-		EF94349E1879D7C4003D7BEF /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434341879D7C4003D7BEF /* Default-Landscape@2x~ipad.png */; };
-		EF94349F1879D7C4003D7BEF /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */; };
-		EF9434A01879D7C4003D7BEF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434361879D7C4003D7BEF /* Default.png */; };
-		EF9434A11879D7C4003D7BEF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434371879D7C4003D7BEF /* Default@2x.png */; };
 		EF9434A71879D7C4003D7BEF /* about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94343E1879D7C4003D7BEF /* about@2x.png */; };
 		EF9434A91879D7C4003D7BEF /* actual@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434401879D7C4003D7BEF /* actual@2x.png */; };
 		EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434421879D7C4003D7BEF /* programme@2x.png */; };
@@ -37,23 +32,7 @@
 		EF9434C71879D7C4003D7BEF /* clear_sun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94345F1879D7C4003D7BEF /* clear_sun@2x.png */; };
 		EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF9434611879D7C4003D7BEF /* cloudy@2x.png */; };
 		EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF94346F1879D7C4003D7BEF /* rain@2x.png */; };
-		EFA48E2D1C5C326800164EB3 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */; };
 		EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */; };
-		EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */; };
-		EFB64467197474E100F51C8F /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64459197474E100F51C8F /* AppIcon29x29.png */; };
-		EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */; };
-		EFB64469197474E100F51C8F /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445B197474E100F51C8F /* AppIcon40x40.png */; };
-		EFB6446A197474E100F51C8F /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445C197474E100F51C8F /* AppIcon40x40@2x.png */; };
-		EFB6446B197474E100F51C8F /* AppIcon50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445D197474E100F51C8F /* AppIcon50x50.png */; };
-		EFB6446C197474E100F51C8F /* AppIcon50x50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445E197474E100F51C8F /* AppIcon50x50@2x.png */; };
-		EFB6446D197474E100F51C8F /* AppIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB6445F197474E100F51C8F /* AppIcon57x57.png */; };
-		EFB6446E197474E100F51C8F /* AppIcon57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64460197474E100F51C8F /* AppIcon57x57@2x.png */; };
-		EFB6446F197474E100F51C8F /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64461197474E100F51C8F /* AppIcon60x60.png */; };
-		EFB64470197474E100F51C8F /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64462197474E100F51C8F /* AppIcon60x60@2x.png */; };
-		EFB64471197474E100F51C8F /* AppIcon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64463197474E100F51C8F /* AppIcon72x72.png */; };
-		EFB64472197474E100F51C8F /* AppIcon72x72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64464197474E100F51C8F /* AppIcon72x72@2x.png */; };
-		EFB64473197474E100F51C8F /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64465197474E100F51C8F /* AppIcon76x76.png */; };
-		EFB64474197474E100F51C8F /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFB64466197474E100F51C8F /* AppIcon76x76@2x.png */; };
 		EFC2DBA1196335D7006902DE /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB74196335D7006902DE /* WeatherViewController.m */; };
 		EFC2DBA5196335D7006902DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7A196335D7006902DE /* AppDelegate.m */; };
 		EFC2DBA6196335D7006902DE /* AboutObservatoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7C196335D7006902DE /* AboutObservatoryViewController.m */; };
@@ -73,11 +52,9 @@
 		EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DB93196335D7006902DE /* EventsListViewController.xib */; };
 		EFC2DBB8196335D7006902DE /* UIView+position.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9A196335D7006902DE /* UIView+position.m */; };
 		EFC2DBB9196335D7006902DE /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9C196335D7006902DE /* Utils.m */; };
-		EFC2DC2219634EDB006902DE /* background-default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC2119634EDB006902DE /* background-default.jpg */; };
 		EFC2DC3019646C06006902DE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2DC2F19646C06006902DE /* Accelerate.framework */; };
 		EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC351964724A006902DE /* WeatherViewController.xib */; };
 		EFC2DC381965F160006902DE /* clear_moon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC371965F160006902DE /* clear_moon@2x.png */; };
-		EFED7454202F8FA000886E86 /* AppIcon83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,11 +85,6 @@
 		EF844BA519CEBEA100CE392B /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		EF844BA619CEBEA100CE392B /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		EF844BA719CEBEA100CE392B /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		EF9434331879D7C4003D7BEF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EF9434341879D7C4003D7BEF /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
-		EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
-		EF9434361879D7C4003D7BEF /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EF9434371879D7C4003D7BEF /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EF94343E1879D7C4003D7BEF /* about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about@2x.png"; sourceTree = "<group>"; };
 		EF9434401879D7C4003D7BEF /* actual@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actual@2x.png"; sourceTree = "<group>"; };
 		EF9434421879D7C4003D7BEF /* programme@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "programme@2x.png"; sourceTree = "<group>"; };
@@ -121,23 +93,7 @@
 		EF9434611879D7C4003D7BEF /* cloudy@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloudy@2x.png"; sourceTree = "<group>"; };
 		EF94346F1879D7C4003D7BEF /* rain@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rain@2x.png"; sourceTree = "<group>"; };
 		EF9BD33923FDF261000FF4A3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-812h@3x.png"; sourceTree = "<group>"; };
-		EFB64459197474E100F51C8F /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
-		EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
-		EFB6445B197474E100F51C8F /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
-		EFB6445C197474E100F51C8F /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
-		EFB6445D197474E100F51C8F /* AppIcon50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon50x50.png; sourceTree = "<group>"; };
-		EFB6445E197474E100F51C8F /* AppIcon50x50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon50x50@2x.png"; sourceTree = "<group>"; };
-		EFB6445F197474E100F51C8F /* AppIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon57x57.png; sourceTree = "<group>"; };
-		EFB64460197474E100F51C8F /* AppIcon57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon57x57@2x.png"; sourceTree = "<group>"; };
-		EFB64461197474E100F51C8F /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
-		EFB64462197474E100F51C8F /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
-		EFB64463197474E100F51C8F /* AppIcon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon72x72.png; sourceTree = "<group>"; };
-		EFB64464197474E100F51C8F /* AppIcon72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon72x72@2x.png"; sourceTree = "<group>"; };
-		EFB64465197474E100F51C8F /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
-		EFB64466197474E100F51C8F /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		EFC2DB73196335D7006902DE /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WeatherViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB74196335D7006902DE /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WeatherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB79196335D7006902DE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -170,11 +126,9 @@
 		EFC2DB9A196335D7006902DE /* UIView+position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+position.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB9B196335D7006902DE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Utils.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB9C196335D7006902DE /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Utils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		EFC2DC2119634EDB006902DE /* background-default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "background-default.jpg"; sourceTree = "<group>"; };
 		EFC2DC2F19646C06006902DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		EFC2DC351964724A006902DE /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		EFC2DC371965F160006902DE /* clear_moon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clear_moon@2x.png"; sourceTree = "<group>"; };
-		EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon83.5x83.5@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,8 +205,8 @@
 		B0AC4C2D15DA75B80075D628 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B0AC4C2E15DA75B80075D628 /* Hvezdarna-Info.plist */,
 				B0AC4C3215DA75B80075D628 /* main.m */,
+				B0AC4C2E15DA75B80075D628 /* Hvezdarna-Info.plist */,
 				B0AC4C3415DA75B80075D628 /* Hvezdarna-Prefix.pch */,
 				EF9BD33923FDF261000FF4A3 /* Config.xcconfig */,
 			);
@@ -262,7 +216,6 @@
 		B0AC4C6F15DA7D220075D628 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EF9434151879D7C4003D7BEF /* Icons */,
 				EF94342A1879D7C4003D7BEF /* Images */,
 				EF401A031FD4AB25008F62C6 /* Media.xcassets */,
 				EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */,
@@ -289,41 +242,11 @@
 			path = Hvezdarna/Libraries/fmdb;
 			sourceTree = "<group>";
 		};
-		EF9434151879D7C4003D7BEF /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				EFB64459197474E100F51C8F /* AppIcon29x29.png */,
-				EFB6445A197474E100F51C8F /* AppIcon29x29@2x.png */,
-				EFB6445B197474E100F51C8F /* AppIcon40x40.png */,
-				EFB6445C197474E100F51C8F /* AppIcon40x40@2x.png */,
-				EFB6445D197474E100F51C8F /* AppIcon50x50.png */,
-				EFB6445E197474E100F51C8F /* AppIcon50x50@2x.png */,
-				EFB6445F197474E100F51C8F /* AppIcon57x57.png */,
-				EFB64460197474E100F51C8F /* AppIcon57x57@2x.png */,
-				EFB64461197474E100F51C8F /* AppIcon60x60.png */,
-				EFB64462197474E100F51C8F /* AppIcon60x60@2x.png */,
-				EFB64463197474E100F51C8F /* AppIcon72x72.png */,
-				EFB64464197474E100F51C8F /* AppIcon72x72@2x.png */,
-				EFB64465197474E100F51C8F /* AppIcon76x76.png */,
-				EFB64466197474E100F51C8F /* AppIcon76x76@2x.png */,
-				EFED7453202F8FA000886E86 /* AppIcon83.5x83.5@2x.png */,
-			);
-			path = Icons;
-			sourceTree = "<group>";
-		};
 		EF94342A1879D7C4003D7BEF /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				EF94343A1879D7C4003D7BEF /* icons */,
 				EF94345B1879D7C4003D7BEF /* weather */,
-				EFC2DC2119634EDB006902DE /* background-default.jpg */,
-				EF9434331879D7C4003D7BEF /* Default-568h@2x.png */,
-				EFA48E2C1C5C326800164EB3 /* Default-667h@2x.png */,
-				EFABBAAF1FBCDB2F00CED826 /* Default-812h@3x.png */,
-				EF9434341879D7C4003D7BEF /* Default-Landscape@2x~ipad.png */,
-				EF9434351879D7C4003D7BEF /* Default-Landscape~ipad.png */,
-				EF9434361879D7C4003D7BEF /* Default.png */,
-				EF9434371879D7C4003D7BEF /* Default@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -502,46 +425,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFB64470197474E100F51C8F /* AppIcon60x60@2x.png in Resources */,
-				EFB64474197474E100F51C8F /* AppIcon76x76@2x.png in Resources */,
-				EFB64469197474E100F51C8F /* AppIcon40x40.png in Resources */,
 				EFC2DBA7196335D7006902DE /* AboutObservatoryViewController.xib in Resources */,
 				EFC2DBAB196335D7006902DE /* ProgramCellView.xib in Resources */,
-				EFC2DC2219634EDB006902DE /* background-default.jpg in Resources */,
 				EF9434C91879D7C4003D7BEF /* cloudy@2x.png in Resources */,
 				EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */,
-				EFB6446C197474E100F51C8F /* AppIcon50x50@2x.png in Resources */,
-				EFABBAB01FBCDB3000CED826 /* Default-812h@3x.png in Resources */,
-				EF9434A11879D7C4003D7BEF /* Default@2x.png in Resources */,
 				EF9434A71879D7C4003D7BEF /* about@2x.png in Resources */,
-				EFB64473197474E100F51C8F /* AppIcon76x76.png in Resources */,
 				EFC2DBAF196335D7006902DE /* EventDetailViewController.xib in Resources */,
-				EFB64472197474E100F51C8F /* AppIcon72x72@2x.png in Resources */,
 				EF9434C71879D7C4003D7BEF /* clear_sun@2x.png in Resources */,
-				EF94349E1879D7C4003D7BEF /* Default-Landscape@2x~ipad.png in Resources */,
 				EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */,
-				EFB64467197474E100F51C8F /* AppIcon29x29.png in Resources */,
 				EFC2DBAD196335D7006902DE /* ProgramDetailCellView.xib in Resources */,
-				EFED7454202F8FA000886E86 /* AppIcon83.5x83.5@2x.png in Resources */,
 				EF9434A91879D7C4003D7BEF /* actual@2x.png in Resources */,
-				EFB6446E197474E100F51C8F /* AppIcon57x57@2x.png in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
-				EFB64471197474E100F51C8F /* AppIcon72x72.png in Resources */,
-				EFB6446A197474E100F51C8F /* AppIcon40x40@2x.png in Resources */,
-				EFB6446B197474E100F51C8F /* AppIcon50x50.png in Resources */,
-				EF94349D1879D7C4003D7BEF /* Default-568h@2x.png in Resources */,
 				EF9434AD1879D7C4003D7BEF /* twitter@2x.png in Resources */,
 				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
 				EF9434AB1879D7C4003D7BEF /* programme@2x.png in Resources */,
 				EFC2DC381965F160006902DE /* clear_moon@2x.png in Resources */,
 				EF9434D71879D7C4003D7BEF /* rain@2x.png in Resources */,
 				EFC2DBB3196335D7006902DE /* ProgramSplitViewController.xib in Resources */,
-				EFB64468197474E100F51C8F /* AppIcon29x29@2x.png in Resources */,
-				EFB6446F197474E100F51C8F /* AppIcon60x60.png in Resources */,
-				EFB6446D197474E100F51C8F /* AppIcon57x57.png in Resources */,
-				EFA48E2D1C5C326800164EB3 /* Default-667h@2x.png in Resources */,
-				EF94349F1879D7C4003D7BEF /* Default-Landscape~ipad.png in Resources */,
-				EF9434A01879D7C4003D7BEF /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,6 +44,10 @@
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc]
 		initWithTarget:self action:@selector(backgroundTapped:)]];
 
+	NSInteger hour = [[NSCalendar currentCalendar] component:NSCalendarUnitHour fromDate:[NSDate new]];
+	NSString *image = (hour < 6 || hour > 20) ? @"placeholder-evening" : @"placeholder-dusk";
+	_backgroundView.image = [UIImage imageNamed:image];
+
 	if (isIPad() || isWidescreen() || isUltraWidescreen())
 	{
 		_temperatureHeadingLabel.top += 32;
@@ -67,7 +71,6 @@
 		_conditionImage.top -= 40;
 	}
 
-	NSInteger hour = [[NSCalendar currentCalendar] component:NSCalendarUnitHour fromDate:[NSDate new]];
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
 
 	_blurView = [[MaskAutoAdjustingView alloc] initWithFrame:self.view.frame];

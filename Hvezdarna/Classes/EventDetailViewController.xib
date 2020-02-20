@@ -44,7 +44,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="33. listopadu" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39" userLabel="Date label">
-                                    <rect key="frame" x="0.0" y="2" width="144" height="28"/>
+                                    <rect key="frame" x="0.0" y="2" width="164" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
