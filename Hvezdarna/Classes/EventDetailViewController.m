@@ -10,25 +10,13 @@
 #import <SafariServices/SafariServices.h>
 
 #import "EventDetailViewController.h"
-#import "ProgramDetailCellView.h"
-#import "Program.h"
+#import "EventDetailCellView.h"
+#import "Event.h"
 #import "Utils.h"
 #import "UIView+position.h"
 
 
 @implementation EventDetailViewController
-
-
-#pragma mark - Initialization
-
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
-	{ }
-
-	return self;
-}
 
 
 #pragma mark - View Lifecycle
@@ -69,14 +57,9 @@
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
-	if (!_program) {
-		[_scrollView setHidden:YES];
-		return;
-	}
-
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Rezervace"
 		style:UIBarButtonItemStylePlain target:self action:@selector(openLink)];
-	self.navigationItem.rightBarButtonItem.enabled = _program.link.length > 0;
+	self.navigationItem.rightBarButtonItem.enabled = _event.link.length > 0;
 
 	[self recalculateContent];
 }
@@ -92,21 +75,21 @@
 	CGFloat width = self.view.width - 2*20;
 
 	_eventTitle.numberOfLines = 0;
-	_eventTitle.text = _program.title;
+	_eventTitle.text = _event.title;
 	_eventTitle.width = width;
 	_eventTitle.height = [_eventTitle sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
 
-	_date.text = [Utils getLocalDateStringFromTimestamp:_program.day];
-	_price.text = [Utils getLocalMoneyValueFromString:_program.price];
-	_time.text = [Utils getLocalTimeStringFromTimestamp:_program.timestamp];
+	_date.text = [Utils getLocalDateStringFromTimestamp:_event.day];
+	_price.text = [Utils getLocalMoneyValueFromString:_event.price];
+	_time.text = [Utils getLocalTimeStringFromTimestamp:_event.timestamp];
 	_infoView.width = width;
 	_infoView.top = _eventTitle.bottom+2.0f;
 
-    _shortDescription.text = _program.shortDescription;
-    _shortDescription.accessibilityLabel = _program.shortDescription;
+    _shortDescription.text = _event.shortDescription;
+    _shortDescription.accessibilityLabel = _event.shortDescription;
 
-	_longDescription.text = _program.longDescription;
-	_longDescription.accessibilityLabel = _program.longDescription;
+	_longDescription.text = _event.longDescription;
+	_longDescription.accessibilityLabel = _event.longDescription;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
@@ -141,16 +124,16 @@
 	_detailsView.top = _infoView.bottom;
 
 	// Clear old custom fields
-	for (UIView* view in _detailsView.subviews)
-		if ([view isKindOfClass:[ProgramDetailCellView class]])
+	for (UIView *view in _detailsView.subviews)
+		if ([view isKindOfClass:[EventDetailCellView class]])
 			[view removeFromSuperview];
 
 	int currentY = _longDescription.bottom+16.0f;
-	for (NSString *option in _program.opts)
+	for (NSString *option in _event.opts)
 	{
-		UINib *nibForCells = [UINib nibWithNibName:@"ProgramDetailCellView" bundle:nil];
+		UINib *nibForCells = [UINib nibWithNibName:@"EventDetailCellView" bundle:nil];
 		NSArray *topLevelObjects = [nibForCells instantiateWithOwner:self options:nil];
-		ProgramDetailCellView *cell = [topLevelObjects objectAtIndex:0];
+		EventDetailCellView *cell = [topLevelObjects objectAtIndex:0];
 		cell.width = _detailsView.width;
 		NSString *val = [option stringByReplacingOccurrencesOfString:@": " withString:@" je "];
 		[cell setTextOfDetail:val];
@@ -185,7 +168,7 @@
 
 - (void)openLink
 {
-	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_program.link]];
+	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_event.link]];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
 }

@@ -1,16 +1,16 @@
 //
-//  ProgramSectionView.m
+//  EventsListSectionView.m
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#import "ProgramSectionView.h"
+#import "EventsListSectionView.h"
 #import "UIView+position.h"
 
 
-@implementation ProgramSectionView
+@implementation EventsListSectionView
 
 - (id)initWithFrame:(CGRect)frame
 {

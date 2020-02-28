@@ -1,5 +1,5 @@
 //
-//  ProgramCellView.m
+//  EventsListCellView.m
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
@@ -7,20 +7,20 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "ProgramCellView.h"
-#import "Program.h"
+#import "EventsListCellView.h"
+#import "Event.h"
 #import "Utils.h"
 
 
-@implementation ProgramCellView
+@implementation EventsListCellView
 
-- (void)setProgram:(Program *)program
+- (void)setEvent:(Event *)event
 {
-    _program = program;
-	_title.text = program.title;
-	_descriptionLabel.text = [program.shortDescription
+	_event = event;
+	_title.text = event.title;
+	_descriptionLabel.text = [event.shortDescription
 		stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
-	_time.text = [Utils getLocalTimeStringFromTimestamp:program.timestamp];
+	_time.text = [Utils getLocalTimeStringFromTimestamp:event.timestamp];
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

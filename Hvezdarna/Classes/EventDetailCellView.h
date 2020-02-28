@@ -1,5 +1,5 @@
 //
-//  ProgramDetailCellView.h
+//  EventDetailCellView.h
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProgramDetailCellView : UITableViewCell;
+@interface EventDetailCellView : UITableViewCell;
 
 @property (nonatomic, strong) IBOutlet UILabel *detailText;
 

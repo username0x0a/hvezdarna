@@ -7,11 +7,10 @@
 //
 
 #import "EventsListViewController.h"
-#import "EventDetailViewController.h"
-#import "ProgramSectionView.h"
-#import "ProgramCellView.h"
-#import "Program.h"
-#import "ProgramList.h"
+#import "EventsListSectionView.h"
+#import "EventsListCellView.h"
+#import "Event.h"
+#import "EventsList.h"
 #import "Utils.h"
 
 #import <objc/runtime.h>
@@ -58,7 +57,7 @@
 
 @interface EventsListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
 
-@property(nonatomic,strong) ProgramList *list;
+@property(nonatomic,strong) EventsList *list;
 @property(nonatomic,copy) NSString *searchString;
 
 @end
@@ -79,7 +78,7 @@
 		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
 
 		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
-		_list = [ProgramList sharedList];
+		_list = [EventsList sharedList];
 		_searchString = @"";
     }
 
@@ -135,7 +134,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	ProgramSectionView *view = [[ProgramSectionView alloc]
+	EventsListSectionView *view = [[EventsListSectionView alloc]
 		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
 
 	NSInteger timestamp = [self.list dayAtIndex:section];
@@ -160,6 +159,8 @@
 {
 	NSInteger count = [self.list numberOfDays];
 
+	// TODO: ????
+
 	if (isIPhone())
 		[tableView setHidden:(count == 0)];
 	else if (isIPad()) {
@@ -172,29 +173,33 @@
 	return count;
 }
 
-- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ProgramCellView     *cell   = (ProgramCellView*)[tableView dequeueReusableCellWithIdentifier:@"program"];
-    if (cell == nil) {
-        if (nibForCells == nil) {
-			nibForCells = [UINib nibWithNibName:@"ProgramCellView" bundle:nil];
-		}
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	EventsListCellView *cell = [tableView dequeueReusableCellWithIdentifier:@"program"];
+
+	if (cell == nil) {
+		if (!nibForCells)
+			nibForCells = [UINib nibWithNibName:@"EventsListCellView" bundle:nil];
 		NSArray *topLevelObjects = [nibForCells instantiateWithOwner:self options:nil];
 		cell = [topLevelObjects objectAtIndex:0];
-    }
+	}
 
-	[cell setProgram:[self.list programOnDayIdx:[indexPath section] atIdx:[indexPath row]]];
-    return cell;
+	cell.event = [_list eventOnDayIdx:[indexPath section] atIdx:[indexPath row]];
+
+	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	ProgramCellView *cell = (ProgramCellView*)[tableView cellForRowAtIndexPath:indexPath];
+	__auto_type delegate = _delegate;
 
-	EventDetailViewController *vc = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+	EventsListCellView *cell = (EventsListCellView*)[tableView cellForRowAtIndexPath:indexPath];
+	Event *event = cell.event;
 
-	vc.program = cell.program;
+	if (!delegate || !event) return;
 
-	[_splitViewController showDetailViewController:vc sender:nil];
+	if ([delegate respondsToSelector:@selector(eventsListDidSelectEventToDisplay:)])
+		[delegate eventsListDidSelectEventToDisplay:event];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

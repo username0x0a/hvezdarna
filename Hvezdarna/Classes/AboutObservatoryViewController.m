@@ -15,10 +15,6 @@
 #import <objc/runtime.h>
 
 
-@interface AboutObservatoryViewController ()  <UIActionSheetDelegate>
-@end
-
-
 @implementation AboutObservatoryViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

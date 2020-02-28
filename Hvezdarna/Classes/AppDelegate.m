@@ -10,10 +10,10 @@
 
 #import "WeatherViewController.h"
 #import "EventsListViewController.h"
-#import "ProgramSplitViewController.h"
+#import "EventsSplitViewController.h"
 #import "AboutObservatoryViewController.h"
 
-#import "ProgramList.h"
+#import "EventsList.h"
 
 
 @interface AppDelegate () <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -40,7 +40,7 @@
 
 	weather = [[WeatherViewController alloc] initWithNibName:@"WeatherViewController" bundle:nil];
 	observatory = [[AboutObservatoryViewController alloc] initWithNibName:@"AboutObservatoryViewController" bundle:nil];
-	eventsList = [[ProgramSplitViewController alloc] initWithNibName:@"ProgramSplitViewController" bundle:nil];
+	eventsList = [[EventsSplitViewController alloc] initWithNibName:@"EventsSplitViewController" bundle:nil];
 
 	_tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.delegate = self;
@@ -95,14 +95,14 @@
 {
 	// Called irregularly to allow the application to fetch some update data in the background.
 
-	ProgramList *list = [ProgramList sharedList];
+	EventsList *list = [EventsList sharedList];
 
-	[list checkForUpdatesForce:YES completion:^(ProgramListUpdateResult result) {
+	[list checkForUpdatesForce:YES completion:^(EventsListUpdateResult result) {
 
 		UIBackgroundFetchResult fetchResult = UIBackgroundFetchResultNoData;
-		if (result == ProgramListUpdateResultNewData)
+		if (result == EventsListUpdateResultNewData)
 			fetchResult = UIBackgroundFetchResultNewData;
-		if (result == ProgramListUpdateResultFailure)
+		if (result == EventsListUpdateResultFailure)
 			fetchResult = UIBackgroundFetchResultFailed;
 
 		if (completionHandler)

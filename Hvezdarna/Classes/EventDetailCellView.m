@@ -1,19 +1,19 @@
 //
-//  ProgramDetailCellView.m
+//  EventDetailCellView.m
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#import "ProgramDetailCellView.h"
+#import "EventDetailCellView.h"
 #import "UIView+position.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface ProgramDetailCellView ()
+@interface EventDetailCellView ()
 @end
 
-@implementation ProgramDetailCellView
+@implementation EventDetailCellView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

@@ -1,5 +1,5 @@
 //
-//  ProgramCellView.h
+//  EventsListCellView.h
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Program.h"
+#import "Event.h"
 
 
-@interface ProgramCellView : UITableViewCell
+@interface EventsListCellView : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *title;
 @property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
 @property (nonatomic, strong) IBOutlet UILabel *time;
 
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) Event *event;
 
 @end

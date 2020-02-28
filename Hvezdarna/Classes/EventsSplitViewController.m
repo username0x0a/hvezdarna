@@ -1,17 +1,20 @@
 //
-//  ProgramSplitViewController.m
+//  EventsSplitViewController.m
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#import "ProgramSplitViewController.h"
+#import "EventsSplitViewController.h"
 #import "EventsListViewController.h"
 #import "EventDetailViewController.h"
 
 
-@interface ProgramSplitViewController () <UISplitViewControllerDelegate>
+#pragma mark - Helpers
+
+
+@interface EventsSplitViewController () <EventsListDelegate, UISplitViewControllerDelegate>
 
 @end
 
@@ -39,7 +42,10 @@
 @end
 
 
-@implementation ProgramSplitViewController
+#pragma mark - Controller
+
+
+@implementation EventsSplitViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -55,13 +61,21 @@
 		UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:blank];
 		
 		self.viewControllers = @[ rootNav, detailNav ];
-		root.splitViewController = self;
-
+		root.delegate = self;
 		self.delegate = self;
 		self.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
 	}
 
 	return self;
+}
+
+- (void)eventsListDidSelectEventToDisplay:(Event *)event
+{
+	EventDetailViewController *vc = [[EventDetailViewController alloc]
+		initWithNibName:@"EventDetailViewController" bundle:nil];
+	vc.event = event;
+
+	[self showDetailViewController:vc sender:nil];
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController

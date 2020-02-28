@@ -1,5 +1,5 @@
 //
-//  ProgramSectionView.h
+//  EventsListSectionView.h
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProgramSectionView : UIView
+@interface EventsListSectionView : UIView
 
 @property (nonatomic, strong) UILabel *title;
 
