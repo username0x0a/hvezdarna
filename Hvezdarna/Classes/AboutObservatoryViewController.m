@@ -15,10 +15,6 @@
 #import <objc/runtime.h>
 
 
-@interface AboutObservatoryViewController ()  <UIActionSheetDelegate>
-@end
-
-
 @implementation AboutObservatoryViewController
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,12 +25,12 @@
 		self.tabBarItem.image = [UIImage imageNamed:@"about"];
 	}
 
-    return self;
+	return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 	object_setClass(_textContentView, [MaskAutoAdjustingView class]);
 

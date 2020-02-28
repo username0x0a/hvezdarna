@@ -1,19 +1,19 @@
 //
-//  ProgramDetailCellView.m
+//  EventDetailCellView.m
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
 //  Copyright (c) 2013- Michal Zelinka. All rights reserved.
 //
 
-#import "ProgramDetailCellView.h"
+#import "EventDetailCellView.h"
 #import "UIView+position.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface ProgramDetailCellView ()
+@interface EventDetailCellView ()
 @end
 
-@implementation ProgramDetailCellView
+@implementation EventDetailCellView
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,14 +32,13 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {}
 
-- (void) setTextOfDetail:(NSString *)text
+- (void)setTextOfDetail:(NSString *)text
 {
 	_detailText.text = text;
-	CGSize expectedLabelSize = [_detailText sizeThatFits:CGSizeMake(_detailText.width, 9999)];
-	
+
 	// Adjust the label the the new height.
-	_detailText.height = expectedLabelSize.height;
-	self.height = _detailText.height+26.0f;
+	_detailText.height = _detailText.expandedSize.height;
+	self.height = _detailText.height+2*13.0f;
 	[_detailText centerVerticallyInSuperview];
 }
 

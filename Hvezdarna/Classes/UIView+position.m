@@ -9,7 +9,6 @@
 
 #import "UIView+position.h"
 
-
 @implementation UIView (position)
 
 - (CGPoint)origin {
@@ -17,7 +16,9 @@
 }
 
 - (void)setOrigin:(CGPoint)newOrigin {
-  self.frame = CGRectMake(newOrigin.x, newOrigin.y, self.frame.size.width, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.origin = newOrigin;
+  self.frame = frame;
 }
 
 - (CGSize)size {
@@ -25,8 +26,9 @@
 }
 
 - (void)setSize:(CGSize)newSize {
-  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-                          newSize.width, newSize.height);
+  CGRect frame = self.frame;
+  frame.size = newSize;
+  self.frame = frame;
 }
 
 - (CGFloat)left {
@@ -34,8 +36,9 @@
 }
 
 - (void)setLeft:(CGFloat)newX {
-  self.frame = CGRectMake(newX, self.frame.origin.y,
-                          self.frame.size.width, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.origin.x = newX;
+  self.frame = frame;
 }
 
 - (CGFloat)top {
@@ -43,26 +46,31 @@
 }
 
 - (void)setTop:(CGFloat)newY {
-  self.frame = CGRectMake(self.frame.origin.x, newY,
-                          self.frame.size.width, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.origin.y = newY;
+  self.frame = frame;
 }
 
 - (CGFloat)right {
-  return self.frame.origin.x + self.frame.size.width;
+  CGRect frame = self.frame;
+  return frame.origin.x + frame.size.width;
 }
 
 - (void)setRight:(CGFloat)newRight {
-  self.frame = CGRectMake(newRight - self.frame.size.width, self.frame.origin.y,
-                          self.frame.size.width, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.origin.x = newRight - frame.size.width;
+  self.frame = frame;
 }
 
 - (CGFloat)bottom {
-  return self.frame.origin.y + self.frame.size.height;
+  CGRect frame = self.frame;
+  return frame.origin.y + frame.size.height;
 }
 
 - (void)setBottom:(CGFloat)newBottom {
-  self.frame = CGRectMake(self.frame.origin.x, newBottom - self.frame.size.height,
-                          self.frame.size.width, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.origin.y = newBottom - frame.size.height;
+  self.frame = frame;
 }
 
 - (CGFloat)width {
@@ -70,8 +78,9 @@
 }
 
 - (void)setWidth:(CGFloat)newWidth {
-  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-                          newWidth, self.frame.size.height);
+  CGRect frame = self.frame;
+  frame.size.width = newWidth;
+  self.frame = frame;
 }
 
 - (CGFloat)height {
@@ -79,38 +88,144 @@
 }
 
 - (void)setHeight:(CGFloat)newHeight {
-  self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y,
-                          self.frame.size.width, newHeight);
+  CGRect frame = self.frame;
+  frame.size.height = newHeight;
+  self.frame = frame;
 }
 
 - (void)addCenteredSubview:(UIView *)subview {
-    subview.left = (int)((self.bounds.size.width - subview.frame.size.width) / 2);
-    subview.top = (int)((self.bounds.size.height - subview.frame.size.height) / 2);
-    [self addSubview:subview];
+  CGRect bounds = self.bounds;
+  CGRect subFrame = subview.frame;
+
+  subFrame.origin.x = (int)((bounds.size.width - subFrame.size.width) / 2);
+  subFrame.origin.y = (int)((bounds.size.height - subFrame.size.height) / 2);
+  subview.frame = subFrame;
+
+  [self addSubview:subview];
 }
 
-- (void)moveToCenterOfSuperview {
-    if (!self.superview)
-        NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
+- (void)moveToCenterOfSuperview
+{
+  if (!self.superview)
+    NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
 
-    self.left = (int)((self.superview.bounds.size.width - self.frame.size.width) / 2);
-    self.top = (int)((self.superview.bounds.size.height - self.frame.size.height) / 2);
+  CGRect frame = self.frame;
+  CGRect superBounds = self.superview.bounds;
+
+  frame.origin.x = (int)((superBounds.size.width - frame.size.width) / 2);
+  frame.origin.y = (int)((superBounds.size.height - frame.size.height) / 2);
+
+  self.frame = frame;
 }
 
 - (void)centerVerticallyInSuperview
 {
-    if (!self.superview)
-        NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
+  if (!self.superview)
+    NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
 
-    self.top = (int)((self.superview.bounds.size.height - self.frame.size.height) / 2);
+  CGRect frame = self.frame;
+  CGRect superBounds = self.superview.bounds;
+
+  frame.origin.y = (int)((superBounds.size.height - frame.size.height) / 2);
+
+  self.frame = frame;
 }
 
 - (void)centerHorizontallyInSuperview
 {
-    if (!self.superview)
-        NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
+  if (!self.superview)
+    NSLog(@"Trying to move view inside superview before attaching. Expect weird stuff.");
 
-    self.left = (int)((self.superview.bounds.size.width - self.frame.size.width) / 2);
+  CGRect frame = self.frame;
+  CGRect superBounds = self.superview.bounds;
+
+  frame.origin.x = (int)((superBounds.size.width - frame.size.width) / 2);
+
+  self.frame = frame;
+}
+
+- (CGFloat)fromRightEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return 0;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  return CGRectGetWidth(superBounds) - frame.size.width - frame.origin.x;
+}
+
+- (void)setFromRightEdge:(CGFloat)fromRightEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  frame.origin.x = CGRectGetWidth(superBounds) - frame.size.width - fromRightEdge;
+
+  self.frame = frame;
+}
+
+- (CGFloat)fromBottomEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return 0;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  return CGRectGetHeight(superBounds) - frame.size.height - frame.origin.y;
+}
+
+- (void)setFromBottomEdge:(CGFloat)fromBottomEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  frame.origin.y = CGRectGetHeight(superBounds) - frame.size.height - fromBottomEdge;
+
+  self.frame = frame;
+}
+
+- (CGFloat)fromLeadingEdge
+{
+  return self.frame.origin.x;
+}
+
+- (CGFloat)fromTrailingEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return 0;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  return CGRectGetWidth(superBounds) - frame.size.width - frame.origin.x;
+}
+
+- (void)setFromLeadingEdge:(CGFloat)fromLeadingEdge
+{
+  CGRect frame = self.frame;
+  frame.origin.x = fromLeadingEdge;
+  self.frame = frame;
+}
+
+- (void)setFromTrailingEdge:(CGFloat)fromTrailingEdge
+{
+  UIView *superView = self.superview;
+  if (!superView) return;
+
+  CGRect frame = self.frame;
+  CGRect superBounds = superView.bounds;
+
+  frame.origin.x = CGRectGetWidth(superBounds) - frame.size.width - fromTrailingEdge;
+
+  self.frame = frame;
 }
 
 @end

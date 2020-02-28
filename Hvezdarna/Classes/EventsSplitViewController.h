@@ -1,5 +1,5 @@
 //
-//  ProgramSplitViewController.h
+//  EventsSplitViewController.h
 //  Hvezdarna
 //
 //  Created by Michal Zelinka in 2013
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProgramSplitViewController : UISplitViewController
+@interface EventsSplitViewController : UISplitViewController
 
 @end

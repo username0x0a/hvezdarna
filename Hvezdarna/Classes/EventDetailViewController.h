@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class Program;
+@class Event;
 
 
 @interface EventDetailViewController : UIViewController
 
-@property (nonatomic, strong) Program *program;
+@property (nonatomic, strong) Event *event;
+
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UILabel *eventTitle;
 @property (nonatomic, strong) IBOutlet UITextView *shortDescription;
@@ -23,7 +24,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *price;
 @property (nonatomic, strong) IBOutlet UILabel *date;
 @property (nonatomic, strong) IBOutlet UILabel *time;
-
-- (void)openLink;
 
 @end
