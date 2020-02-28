@@ -8,14 +8,16 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "WeatherViewModel.h"
 #import "WeatherViewController.h"
-#import "WebCam.h"
+
 #import "UIView+position.h"
 #import "Utils.h"
 
 
 @interface WeatherViewController ()
 
+@property (nonatomic, strong) WeatherViewModel *model;
 @property (nonatomic, strong) UIView *blurView;
 
 @end
@@ -29,6 +31,8 @@
 {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
+		_model = [WeatherViewModel new];
+
 		self.title = @"Aktuálně";
 		self.tabBarItem.image = [UIImage imageNamed:@"actual"];
 	}
@@ -113,156 +117,106 @@
 
 - (void)reloadCameraImage
 {
-	static NSDate *lastUpdate = nil;
+	__auto_type sself = self;
 
-	// Allow refreshing only once per 10 minutes
-	if (lastUpdate && [[NSDate new] timeIntervalSinceDate:lastUpdate] < 10*kTimeMinuteInSeconds)
-		return;
+	[sself setNetworkLocallyActive:YES];
 
-	lastUpdate = [NSDate new];
+	[_model checkCameraImageWithCompletion:^(NSData * _Nullable data) {
 
-	// @"http://www.hvezdarna.cz/ryba/ryba512.jpg"
-	NSURL *url = [NSURL URLWithString:@"http://www.hvezdarna.cz/kamera/kamera1920.jpg"];
+		[sself setNetworkLocallyActive:NO];
 
-	[[[NSURLSession sharedSession] dataTaskWithURL:url
-		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		if (!data) return;
 
-		NSHTTPURLResponse *resp = (id)response;
+		[sself performSelectorOnMainThread:@selector(updateWithCameraData:) withObject:data waitUntilDone:NO];
 
-		if (![resp isKindOfClass:[NSHTTPURLResponse class]] || resp.statusCode != 200) return;
-
-		UIImage *image = [UIImage imageWithData:data];
-
-		if (!image) return;
-
-		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-			UIImageView *imageView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
-			imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-			imageView.contentMode = UIViewContentModeScaleAspectFill;
-			imageView.alpha = 0.0;
-			imageView.image = image;
-
-			[_backgroundView addSubview:imageView];
-			[UIView animateWithDuration:1.3 animations:^{
-
-				imageView.alpha = 1.0;
-
-			} completion:^(BOOL finished) {
-
-				NSArray *layers = [_backgroundView.subviews copy];
-
-				for (UIView *v in layers)
-					if (v != imageView)
-						[v removeFromSuperview];
-
-			}];
-
-		}];
-
-	}] resume];
+	}];
 }
 
 - (void)reloadScreenData
 {
-	static NSDate *lastUpdate = nil;
+	__auto_type sself = self;
 
-	// Allow refreshing only once per 2 minutes
-	if (lastUpdate && [[NSDate new] timeIntervalSinceDate:lastUpdate] < 2*kTimeMinuteInSeconds)
-		return;
+	[sself setNetworkLocallyActive:YES];
 
-	lastUpdate = [NSDate new];
+	[_model checkWeatherDataWithCompletion:^(WeatherData * _Nullable data, BOOL updated) {
 
-	NSURL *url = [NSURL URLWithString:@"https://www.hvezdarna.cz/meteo/lastmeteodatanew"];
+		[sself setNetworkLocallyActive:NO];
 
-	[[[NSURLSession sharedSession] dataTaskWithURL:url
-		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+		if (!updated || !data) return;
 
-		NSHTTPURLResponse *resp = (id)response;
+		[sself performSelectorOnMainThread:@selector(updateWithWeatherData:) withObject:data waitUntilDone:NO];
 
-		if (![resp isKindOfClass:[NSHTTPURLResponse class]] || resp.statusCode != 200) return;
-
-		NSString *respString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
-
-			NSLog(@"Updating actual temperature and data…");
-
-			// Separate values
-			NSArray *values = [respString componentsSeparatedByString:@" "];
-
-			// Do basic values number check
-			if (values.count < 8) return;
-
-			// Set temperature
-			double temperature = [[values objectAtIndex:3] doubleValue];
-			temperature = round(temperature);
-			if (temperature == 0) temperature = 0;
-			NSString *temperatureString = [NSString stringWithFormat:@"%.0f °C", temperature];
-			_temperatureLabel.text = temperatureString;
-			_temperatureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-				_temperatureHeadingLabel.text, _temperatureLabel.text];
-
-			// Set wind speed
-			NSString *windSpeed = [Utils getLocalUnitValueFromFloat:[[values objectAtIndex:5] floatValue]];
-			_windSpeedLabel.text =  [NSString stringWithFormat:@"%@ m/s", windSpeed];
-			_windSpeedLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-				_windSpeedHeadingLabel.text, _windSpeedLabel.text];
-
-			// Set pressure
-			int pressure = [[values objectAtIndex:7] intValue];
-			_pressureLabel.text = [NSString stringWithFormat:@"%d hPa", pressure];
-			_pressureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-				_pressureHeadingLabel.text, _pressureLabel.text];
-
-			// Set humidity
-			int humidity = [[values objectAtIndex:4] intValue];
-			_humidityLabel.text = [NSString stringWithFormat:@"%d %%", humidity];
-			_humidityLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-				_humidityHeadingLabel.text, _humidityLabel.text];
-
-			// Set weather icon
-			// Options: "Rainy", "Cloudy", "Sunny"
-			NSString *condition = @"Sunny";
-			if (humidity > 50) condition = @"Cloudy";
-			if (humidity > 70) condition = @"Rainy";
-
-			NSString *imageName = [Utils getWeatherIconFromConditionString:condition];
-			_conditionImage.image = [UIImage imageNamed:imageName];
-
-			_conditionImage.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
-				NSLocalizedString(@"The weather is", @"Condition label -- appendable options: clear, cloudy, rainy"),
-				[Utils getVerboseStringFromConditionString:condition]];
-
-		}];
-
-	}] resume];
+	}];
 }
 
-//- (void)reloadTwitterStuff
-//{
-//	// Let's ask for the latest tweet
-//
-//	NSURL *tweet_url = [NSURL URLWithString:@"https://twitter.com/HvezdarnaBrno"];
-//	NSURLRequest *tweet_request = [NSURLRequest requestWithURL:tweet_url];
-//	AFHTTPRequestOperation *tweet_operation = [[AFHTTPRequestOperation alloc] initWithRequest:tweet_request];
-//	[tweet_operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
-//		NSLog(@"Getting latest tweet…");
-//
-//		NSString * tweet = [Utils getValueFromString:operation.responseString withStarters:@[@"li class=\"js-stream-item"] andEnding:@"li class=\"js-stream-item"];
-//		if (tweet) {
-//			self.twitter_link = [@"https://twitter.com" stringByAppendingString:[Utils getValueFromString:tweet withStarters:@[@"class=\"details with-icn js-details", @"href=\""] andEnding:@"\""]];
-//			NSLog(@"Tweet link: %@", self.twitter_link);
-//			tweet = [Utils getValueFromString:tweet withStarters:@[@"p class=\"js-tweet-text tweet-text", @">"] andEnding:@"</p"];
-//			NSRange r;
-//			while ((r = [tweet rangeOfString:@"<a[^>]*>.*?</a>" options:NSRegularExpressionSearch]).location != NSNotFound)
-//				tweet = [tweet stringByReplacingCharactersInRange:r withString:@""];
-//			[self showTextInfoButton:tweet withTarget:self andSelector:@selector(openTwitterLink:) andAnimate:YES];
-//		}
-//		
-//	} failure:nil];
-//	[tweet_operation start];
-//}
+- (void)updateWithWeatherData:(WeatherData *)weather
+{
+	// Set temperature
+	double temperature = round(weather.temperature);
+	if (temperature == 0) temperature = 0;
+	NSString *temperatureString = [NSString stringWithFormat:@"%.0f °C", temperature];
+	_temperatureLabel.text = temperatureString;
+	_temperatureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+		_temperatureHeadingLabel.text, _temperatureLabel.text];
+
+	// Set wind speed
+	NSString *speed = [Utils getLocalUnitValueFromFloat:(float)weather.windSpeed];
+	_windSpeedLabel.text =  [NSString stringWithFormat:@"%@ m/s", speed];
+	_windSpeedLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+		_windSpeedHeadingLabel.text, _windSpeedLabel.text];
+
+	// Set pressure
+	_pressureLabel.text = [NSString stringWithFormat:@"%tu hPa", weather.pressure];
+	_pressureLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+		_pressureHeadingLabel.text, _pressureLabel.text];
+
+	// Set humidity
+	NSUInteger humidity = weather.humidity;
+	_humidityLabel.text = [NSString stringWithFormat:@"%tu %%", humidity];
+	_humidityLabel.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+		_humidityHeadingLabel.text, _humidityLabel.text];
+
+	// Set weather icon
+	// Options: "Rainy", "Cloudy", "Sunny"
+	NSString *condition = @"Sunny";
+	if (humidity > 50) condition = @"Cloudy";
+	if (humidity > 70) condition = @"Rainy";
+
+	NSString *imageName = [Utils getWeatherIconFromConditionString:condition];
+	_conditionImage.image = [UIImage imageNamed:imageName];
+
+	_conditionImage.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
+		NSLocalizedString(@"The weather is", @"Condition label -- appendable options: clear, cloudy, rainy"),
+		[Utils getVerboseStringFromConditionString:condition]];
+}
+
+- (void)updateWithCameraData:(NSData *)data
+{
+	UIImage *image = [UIImage imageWithData:data];
+
+	if (!image) return;
+
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
+	imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	imageView.contentMode = UIViewContentModeScaleAspectFill;
+	imageView.alpha = 0.0;
+	imageView.image = image;
+
+	[_backgroundView addSubview:imageView];
+	[UIView animateWithDuration:1.3 animations:^{
+
+		imageView.alpha = 1.0;
+
+	} completion:^(BOOL finished) {
+
+		NSArray *layers = [_backgroundView.subviews copy];
+
+		for (UIView *v in layers)
+			if (v != imageView)
+				[v removeFromSuperview];
+
+	}];
+}
 
 
 #pragma mark - Actions
@@ -291,15 +245,17 @@
 	} completion:nil];
 }
 
-- (void)startImageActivity
+- (void)setNetworkLocallyActive:(BOOL)active
 {
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-}
+	static NSUInteger counter = 0;
 
-- (void)stopImageActivity
-{
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
+	counter += (active) ? 1 : -1;
 
+	if (counter < 0) counter = 0;
+
+	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(counter != 0)];
+	}];
+}
 
 @end

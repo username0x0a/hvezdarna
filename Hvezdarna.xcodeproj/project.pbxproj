@@ -17,6 +17,7 @@
 		EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */; };
 		EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13F0B0164AA7450040328A /* MessageUI.framework */; };
 		EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
+		EF52B425240933A3006AAE11 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
@@ -71,6 +72,8 @@
 		EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF13F0B0164AA7450040328A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EF401A031FD4AB25008F62C6 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		EF52B423240933A3006AAE11 /* WeatherViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewModel.h; sourceTree = "<group>"; };
+		EF52B424240933A3006AAE11 /* WeatherViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewModel.m; sourceTree = "<group>"; };
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -290,6 +293,8 @@
 		EFC2DC1B19633920006902DE /* Weather view */ = {
 			isa = PBXGroup;
 			children = (
+				EF52B423240933A3006AAE11 /* WeatherViewModel.h */,
+				EF52B424240933A3006AAE11 /* WeatherViewModel.m */,
 				EFC2DB73196335D7006902DE /* WeatherViewController.h */,
 				EFC2DB74196335D7006902DE /* WeatherViewController.m */,
 				EFC2DC351964724A006902DE /* WeatherViewController.xib */,
@@ -465,6 +470,7 @@
 				EFC2DBA5196335D7006902DE /* AppDelegate.m in Sources */,
 				EFC2DBA9196335D7006902DE /* Program.m in Sources */,
 				EFC2DBB1196335D7006902DE /* ProgramSectionView.m in Sources */,
+				EF52B425240933A3006AAE11 /* WeatherViewModel.m in Sources */,
 				EFC2DBB9196335D7006902DE /* Utils.m in Sources */,
 				EF844BA919CEBEA100CE392B /* FMDatabaseAdditions.m in Sources */,
 				EFC2DBB0196335D7006902DE /* ProgramList.m in Sources */,
