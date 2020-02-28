@@ -32,14 +32,13 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {}
 
-- (void) setTextOfDetail:(NSString *)text
+- (void)setTextOfDetail:(NSString *)text
 {
 	_detailText.text = text;
-	CGSize expectedLabelSize = [_detailText sizeThatFits:CGSizeMake(_detailText.width, 9999)];
-	
+
 	// Adjust the label the the new height.
-	_detailText.height = expectedLabelSize.height;
-	self.height = _detailText.height+26.0f;
+	_detailText.height = _detailText.expandedSize.height;
+	self.height = _detailText.height+2*13.0f;
 	[_detailText centerVerticallyInSuperview];
 }
 

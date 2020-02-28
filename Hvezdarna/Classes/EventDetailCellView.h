@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *detailText;
 
-- (void) setTextOfDetail:(NSString *)text;
+- (void)setTextOfDetail:(NSString *)text;
 
 @end

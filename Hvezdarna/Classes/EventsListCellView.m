@@ -18,9 +18,12 @@
 {
 	_event = event;
 	_title.text = event.title;
-	_descriptionLabel.text = [event.shortDescription
-		stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+
+	_descriptionLabel.text = [[event.shortDescription
+		stringByReplacingOccurrencesOfString:@"\n" withString:@" "]
+		stringByReplacingOccurrencesOfString:@"  " withString:@" "];
 	_time.text = [Utils getLocalTimeStringFromTimestamp:event.timestamp];
+
 	self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

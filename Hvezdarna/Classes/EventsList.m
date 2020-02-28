@@ -17,23 +17,9 @@
 #import "FMDatabaseAdditions.h"
 
 
-@interface CalendarDay: NSObject
-
-@property (atomic) NSInteger ID;
-@property (nonatomic, copy) NSArray<Event *> *events;
-
-@end
-
-
-@implementation CalendarDay @end
-
-
 @interface EventsList ()
 
 @property (nonatomic, strong) FMDatabase *db;
-
-@property (nonatomic, strong) NSArray<CalendarDay *> *workingData;
-@property (nonatomic, strong) NSLock *workingDataLock;
 
 @end
 
@@ -55,9 +41,6 @@
 - (instancetype)init
 {
 	if (!(self = [super init])) return nil;
-
-	_workingData = @[ ];
-	_workingDataLock = [NSLock new];
 
 	NSString *path = [NSLibraryPath() stringByAppendingPathComponent:@"Database.sqlite"];
 	
@@ -92,61 +75,17 @@
 	}
 
 	[self dailyCleanup];
-	[self updateWorkingCopyWithTerm:nil];
-	[self checkForUpdates];
 
 	return self;
 }
 
 - (void)clearEventsData {
-	[_workingDataLock lock];
 	[_db executeUpdate:@"DELETE FROM events;"];
-	[_workingDataLock unlock];
-}
-
-- (void)clearCalendarDataForDay:(NSInteger)day {
-	[_workingDataLock lock];
-	[_db executeUpdate:@"DELETE FROM events WHERE day = ?;", day];
-	[_workingDataLock unlock];
 }
 
 - (void)dailyCleanup {
-	[_workingDataLock lock];
 	[_db executeUpdate:@"DELETE FROM events WHERE time < ?;", @([Utils unixTimestamp])];
-	[_workingDataLock unlock];
 }
-
-- (void)insertEventWithName:(NSString *)name desc:(NSString *)desc shortDesc:(NSString *)shortDesc
-	day:(NSInteger)day timestamp:(NSInteger)timestamp price:(NSString *)price link:(NSString *)link
-	opts:(NSArray *)opts
-{
-	[_workingDataLock lock];
-	id optsObject = ([opts isKindOfClass:[NSArray class]]) ? [opts componentsJoinedByString:@"|"] : opts;
-	[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);",
-	 name, @(day), @(timestamp), desc, shortDesc, optsObject, price, link];
-	[_workingDataLock unlock];
-}
-
-- (NSUInteger)numberOfDays {
-	return _workingData.count;
-}
-
-- (NSUInteger)numberOfEventsOnDayIndex:(NSInteger)idx {
-	CalendarDay *day = [_workingData objectAtIndex:idx];
-	return day.events.count;
-}
-
-- (NSInteger)dayAtIndex:(NSInteger)idx {
-	CalendarDay *day = [_workingData objectAtIndex:idx];
-	return day.ID;
-}
-
-- (Event *)eventOnDayIdx:(NSInteger)day_idx atIdx:(NSInteger)idx
-{
-	CalendarDay *day = [_workingData objectAtIndex:day_idx];
-	return [day.events objectAtIndex:idx];
-}
-
 
 - (void)checkForUpdates {
 	[self checkForUpdatesForce:NO completion:nil];
@@ -185,8 +124,8 @@
 			return;
 		}
 		
-		[_db beginTransaction];
 		[self clearEventsData];
+		[_db beginTransaction];
 
 		NSTimeInterval currentUnixTS = [Utils unixTimestamp];
 
@@ -197,23 +136,25 @@
 
 			NSInteger dayID = [Utils getLocalDayTimestampFromTimestamp:time];
 			NSString *name = [event[@"name"] parsedString];
-			NSString *price = [event[@"price"] parsedString];
-			NSString *desc = [event[@"desc"] parsedString];
-			NSString *shortDesc = [event[@"short_desc"] parsedString];
-			NSString *link = [event[@"link"] parsedString];
-			NSArray<NSString *> *opts = [[event[@"options"] parsedArray]
+
+			if (!dayID || !name) continue;
+
+			NSString *price = objectOrNull([event[@"price"] parsedString]);
+			NSString *desc = objectOrNull([event[@"desc"] parsedString]);
+			NSString *shortDesc = objectOrNull([event[@"short_desc"] parsedString]);
+			NSString *link = objectOrNull([event[@"link"] parsedString]);
+			NSArray<NSString *> *opts = objectOrNull([[event[@"options"] parsedArray]
 			  filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:
 			  ^BOOL(id evaluatedObject, NSDictionary<NSString *,id> *bindings) {
 				return [evaluatedObject parsedString];
-			}]];
-		
-			[self insertEventWithName:name desc:desc shortDesc:shortDesc
-				day:dayID timestamp:time price:price link:link opts:opts];
+			}]]);
+
+			[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);"
+				values:@[ name, @(dayID), @(time), desc, shortDesc, opts, price, link ] error:nil];
 		}
 		
 		[_db executeUpdate:@"UPDATE options SET last_update = ?;", @([Utils unixTimestamp])];
 		[_db commit];
-		[self updateWorkingCopyWithTerm:nil]; // TODO
 
 		DebugLog(@"Calendar data updated.");
 
@@ -222,16 +163,13 @@
 	}] resume];
 }
 
-- (void)updateWorkingCopyWithTerm:(NSString *)term
+- (NSArray<CalendarDay *> *)calendarForSearchTerm:(NSString *)term
 {
 	term = [term parsedString];
 	NSString *condition = (term) ? [NSString stringWithFormat:@"%%%@%%", term] : @"%";
 
-	[_workingDataLock lock];
-	// #-----
-
 	NSNumber *now = @([Utils unixTimestamp]);
-	NSMutableArray<CalendarDay *> *workingData = [NSMutableArray arrayWithCapacity:32];
+	NSMutableArray<CalendarDay *> *calendar = [NSMutableArray arrayWithCapacity:32];
 	
 	FMResultSet *daysData = [_db executeQuery:@"SELECT DISTINCT day FROM events "
 		"WHERE name LIKE ? AND time >= ? LIMIT ?;", condition, now, @(DISPLAYED_DAYS)];
@@ -262,28 +200,15 @@
 
 		day.events = events;
 
-		[workingData addObject:day];
+		[calendar addObject:day];
 	}
 
-	_workingData = workingData;
-
-	// -----#
-	[_workingDataLock unlock];
+	return [calendar copy];
 }
 
-- (void)processSearchWord:(NSString *)word
+- (void)dealloc
 {
-	word = [word stringByTrimmingCharactersInSet:
-		[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-	[self updateWorkingCopyWithTerm:word];
-}
-
-- (void) dealloc
-{
-	[_workingDataLock lock];
 	[_db close];
-	[_workingDataLock unlock];
 }
 
 @end

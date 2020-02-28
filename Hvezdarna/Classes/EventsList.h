@@ -23,14 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new  UNAVAILABLE_ATTRIBUTE;
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
-- (NSUInteger)numberOfDays;
-- (NSUInteger)numberOfEventsOnDayIndex:(NSInteger)idx;
-- (NSInteger)dayAtIndex:(NSInteger)idx;
-- (nullable Event *)eventOnDayIdx:(NSInteger)day atIdx:(NSInteger)idx;
-- (void)processSearchWord:(NSString *)word;
+- (NSArray<CalendarDay *> *)calendarForSearchTerm:(nullable NSString *)term;
 
 - (void)checkForUpdates;
-- (void)checkForUpdatesForce:(BOOL)force completion:(nullable void (^)(EventsListUpdateResult result))completion;
+- (void)checkForUpdatesForce:(BOOL)force
+                  completion:(nullable void (^)(EventsListUpdateResult result))completion;
 
 @end
 

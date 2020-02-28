@@ -18,9 +18,11 @@
 	{
 		self.backgroundColor = [UIColor colorWithWhite:.9f alpha:.9f];
 
+		CGFloat sepLine = 1.0 / [UIScreen mainScreen].scale;
+
 		for (int i = 0; i < 2; i++) {
 			UIView *line = [[UIView alloc] initWithFrame:self.bounds];
-			line.height = (isRetina()) ? .5:1;
+			line.height = sepLine;
 			line.backgroundColor = [UIColor colorWithWhite:.85f alpha:.9f];
 			line.autoresizingMask = (i) ? UIViewAutoresizingFlexibleTopMargin : UIViewAutoresizingFlexibleBottomMargin;
 			line.autoresizingMask |= UIViewAutoresizingFlexibleWidth;
@@ -43,8 +45,7 @@
 
 - (void)setTitleText:(NSString *)text
 {
-	if (!text.length) _title.text = text;
-	if (!text.length) return;
+	text = text ?: @"";
 
 	NSAttributedString *attrText = [[NSAttributedString alloc]
 	initWithString:text attributes:@{

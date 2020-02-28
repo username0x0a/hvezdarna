@@ -27,4 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface CalendarDay: NSObject
+
+@property (atomic) NSInteger ID;
+@property (nonatomic, copy) NSArray<Event *> *events;
+
+@end
+
 NS_ASSUME_NONNULL_END

@@ -26,6 +26,4 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UILabel *infoMessage;
 
-//@property (nonatomic, weak) UISplitViewController *splitViewController;
-
 @end

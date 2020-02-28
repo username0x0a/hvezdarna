@@ -9,6 +9,8 @@
 #import "Event.h"
 #import "NSObject+Parsing.h"
 
+@implementation CalendarDay @end
+
 @implementation Event
 
 + (instancetype)eventFromDictionary:(NSDictionary *)dictionary

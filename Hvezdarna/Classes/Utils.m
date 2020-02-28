@@ -230,6 +230,26 @@
 @end
 
 
+@implementation UILabel (Utils)
+
+- (CGSize)expandedSize
+{
+	return [self sizeThatFits:CGSizeMake(self.width, CGFLOAT_MAX)];
+}
+
+@end
+
+
+@implementation UITextView (Utils)
+
+- (CGSize)expandedSize
+{
+	return [self sizeThatFits:CGSizeMake(self.width, CGFLOAT_MAX)];
+}
+
+@end
+
+
 @implementation NSDictionary (Utils)
 
 - (NSDictionary *)dictionaryExcludingNSNull

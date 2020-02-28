@@ -25,12 +25,12 @@
 		self.tabBarItem.image = [UIImage imageNamed:@"about"];
 	}
 
-    return self;
+	return self;
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 	object_setClass(_textContentView, [MaskAutoAdjustingView class]);
 

@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface UIView (position)
 
@@ -17,9 +18,14 @@
 @property (nonatomic) CGFloat left;
 @property (nonatomic) CGFloat top;
 
+@property (nonatomic) CGFloat fromLeadingEdge;
+@property (nonatomic) CGFloat fromTrailingEdge;
+
 // Setting these modifies the origin but not the size.
 @property (nonatomic) CGFloat right;
 @property (nonatomic) CGFloat bottom;
+@property (nonatomic) CGFloat fromRightEdge;
+@property (nonatomic) CGFloat fromBottomEdge;
 
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
@@ -29,4 +35,5 @@
 - (void)moveToCenterOfSuperview;
 - (void)centerVerticallyInSuperview;
 - (void)centerHorizontallyInSuperview;
+
 @end

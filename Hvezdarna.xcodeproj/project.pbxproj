@@ -20,6 +20,7 @@
 		EF52B425240933A3006AAE11 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
 		EF52B42824094145006AAE11 /* NSObject+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B42624094145006AAE11 /* NSObject+Parsing.m */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
+		EF60BCE524097F0500F4C624 /* EventsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60BCE424097F0500F4C624 /* EventsListViewModel.m */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
 		EF844BA819CEBEA100CE392B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
@@ -78,6 +79,8 @@
 		EF52B42624094145006AAE11 /* NSObject+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parsing.m"; sourceTree = "<group>"; };
 		EF52B42724094145006AAE11 /* NSObject+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parsing.h"; sourceTree = "<group>"; };
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EF60BCE324097F0500F4C624 /* EventsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsListViewModel.h; sourceTree = "<group>"; };
+		EF60BCE424097F0500F4C624 /* EventsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventsListViewModel.m; sourceTree = "<group>"; };
 		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EF844B9D19CEBEA100CE392B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 		EFECB9EB196DB59900D524FD /* Events List view */ = {
 			isa = PBXGroup;
 			children = (
+				EF60BCE324097F0500F4C624 /* EventsListViewModel.h */,
+				EF60BCE424097F0500F4C624 /* EventsListViewModel.m */,
 				EFC2DB91196335D7006902DE /* EventsListViewController.h */,
 				EFC2DB92196335D7006902DE /* EventsListViewController.m */,
 				EFC2DB93196335D7006902DE /* EventsListViewController.xib */,
@@ -477,6 +482,7 @@
 				EFC2DBA9196335D7006902DE /* Event.m in Sources */,
 				EFC2DBB1196335D7006902DE /* EventsListSectionView.m in Sources */,
 				EF52B425240933A3006AAE11 /* WeatherViewModel.m in Sources */,
+				EF60BCE524097F0500F4C624 /* EventsListViewModel.m in Sources */,
 				EFC2DBB9196335D7006902DE /* Utils.m in Sources */,
 				EF844BA919CEBEA100CE392B /* FMDatabaseAdditions.m in Sources */,
 				EFC2DBB0196335D7006902DE /* EventsList.m in Sources */,

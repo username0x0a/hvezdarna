@@ -31,16 +31,20 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Set Background Fetch interval
-	[application setMinimumBackgroundFetchInterval:MAX(UIApplicationBackgroundFetchIntervalMinimum, 60*60*24)];
+	[application setMinimumBackgroundFetchInterval:
+		MAX(UIApplicationBackgroundFetchIntervalMinimum, 60*60*24)];
 
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 	// Declare tabbed view controllers
 	UIViewController *weather, *eventsList, *observatory;
 
-	weather = [[WeatherViewController alloc] initWithNibName:@"WeatherViewController" bundle:nil];
-	observatory = [[AboutObservatoryViewController alloc] initWithNibName:@"AboutObservatoryViewController" bundle:nil];
-	eventsList = [[EventsSplitViewController alloc] initWithNibName:@"EventsSplitViewController" bundle:nil];
+	weather = [[WeatherViewController alloc] initWithNibName:
+	           @"WeatherViewController" bundle:nil];
+	observatory = [[AboutObservatoryViewController alloc] initWithNibName:
+	           @"AboutObservatoryViewController" bundle:nil];
+	eventsList = [[EventsSplitViewController alloc] initWithNibName:
+	           @"EventsSplitViewController" bundle:nil];
 
 	_tabBarController = [[UITabBarController alloc] init];
 	_tabBarController.delegate = self;
@@ -124,7 +128,8 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 	BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
 	UITabBar *tabBar = _tabBarController.tabBar;
 
-	[[UIApplication sharedApplication] setStatusBarStyle:(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
+	[[UIApplication sharedApplication] setStatusBarStyle:
+		(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
 
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
@@ -132,12 +137,12 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 
 	} completion:^(BOOL f){
 
-		[tabBar setBackgroundColor:(isClear) ? [UIColor clearColor] : [UIColor clearColor]];
-		[tabBar setBackgroundImage:(isClear) ?  [UIImage new] : nil];
+		tabBar.backgroundColor = (isClear) ? [UIColor clearColor] : [UIColor clearColor];
+		tabBar.backgroundImage = (isClear) ?  [UIImage new] : nil;
 		tabBar.translucent = YES;
-		[tabBar setShadowImage:(isClear) ? [UIImage new] : nil];
-		[tabBar setTintColor:(isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0]];
-		[tabBar setBarTintColor:(isClear) ? [UIColor lightGrayColor] : [UIColor whiteColor]];
+		tabBar.shadowImage = (isClear) ? [UIImage new] : nil;
+		tabBar.tintColor = (isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+		tabBar.barTintColor = (isClear) ? [UIColor lightGrayColor] : [UIColor whiteColor];
 
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
@@ -200,6 +205,5 @@ shouldSelectViewController:(UIViewController *)viewController
 
 	return YES;
 }
-
 
 @end

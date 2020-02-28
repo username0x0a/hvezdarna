@@ -44,6 +44,20 @@
 @end
 
 
+@interface UILabel (Utils)
+
+@property (atomic, readonly) CGSize expandedSize;
+
+@end
+
+
+@interface UITextView (Utils)
+
+@property (atomic, readonly) CGSize expandedSize;
+
+@end
+
+
 @interface NSDictionary (Utils)
 
 - (NSDictionary *)dictionaryExcludingNSNull;

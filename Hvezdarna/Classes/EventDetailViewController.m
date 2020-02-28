@@ -28,9 +28,6 @@
 
 	self.title = @"Představení";
 
-	if (isUltraWidescreen())
-		_eventTitle.font = [_eventTitle.font fontWithSize:_eventTitle.font.pointSize+3];
-
 	self.navigationController.navigationBar.barTintColor =
 		[UIColor colorWithWhite:1 alpha:.9];
 	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
@@ -73,40 +70,48 @@
 - (void)recalculateContent
 {
 	CGFloat width = self.view.width - 2*20;
+	BOOL wide = width >= 600;
 
-	_eventTitle.numberOfLines = 0;
+	CGFloat fontSize = (wide) ? 29:26;
+
+	_eventTitle.font = [_eventTitle.font fontWithSize:fontSize];
 	_eventTitle.text = _event.title;
 	_eventTitle.width = width;
-	_eventTitle.height = [_eventTitle sizeThatFits:CGSizeMake(width, CGFLOAT_MAX)].height;
+	_eventTitle.height = _eventTitle.expandedSize.height;
 
 	_date.text = [Utils getLocalDateStringFromTimestamp:_event.day];
-	_price.text = [Utils getLocalMoneyValueFromString:_event.price];
 	_time.text = [Utils getLocalTimeStringFromTimestamp:_event.timestamp];
-	_infoView.width = width;
-	_infoView.top = _eventTitle.bottom+2.0f;
+	_price.text = [Utils getLocalMoneyValueFromString:_event.price];
 
-    _shortDescription.text = _event.shortDescription;
-    _shortDescription.accessibilityLabel = _event.shortDescription;
+	_infoView.top = _eventTitle.bottom+2.0f;
+	_infoView.width = width;
+
+	_shortDescription.text = _event.shortDescription;
+	_shortDescription.accessibilityLabel = _event.shortDescription;
 
 	_longDescription.text = _event.longDescription;
 	_longDescription.accessibilityLabel = _event.longDescription;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
 	paragraphStyle.lineSpacing = -2;
-    paragraphStyle.alignment = NSTextAlignmentJustified;
+	paragraphStyle.alignment = NSTextAlignmentJustified;
+
+	fontSize = (wide) ? 20:18;
 
 	NSAttributedString *attrShortDescription = [[NSAttributedString alloc]
 		initWithString:_shortDescription.text attributes:@{
 			NSParagraphStyleAttributeName: paragraphStyle,
-			NSFontAttributeName: [_shortDescription.font fontWithSize:17],
+			NSFontAttributeName: [_shortDescription.font fontWithSize:fontSize],
 			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
 		}];
+
+	fontSize = (wide) ? 18:16;
 
 	NSAttributedString *attrDescription = [[NSAttributedString alloc]
 		initWithString:_longDescription.text attributes:@{
 			NSParagraphStyleAttributeName: paragraphStyle,
-			NSFontAttributeName: [_longDescription.font fontWithSize:17],
+			NSFontAttributeName: [_longDescription.font fontWithSize:fontSize],
 			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
 		}];
 
@@ -114,13 +119,12 @@
 
 	_shortDescription.attributedText = attrShortDescription;
 	_shortDescription.width = width;
-	_shortDescription.height = [_shortDescription sizeThatFits:CGSizeMake(_shortDescription.width, INT_MAX)].height;
+	_shortDescription.height = _shortDescription.expandedSize.height;
 
 	_longDescription.attributedText = attrDescription;
 	_longDescription.width = width;
-    _longDescription.top = _shortDescription.bottom+4.0f;
-	_longDescription.height = [_longDescription sizeThatFits:CGSizeMake(_longDescription.width, INT_MAX)].height;
-
+	_longDescription.top = _shortDescription.bottom+4.0f;
+	_longDescription.height = _longDescription.expandedSize.height;
 	_detailsView.top = _infoView.bottom;
 
 	// Clear old custom fields
@@ -145,21 +149,6 @@
 
 	// Set the content size to be the size our our whole frame
 	_scrollView.contentSize = CGSizeMake(self.view.width, _detailsView.bottom + 14);
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-
-#pragma mark - Other View-related
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

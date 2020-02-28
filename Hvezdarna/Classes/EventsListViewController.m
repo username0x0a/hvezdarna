@@ -9,8 +9,7 @@
 #import "EventsListViewController.h"
 #import "EventsListSectionView.h"
 #import "EventsListCellView.h"
-#import "Event.h"
-#import "EventsList.h"
+#import "EventsListViewModel.h"
 #import "Utils.h"
 
 #import <objc/runtime.h>
@@ -55,10 +54,12 @@
 @end
 
 
-@interface EventsListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate, UISearchBarDelegate>
+@interface EventsListViewController ()
+	<UITableViewDelegate, UITableViewDataSource,
+	 UISearchDisplayDelegate, UISearchBarDelegate>
 
-@property(nonatomic,strong) EventsList *list;
-@property(nonatomic,copy) NSString *searchString;
+@property (nonatomic, strong) EventsListViewModel *model;
+@property (nonatomic, copy) NSArray<CalendarDay *> *displayedCalendar;
 
 @end
 
@@ -70,19 +71,26 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
+		__weak __auto_type ws = self;
+
+		_model = [EventsListViewModel new];
+		_model.updateHandler = ^{
+			[ws reloadData];
+		};
+
 		self.title = @"Program";
+		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
+
 		self.automaticallyAdjustsScrollViewInsets = NO;
 		self.extendedLayoutIncludesOpaqueBars = NO;
 		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
 
-		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
-		_list = [EventsList sharedList];
-		_searchString = @"";
-    }
+		[self reloadData];
+	}
 
-    return self;
+	return self;
 }
 
 - (void)viewDidLoad
@@ -105,14 +113,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 
 	self.navigationController.navigationBar.translucent = YES;
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
 
-    NSIndexPath *selection = [_tableView indexPathForSelectedRow];
+	NSIndexPath *selection = [_tableView indexPathForSelectedRow];
 
 	if (selection)
 		[_tableView deselectRowAtIndexPath:selection animated:YES];
@@ -137,7 +145,7 @@
 	EventsListSectionView *view = [[EventsListSectionView alloc]
 		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
 
-	NSInteger timestamp = [self.list dayAtIndex:section];
+	NSInteger timestamp = _displayedCalendar[section].ID;
 
 	NSString *title = [[NSString stringWithFormat:@"%@  %@",
 		[Utils getLocalDayOfWeekStringFromTimestamp:timestamp],
@@ -152,24 +160,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [self.list numberOfEventsOnDayIndex:section];
+	return _displayedCalendar[section].events.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	NSInteger count = [self.list numberOfDays];
+	NSInteger count = _displayedCalendar.count;
 
-	// TODO: ????
+	tableView.hidden = (count == 0);
 
-	if (isIPhone())
-		[tableView setHidden:(count == 0)];
-	else if (isIPad()) {
-		if (count == 0) {
-//			EventDetailViewController *detail = _splitViewController.delegate;
-//			[detail.choose_event setText:@"Žádná představení"];
-		}
-	}
-	
 	return count;
 }
 
@@ -184,7 +183,7 @@
 		cell = [topLevelObjects objectAtIndex:0];
 	}
 
-	cell.event = [_list eventOnDayIdx:[indexPath section] atIdx:[indexPath row]];
+	cell.event = _displayedCalendar[indexPath.section].events[indexPath.row];
 
 	return cell;
 }
@@ -208,6 +207,13 @@
 		[_searchBar resignFirstResponder];
 }
 
+- (void)reloadData
+{
+	NSString *term = _searchBar.text;
+	_displayedCalendar = [_model calendarForSearchTerm:term];
+	[_tableView reloadData];
+}
+
 
 #pragma mark -
 #pragma mark Search bar delegate
@@ -215,45 +221,27 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-    [searchBar setShowsCancelButton:YES animated:YES];
+	[searchBar setShowsCancelButton:YES animated:YES];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [searchBar setShowsCancelButton:NO animated:YES];
-    [searchBar resignFirstResponder];
+	[searchBar setShowsCancelButton:NO animated:YES];
+	[searchBar resignFirstResponder];
 
-	if ([searchBar text].length == 0) {
-		[self.list processSearchWord:searchBar.text];
-		[_tableView reloadData];
-	}
-	else
-		[searchBar setText:_searchString];
-}
-
-- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope {
-	NSLog(@"Filter content");
+	if (searchBar.text.length == 0)
+		[self reloadData];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-	[self.list processSearchWord:searchBar.text];
-	[_tableView reloadData];
+	[self reloadData];
 }
 
-- (void) searchBarResultsListButtonClicked:(UISearchBar *)searchBar {
-	NSLog(@"ResultsList");
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+	[searchBar setShowsCancelButton:NO animated:YES];
+	[searchBar resignFirstResponder];
+	[self reloadData];
 }
-- (void) searchBarBookmarkButtonClicked:(UISearchBar *)searchBar {
-	NSLog(@"Bookmark");
-}
-
-- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar_ {
-	_searchString = [searchBar_ text];
-    [searchBar_ setShowsCancelButton:NO animated:YES];
-    [searchBar_ resignFirstResponder];
-	[self.list processSearchWord:[searchBar_ text]];
-	[_tableView reloadData];
-}
-
 
 @end
