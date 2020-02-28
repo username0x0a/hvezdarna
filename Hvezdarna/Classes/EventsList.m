@@ -124,8 +124,8 @@
 			return;
 		}
 		
-		[self clearEventsData];
 		[_db beginTransaction];
+		[self clearEventsData];
 
 		NSTimeInterval currentUnixTS = [Utils unixTimestamp];
 
@@ -143,11 +143,11 @@
 			NSString *desc = objectOrNull([event[@"desc"] parsedString]);
 			NSString *shortDesc = objectOrNull([event[@"short_desc"] parsedString]);
 			NSString *link = objectOrNull([event[@"link"] parsedString]);
-			NSArray<NSString *> *opts = objectOrNull([[event[@"options"] parsedArray]
+			NSArray<NSString *> *opts = objectOrNull([[[event[@"options"] parsedArray]
 			  filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:
 			  ^BOOL(id evaluatedObject, NSDictionary<NSString *,id> *bindings) {
 				return [evaluatedObject parsedString];
-			}]]);
+			}]] componentsJoinedByString:@"|"]);
 
 			[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);"
 				values:@[ name, @(dayID), @(time), desc, shortDesc, opts, price, link ] error:nil];
