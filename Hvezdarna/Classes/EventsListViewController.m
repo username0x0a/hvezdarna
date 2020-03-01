@@ -81,7 +81,7 @@
 		};
 
 		self.title = @"Program";
-		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
+		self.tabBarItem.image = [UIImage imageNamed:@"tab-calendar"];
 
 		self.automaticallyAdjustsScrollViewInsets = NO;
 		self.extendedLayoutIncludesOpaqueBars = NO;

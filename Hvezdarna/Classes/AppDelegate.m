@@ -28,7 +28,8 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL)application:(UIApplication *)application
+	didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	// Set Background Fetch interval
 	[application setMinimumBackgroundFetchInterval:
@@ -37,31 +38,28 @@
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 	// Declare tabbed view controllers
-	UIViewController *weather, *eventsList, *observatory;
+	UIViewController *weather, *eventsList, *about;
 
 	weather = [[WeatherViewController alloc] initWithNibName:
 	           @"WeatherViewController" bundle:nil];
-	observatory = [[AboutObservatoryViewController alloc] initWithNibName:
-	           @"AboutObservatoryViewController" bundle:nil];
 	eventsList = [[EventsSplitViewController alloc] initWithNibName:
 	           @"EventsSplitViewController" bundle:nil];
+	about = [[AboutObservatoryViewController alloc] initWithNibName:
+	           @"AboutObservatoryViewController" bundle:nil];
 
-	_tabBarController = [[UITabBarController alloc] init];
+	_tabBarController = [UITabBarController new];
 	_tabBarController.delegate = self;
-	_tabBarController.viewControllers = @[ weather, eventsList, observatory ];
+	_tabBarController.viewControllers = @[ weather, eventsList, about ];
 
 	[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
-
-//	UIView *mask = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//	mask.backgroundColor = [UIColor whiteColor];
-//	mask.layer.cornerRadius = 4.0;
-//	_tabBarController.view.layer.mask = mask.layer;
 
 	[self refreshTabBarAppearance];
 
 	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 
 	self.window.rootViewController = _tabBarController;
+	if (@available(iOS 13.0, *))
+		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 	[self.window makeKeyAndVisible];
 
 	return YES;
@@ -117,7 +115,9 @@
 
 #pragma mark - Tab bar actions
 
-static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
+
+static UIViewAnimationOptions quickAnimation =
+	UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
 
 - (void)refreshTabBarAppearance
 {
@@ -135,7 +135,7 @@ static UIViewAnimationOptions quickAnimation = UIViewAnimationOptionAllowUserInt
 
 		tabBar.alpha = 0;
 
-	} completion:^(BOOL f){
+	} completion:^(BOOL f) {
 
 		tabBar.backgroundColor = (isClear) ? [UIColor clearColor] : [UIColor clearColor];
 		tabBar.backgroundImage = (isClear) ?  [UIImage new] : nil;

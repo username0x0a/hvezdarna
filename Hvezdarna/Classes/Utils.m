@@ -141,10 +141,10 @@
 	BOOL night = hour < 6 || hour >= 22;
 
 	if ([condition isEqualToString:@"Sunny"])
-		return (night) ? @"clear_moon" : @"clear_sun";
+		return (night) ? @"weather-clear_moon" : @"weather-clear_sun";
 
-	if ([condition isEqualToString:@"Cloudy"]) return @"cloudy";
-	if ([condition isEqualToString:@"Rainy"]) return @"rain";
+	if ([condition isEqualToString:@"Cloudy"]) return @"weather-cloudy";
+	if ([condition isEqualToString:@"Rainy"]) return @"weather-rain";
 
 	return nil;
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,8 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cloudy-bg" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-3i-MCA" userLabel="Background">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="656"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default-bg" translatesAutoresizingMaskIntoConstraints="NO" id="kxr-3i-MCA" userLabel="Background">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="hvezdarna-logo" translatesAutoresizingMaskIntoConstraints="NO" id="12" userLabel="Logo">
@@ -125,11 +125,11 @@ Cg
                 <constraint firstItem="12" firstAttribute="centerX" secondItem="1" secondAttribute="centerX" constant="-6" id="t9q-tk-fgN"/>
             </constraints>
             <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-            <point key="canvasLocation" x="140" y="154"/>
+            <point key="canvasLocation" x="138.75" y="153.16901408450704"/>
         </view>
     </objects>
     <resources>
-        <image name="cloudy-bg" width="1024" height="768"/>
+        <image name="Default-bg" width="2732" height="2732"/>
         <image name="hvezdarna-logo" width="275" height="100"/>
     </resources>
 </document>

@@ -22,7 +22,7 @@
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
 		self.title = @"O hvězdárně";
-		self.tabBarItem.image = [UIImage imageNamed:@"about"];
+		self.tabBarItem.image = [UIImage imageNamed:@"tab-about"];
 	}
 
 	return self;

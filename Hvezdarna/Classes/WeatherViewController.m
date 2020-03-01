@@ -34,7 +34,7 @@
 		_model = [WeatherViewModel new];
 
 		self.title = @"Aktuálně";
-		self.tabBarItem.image = [UIImage imageNamed:@"actual"];
+		self.tabBarItem.image = [UIImage imageNamed:@"tab-weather"];
 	}
 
 	return self;
@@ -111,6 +111,11 @@
 	[self reloadScreenData];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+	return UIStatusBarStyleLightContent;
+}
+
 
 #pragma mark - Data reloading
 
@@ -183,7 +188,8 @@
 	if (humidity > 70) condition = @"Rainy";
 
 	NSString *imageName = [Utils getWeatherIconFromConditionString:condition];
-	_conditionImage.image = [UIImage imageNamed:imageName];
+	_conditionImage.image = [[UIImage imageNamed:imageName]
+		imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
 	_conditionImage.accessibilityLabel = [NSString stringWithFormat:@"%@ %@",
 		NSLocalizedString(@"The weather is", @"Condition label -- appendable options: clear, cloudy, rainy"),

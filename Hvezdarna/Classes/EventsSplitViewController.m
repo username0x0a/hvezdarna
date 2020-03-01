@@ -52,7 +52,7 @@
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
 		self.title = @"Program";
-		self.tabBarItem.image = [UIImage imageNamed:@"programme"];
+		self.tabBarItem.image = [UIImage imageNamed:@"tab-calendar"];
 
 		EventsListViewController *root = [[EventsListViewController alloc] initWithNibName:@"EventsListViewController" bundle:nil];
 		NoProgramSelectedViewController *blank = [NoProgramSelectedViewController new];
