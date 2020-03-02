@@ -7,7 +7,9 @@
 //
 
 #import <SystemConfiguration/SCNetworkReachability.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 #import <netinet/in.h>
 
 #import "Utils.h"
@@ -168,10 +170,12 @@
 + (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate {
 		
 	NSURL *URL = [NSURL URLWithString:url];
-	
+
+#if !TARGET_OS_TV
 	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[delegate.tabBarController presentViewController:vc animated:YES completion:nil];
+#endif
 }
 
 + (BOOL) connectionAvailable {

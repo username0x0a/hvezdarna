@@ -7,7 +7,9 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 
 #import "EventDetailViewController.h"
 #import "EventDetailCellView.h"
@@ -157,9 +159,11 @@
 
 - (void)openLink
 {
+#if !TARGET_OS_TV
 	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_event.link]];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
+#endif
 }
 
 @end

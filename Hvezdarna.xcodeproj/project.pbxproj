@@ -21,6 +21,29 @@
 		EF52B42824094145006AAE11 /* NSObject+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B42624094145006AAE11 /* NSObject+Parsing.m */; };
 		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
 		EF60BCE524097F0500F4C624 /* EventsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60BCE424097F0500F4C624 /* EventsListViewModel.m */; };
+		EF60BD00240C6B1B00F4C624 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
+		EF60BD01240C6B1B00F4C624 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA019CEBEA100CE392B /* FMDatabaseAdditions.m */; };
+		EF60BD02240C6B1B00F4C624 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA219CEBEA100CE392B /* FMDatabasePool.m */; };
+		EF60BD03240C6B1B00F4C624 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA419CEBEA100CE392B /* FMDatabaseQueue.m */; };
+		EF60BD04240C6B1B00F4C624 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA719CEBEA100CE392B /* FMResultSet.m */; };
+		EF60BD05240C6B1E00F4C624 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC4C3215DA75B80075D628 /* main.m */; };
+		EF60BD06240C6B2200F4C624 /* NSObject+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B42624094145006AAE11 /* NSObject+Parsing.m */; };
+		EF60BD07240C6B2200F4C624 /* UIView+position.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9A196335D7006902DE /* UIView+position.m */; };
+		EF60BD08240C6B2200F4C624 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9C196335D7006902DE /* Utils.m */; };
+		EF60BD09240C6B2600F4C624 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB80196335D7006902DE /* Event.m */; };
+		EF60BD0A240C6B2600F4C624 /* EventsList.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8B196335D7006902DE /* EventsList.m */; };
+		EF60BD0B240C6B2600F4C624 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7A196335D7006902DE /* AppDelegate.m */; };
+		EF60BD0C240C6B2D00F4C624 /* AboutObservatoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7C196335D7006902DE /* AboutObservatoryViewController.m */; };
+		EF60BD0D240C6B3100F4C624 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB88196335D7006902DE /* EventDetailViewController.m */; };
+		EF60BD0E240C6B3100F4C624 /* EventDetailCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB85196335D7006902DE /* EventDetailCellView.m */; };
+		EF60BD0F240C6B3500F4C624 /* EventsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60BCE424097F0500F4C624 /* EventsListViewModel.m */; };
+		EF60BD10240C6B3500F4C624 /* EventsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB92196335D7006902DE /* EventsListViewController.m */; };
+		EF60BD11240C6B3500F4C624 /* EventsListCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB82196335D7006902DE /* EventsListCellView.m */; };
+		EF60BD12240C6B3500F4C624 /* EventsListSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8D196335D7006902DE /* EventsListSectionView.m */; };
+		EF60BD13240C6B3500F4C624 /* EventsSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB8F196335D7006902DE /* EventsSplitViewController.m */; };
+		EF60BD14240C6B3A00F4C624 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
+		EF60BD15240C6B3A00F4C624 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB74196335D7006902DE /* WeatherViewController.m */; };
+		EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
 		EF844BA819CEBEA100CE392B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
@@ -73,6 +96,7 @@
 		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EF60BCE324097F0500F4C624 /* EventsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsListViewModel.h; sourceTree = "<group>"; };
 		EF60BCE424097F0500F4C624 /* EventsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventsListViewModel.m; sourceTree = "<group>"; };
+		EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hvezdarna-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EF844B9D19CEBEA100CE392B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -144,6 +168,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EF60BCE7240C6AB800F4C624 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -160,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				B0AC4C2215DA75B80075D628 /* Hvezdarna.app */,
+				EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -349,6 +381,23 @@
 			productReference = B0AC4C2215DA75B80075D628 /* Hvezdarna.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EF60BCE9240C6AB800F4C624 /* Hvezdarna-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EF60BCFD240C6ABE00F4C624 /* Build configuration list for PBXNativeTarget "Hvezdarna-tvOS" */;
+			buildPhases = (
+				EF60BCE6240C6AB800F4C624 /* Sources */,
+				EF60BCE7240C6AB800F4C624 /* Frameworks */,
+				EF60BCE8240C6AB800F4C624 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Hvezdarna-tvOS";
+			productName = "Hvezdarna-tvOS";
+			productReference = EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -365,6 +414,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					EF60BCE9240C6AB800F4C624 = {
+						CreatedOnToolsVersion = 11.4;
 					};
 				};
 			};
@@ -383,6 +435,7 @@
 			projectRoot = "";
 			targets = (
 				B0AC4C2115DA75B80075D628 /* Hvezdarna */,
+				EF60BCE9240C6AB800F4C624 /* Hvezdarna-tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +454,14 @@
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
 				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
 				EFC2DBB3196335D7006902DE /* EventsSplitViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF60BCE8240C6AB800F4C624 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +494,35 @@
 				EFC2DBAA196335D7006902DE /* EventsListCellView.m in Sources */,
 				EFC2DBAC196335D7006902DE /* EventDetailCellView.m in Sources */,
 				EFC2DBA1196335D7006902DE /* WeatherViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF60BCE6240C6AB800F4C624 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF60BD08240C6B2200F4C624 /* Utils.m in Sources */,
+				EF60BD00240C6B1B00F4C624 /* FMDatabase.m in Sources */,
+				EF60BD09240C6B2600F4C624 /* Event.m in Sources */,
+				EF60BD03240C6B1B00F4C624 /* FMDatabaseQueue.m in Sources */,
+				EF60BD02240C6B1B00F4C624 /* FMDatabasePool.m in Sources */,
+				EF60BD06240C6B2200F4C624 /* NSObject+Parsing.m in Sources */,
+				EF60BD0D240C6B3100F4C624 /* EventDetailViewController.m in Sources */,
+				EF60BD01240C6B1B00F4C624 /* FMDatabaseAdditions.m in Sources */,
+				EF60BD12240C6B3500F4C624 /* EventsListSectionView.m in Sources */,
+				EF60BD10240C6B3500F4C624 /* EventsListViewController.m in Sources */,
+				EF60BD11240C6B3500F4C624 /* EventsListCellView.m in Sources */,
+				EF60BD07240C6B2200F4C624 /* UIView+position.m in Sources */,
+				EF60BD0B240C6B2600F4C624 /* AppDelegate.m in Sources */,
+				EF60BD0A240C6B2600F4C624 /* EventsList.m in Sources */,
+				EF60BD0E240C6B3100F4C624 /* EventDetailCellView.m in Sources */,
+				EF60BD15240C6B3A00F4C624 /* WeatherViewController.m in Sources */,
+				EF60BD05240C6B1E00F4C624 /* main.m in Sources */,
+				EF60BD0F240C6B3500F4C624 /* EventsListViewModel.m in Sources */,
+				EF60BD0C240C6B2D00F4C624 /* AboutObservatoryViewController.m in Sources */,
+				EF60BD13240C6B3500F4C624 /* EventsSplitViewController.m in Sources */,
+				EF60BD14240C6B3A00F4C624 /* WeatherViewModel.m in Sources */,
+				EF60BD04240C6B1B00F4C624 /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +658,85 @@
 			};
 			name = Release;
 		};
+		EF60BCFE240C6ABE00F4C624 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = BQ7YQ94D2F;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.4;
+			};
+			name = Debug;
+		};
+		EF60BCFF240C6ABE00F4C624 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BQ7YQ94D2F;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.4;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -585,6 +754,15 @@
 			buildConfigurations = (
 				B0AC4C5515DA75B80075D628 /* Debug */,
 				B0AC4C5615DA75B80075D628 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EF60BCFD240C6ABE00F4C624 /* Build configuration list for PBXNativeTarget "Hvezdarna-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF60BCFE240C6ABE00F4C624 /* Debug */,
+				EF60BCFF240C6ABE00F4C624 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -98,9 +98,11 @@
 	[super viewDidAppear:animated];
 
 	if (![Utils connectionAvailable]) {
+#if !TARGET_OS_TV
 		[[[UIAlertView alloc] initWithTitle:@"Chyba připojení"
 			message:@"Připojení k internetu není k dipozici" delegate:self
 				cancelButtonTitle:@"Zavřít" otherButtonTitles:nil] show];
+#endif
 		return;
 	}
 
@@ -111,10 +113,12 @@
 	[self reloadScreenData];
 }
 
+#if !TARGET_OS_TV
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
 	return UIStatusBarStyleLightContent;
 }
+#endif
 
 
 #pragma mark - Data reloading
@@ -237,8 +241,10 @@
 
 		hidden = !hidden;
 
+#if !TARGET_OS_TV
 		[[UIApplication sharedApplication] setStatusBarHidden:hidden
 			withAnimation:UIStatusBarAnimationSlide];
+#endif
 
 		for (UIView *v in self.view.subviews)
 			if (v != self->_backgroundView) {
@@ -259,9 +265,11 @@
 
 	if (counter < 0) counter = 0;
 
+#if !TARGET_OS_TV
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(counter != 0)];
 	}];
+#endif
 }
 
 @end

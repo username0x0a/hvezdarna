@@ -7,7 +7,9 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 
 #import "AboutObservatoryViewController.h"
 #import "Utils.h"
@@ -64,10 +66,12 @@
 
 - (IBAction)webButtonTapped:(id)sender
 {
+#if !TARGET_OS_TV
 	SFSafariViewController *vc = [[SFSafariViewController alloc]
 		initWithURL:[NSURL URLWithString:@"http://hvezdarna.cz/"]];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self presentViewController:vc animated:YES completion:nil];
+#endif
 }
 
 @end

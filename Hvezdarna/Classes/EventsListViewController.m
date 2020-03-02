@@ -56,7 +56,10 @@
 
 @interface EventsListViewController ()
 	<UITableViewDelegate, UITableViewDataSource,
-	 UISearchDisplayDelegate, UISearchBarDelegate>
+#if !TARGET_OS_TV
+	 UISearchDisplayDelegate,
+#endif
+	 UISearchBarDelegate>
 
 @property (nonatomic, strong) EventsListViewModel *model;
 @property (nonatomic, copy) NSArray<CalendarDay *> *displayedCalendar;
@@ -115,7 +118,9 @@
 {
 	[super viewWillAppear:animated];
 
+#if !TARGET_OS_TV
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+#endif
 
 	self.navigationController.navigationBar.translucent = YES;
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
@@ -221,12 +226,16 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
+#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:YES animated:YES];
+#endif
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
+#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:NO animated:YES];
+#endif
 	[searchBar resignFirstResponder];
 
 	if (searchBar.text.length == 0)
@@ -239,7 +248,9 @@
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:NO animated:YES];
+#endif
 	[searchBar resignFirstResponder];
 	[self reloadData];
 }

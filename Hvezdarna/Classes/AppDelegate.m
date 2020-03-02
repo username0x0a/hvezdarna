@@ -55,7 +55,9 @@
 
 	[self refreshTabBarAppearance];
 
+#if !TARGET_OS_TV
 	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+#endif
 
 	self.window.rootViewController = _tabBarController;
 	if (@available(iOS 13.0, *))
@@ -128,8 +130,10 @@ static UIViewAnimationOptions quickAnimation =
 	BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
 	UITabBar *tabBar = _tabBarController.tabBar;
 
+#if !TARGET_OS_TV
 	[[UIApplication sharedApplication] setStatusBarStyle:
 		(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
+#endif
 
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
