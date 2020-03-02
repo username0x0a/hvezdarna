@@ -100,7 +100,6 @@
 {
 	[super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor whiteColor];
 	_searchBar.clipsToBounds = NO;
 //	CGFloat topOffset = kUINavigationBarHeight;
 //	CGFloat bottomOffset = 0;
@@ -147,9 +146,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	EventsListSectionView *view = [[EventsListSectionView alloc]
-		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
-
 	NSInteger timestamp = _displayedCalendar[section].ID;
 
 	NSString *title = [[NSString stringWithFormat:@"%@  %@",
@@ -157,7 +153,20 @@
 		[Utils getLocalDateStringFromTimestamp:timestamp]]
 		uppercaseString];
 
+#if TARGET_OS_IOS == 1
+	EventsListSectionView *view = [[EventsListSectionView alloc]
+		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
+
 	[view setTitleText:title];
+#else
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 240, 44)];
+	label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	label.textColor = [UIColor grayColor];
+	label.font = [UIFont boldSystemFontOfSize:30];
+	label.text = title;
+	[view addSubview:label];
+#endif
 
 	return view;
 }
@@ -220,22 +229,20 @@
 }
 
 
+#if TARGET_OS_IOS == 1
+
 #pragma mark -
 #pragma mark Search bar delegate
 
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
-#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:YES animated:YES];
-#endif
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:NO animated:YES];
-#endif
 	[searchBar resignFirstResponder];
 
 	if (searchBar.text.length == 0)
@@ -248,11 +255,11 @@
 
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-#if !TARGET_OS_TV
 	[searchBar setShowsCancelButton:NO animated:YES];
-#endif
 	[searchBar resignFirstResponder];
 	[self reloadData];
 }
+
+#endif
 
 @end

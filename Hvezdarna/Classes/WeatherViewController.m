@@ -52,6 +52,8 @@
 	NSString *image = (hour < 6 || hour > 20) ? @"placeholder-evening" : @"placeholder-dusk";
 	_backgroundView.image = [UIImage imageNamed:image];
 
+#if TARGET_OS_IOS == 1
+
 	if (isIPad() || isWidescreen() || isUltraWidescreen())
 	{
 		_temperatureHeadingLabel.top += 32;
@@ -74,6 +76,8 @@
 		_detailsContainer.width += 40;
 		_conditionImage.top -= 40;
 	}
+
+#endif
 
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
 

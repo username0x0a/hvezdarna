@@ -29,12 +29,17 @@
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
+#if TARGET_OS_IOS == 1
 	self.backgroundColor = self.contentView.backgroundColor = (highlighted) ?
 		[UIColor colorWithWhite:.96 alpha:1] : [UIColor whiteColor];
+#else
+	[super setHighlighted:highlighted animated:animated];
+#endif
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
+#if TARGET_OS_IOS == 1
 	void (^perform)(void) = ^{
 		self.backgroundColor = self.contentView.backgroundColor = (selected) ?
 		[UIColor colorWithWhite:.96 alpha:1] : [UIColor whiteColor];
@@ -42,6 +47,10 @@
 
 	if (animated) [UIView animateWithDuration:.5 animations:perform];
 	else perform();
+#else
+	[super setSelected:selected animated:animated];
+#endif
+
 }
 
 @end

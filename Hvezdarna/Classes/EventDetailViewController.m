@@ -28,6 +28,7 @@
 {
 	[super viewDidLoad];
 
+#if !TARGET_OS_TV
 	self.title = @"Představení";
 
 	self.navigationController.navigationBar.barTintColor =
@@ -36,29 +37,34 @@
 	self.navigationController.navigationBar.titleTextAttributes = @{
 		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
 	};
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 
+#if !TARGET_OS_TV
 	self.navigationController.navigationBar.barTintColor =
 		[UIColor colorWithWhite:1 alpha:.9];
 	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
 	self.navigationController.navigationBar.titleTextAttributes = @{
 		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
 	};
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
+#if !TARGET_OS_TV
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Rezervace"
 		style:UIBarButtonItemStylePlain target:self action:@selector(openLink)];
 	self.navigationItem.rightBarButtonItem.enabled = _event.link.length > 0;
+#endif
 
 	[self recalculateContent];
 }
@@ -75,6 +81,10 @@
 	BOOL wide = width >= 600;
 
 	CGFloat fontSize = (wide) ? 29:26;
+#if TARGET_OS_TV == 1
+	width = _scrollView.width - _scrollView.layoutMargins.left - _scrollView.layoutMargins.right - _scrollView.contentInset.left - _scrollView.contentInset.right;
+	fontSize = 64;
+#endif
 
 	_eventTitle.font = [_eventTitle.font fontWithSize:fontSize];
 	_eventTitle.text = _event.title;
@@ -100,6 +110,9 @@
 	paragraphStyle.alignment = NSTextAlignmentJustified;
 
 	fontSize = (wide) ? 20:18;
+#if TARGET_OS_TV == 1
+	fontSize = 36;
+#endif
 
 	NSAttributedString *attrShortDescription = [[NSAttributedString alloc]
 		initWithString:_shortDescription.text attributes:@{
@@ -108,7 +121,9 @@
 			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
 		}];
 
+#if !TARGET_OS_TV
 	fontSize = (wide) ? 18:16;
+#endif
 
 	NSAttributedString *attrDescription = [[NSAttributedString alloc]
 		initWithString:_longDescription.text attributes:@{
@@ -135,6 +150,7 @@
 			[view removeFromSuperview];
 
 	int currentY = _longDescription.bottom+16.0f;
+#if !TARGET_OS_TV
 	for (NSString *option in _event.opts)
 	{
 		UINib *nibForCells = [UINib nibWithNibName:@"EventDetailCellView" bundle:nil];
@@ -147,6 +163,7 @@
 		cell.top = currentY;
 		currentY = cell.bottom;
 	}
+#endif
 	_detailsView.height = currentY;
 
 	// Set the content size to be the size our our whole frame

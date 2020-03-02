@@ -168,10 +168,9 @@
 }
 
 + (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate {
-		
+#if TARGET_OS_IOS == 1
 	NSURL *URL = [NSURL URLWithString:url];
 
-#if !TARGET_OS_TV
 	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[delegate.tabBarController presentViewController:vc animated:YES completion:nil];

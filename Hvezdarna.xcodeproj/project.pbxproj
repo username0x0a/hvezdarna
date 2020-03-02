@@ -44,6 +44,20 @@
 		EF60BD14240C6B3A00F4C624 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
 		EF60BD15240C6B3A00F4C624 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB74196335D7006902DE /* WeatherViewController.m */; };
 		EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
+		EF60BD22240D808A00F4C624 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD21240D808A00F4C624 /* CoreGraphics.framework */; };
+		EF60BD24240D809400F4C624 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD23240D809400F4C624 /* CoreText.framework */; };
+		EF60BD26240D809900F4C624 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD25240D809900F4C624 /* Foundation.framework */; };
+		EF60BD28240D80A400F4C624 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD27240D809D00F4C624 /* libsqlite3.tbd */; };
+		EF60BD2A240D80B300F4C624 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD29240D80B300F4C624 /* QuartzCore.framework */; };
+		EF60BD2C240D80B800F4C624 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2B240D80B700F4C624 /* Security.framework */; };
+		EF60BD2E240D80C200F4C624 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */; };
+		EF60BD30240D80C600F4C624 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2F240D80C600F4C624 /* UIKit.framework */; };
+		EF60BD3A240D85C700F4C624 /* AboutObservatoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */; };
+		EF60BD3B240D871800F4C624 /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD33240D84A300F4C624 /* WeatherViewController.xib */; };
+		EF60BD3F240D882000F4C624 /* EventsSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */; };
+		EF60BD41240DB47F00F4C624 /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */; };
+		EF60BD43240DB59300F4C624 /* EventsListCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD42240DB59300F4C624 /* EventsListCellView.xib */; };
+		EF60BD45240DB91D00F4C624 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
 		EF844BA819CEBEA100CE392B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
@@ -97,6 +111,20 @@
 		EF60BCE324097F0500F4C624 /* EventsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsListViewModel.h; sourceTree = "<group>"; };
 		EF60BCE424097F0500F4C624 /* EventsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventsListViewModel.m; sourceTree = "<group>"; };
 		EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hvezdarna-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF60BD21240D808A00F4C624 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD23240D809400F4C624 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD25240D809900F4C624 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD27240D809D00F4C624 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		EF60BD29240D80B300F4C624 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD2B240D80B700F4C624 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD2F240D80C600F4C624 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BD33240D84A300F4C624 /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutObservatoryViewController.xib; sourceTree = "<group>"; };
+		EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsSplitViewController.xib; sourceTree = "<group>"; };
+		EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsListViewController.xib; sourceTree = "<group>"; };
+		EF60BD42240DB59300F4C624 /* EventsListCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsListCellView.xib; sourceTree = "<group>"; };
+		EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
 		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EF844B9D19CEBEA100CE392B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
@@ -172,6 +200,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF60BD2A240D80B300F4C624 /* QuartzCore.framework in Frameworks */,
+				EF60BD30240D80C600F4C624 /* UIKit.framework in Frameworks */,
+				EF60BD2E240D80C200F4C624 /* SystemConfiguration.framework in Frameworks */,
+				EF60BD24240D809400F4C624 /* CoreText.framework in Frameworks */,
+				EF60BD26240D809900F4C624 /* Foundation.framework in Frameworks */,
+				EF60BD28240D80A400F4C624 /* libsqlite3.tbd in Frameworks */,
+				EF60BD2C240D80B800F4C624 /* Security.framework in Frameworks */,
+				EF60BD22240D808A00F4C624 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +235,14 @@
 		B0AC4C2515DA75B80075D628 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF60BD2F240D80C600F4C624 /* UIKit.framework */,
+				EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */,
+				EF60BD2B240D80B700F4C624 /* Security.framework */,
+				EF60BD29240D80B300F4C624 /* QuartzCore.framework */,
+				EF60BD27240D809D00F4C624 /* libsqlite3.tbd */,
+				EF60BD25240D809900F4C624 /* Foundation.framework */,
+				EF60BD23240D809400F4C624 /* CoreText.framework */,
+				EF60BD21240D808A00F4C624 /* CoreGraphics.framework */,
 				EF844B9C19CEBEA100CE392B /* fmdb */,
 				EFC2DC2F19646C06006902DE /* Accelerate.framework */,
 				B0AC4C2A15DA75B80075D628 /* CoreGraphics.framework */,
@@ -247,6 +291,42 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EF60BD31240D845100F4C624 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EFC2DC351964724A006902DE /* WeatherViewController.xib */,
+				EFC2DB90196335D7006902DE /* EventsSplitViewController.xib */,
+				EFC2DB93196335D7006902DE /* EventsListViewController.xib */,
+				EFC2DB83196335D7006902DE /* EventsListCellView.xib */,
+				EFC2DB89196335D7006902DE /* EventDetailViewController.xib */,
+				EFC2DB86196335D7006902DE /* EventDetailCellView.xib */,
+				EFC2DB7D196335D7006902DE /* AboutObservatoryViewController.xib */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		EF60BD32240D847A00F4C624 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				EF60BD33240D84A300F4C624 /* WeatherViewController.xib */,
+				EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */,
+				EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */,
+				EF60BD42240DB59300F4C624 /* EventsListCellView.xib */,
+				EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */,
+				EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		EF60BD38240D858400F4C624 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EF60BD31240D845100F4C624 /* iOS */,
+				EF60BD32240D847A00F4C624 /* tvOS */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		EF844B9C19CEBEA100CE392B /* fmdb */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +349,7 @@
 		EFC2DB6E196335D7006902DE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EF60BD38240D858400F4C624 /* UI */,
 				EFC2DC1B19633920006902DE /* Weather view */,
 				EFECB9EB196DB59900D524FD /* Events List view */,
 				EFC2DC1C19633928006902DE /* Event Detail view */,
@@ -287,7 +368,6 @@
 				EF52B424240933A3006AAE11 /* WeatherViewModel.m */,
 				EFC2DB73196335D7006902DE /* WeatherViewController.h */,
 				EFC2DB74196335D7006902DE /* WeatherViewController.m */,
-				EFC2DC351964724A006902DE /* WeatherViewController.xib */,
 			);
 			name = "Weather view";
 			sourceTree = "<group>";
@@ -297,10 +377,8 @@
 			children = (
 				EFC2DB87196335D7006902DE /* EventDetailViewController.h */,
 				EFC2DB88196335D7006902DE /* EventDetailViewController.m */,
-				EFC2DB89196335D7006902DE /* EventDetailViewController.xib */,
 				EFC2DB84196335D7006902DE /* EventDetailCellView.h */,
 				EFC2DB85196335D7006902DE /* EventDetailCellView.m */,
-				EFC2DB86196335D7006902DE /* EventDetailCellView.xib */,
 			);
 			name = "Event Detail view";
 			sourceTree = "<group>";
@@ -324,7 +402,6 @@
 			children = (
 				EFC2DB7B196335D7006902DE /* AboutObservatoryViewController.h */,
 				EFC2DB7C196335D7006902DE /* AboutObservatoryViewController.m */,
-				EFC2DB7D196335D7006902DE /* AboutObservatoryViewController.xib */,
 			);
 			name = "About view";
 			sourceTree = "<group>";
@@ -336,13 +413,10 @@
 				EF60BCE424097F0500F4C624 /* EventsListViewModel.m */,
 				EFC2DB91196335D7006902DE /* EventsListViewController.h */,
 				EFC2DB92196335D7006902DE /* EventsListViewController.m */,
-				EFC2DB93196335D7006902DE /* EventsListViewController.xib */,
 				EFC2DB81196335D7006902DE /* EventsListCellView.h */,
 				EFC2DB82196335D7006902DE /* EventsListCellView.m */,
-				EFC2DB83196335D7006902DE /* EventsListCellView.xib */,
 				EFC2DB8C196335D7006902DE /* EventsListSectionView.h */,
 				EFC2DB8D196335D7006902DE /* EventsListSectionView.m */,
-				EFC2DB90196335D7006902DE /* EventsSplitViewController.xib */,
 				EFC2DB8E196335D7006902DE /* EventsSplitViewController.h */,
 				EFC2DB8F196335D7006902DE /* EventsSplitViewController.m */,
 			);
@@ -451,6 +525,7 @@
 				EFC2DBAF196335D7006902DE /* EventDetailViewController.xib in Resources */,
 				EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */,
 				EFC2DBAD196335D7006902DE /* EventDetailCellView.xib in Resources */,
+				EF60BD3F240D882000F4C624 /* EventsSplitViewController.xib in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
 				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
 				EFC2DBB3196335D7006902DE /* EventsSplitViewController.xib in Resources */,
@@ -462,6 +537,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */,
+				EF60BD43240DB59300F4C624 /* EventsListCellView.xib in Resources */,
+				EF60BD45240DB91D00F4C624 /* EventDetailViewController.xib in Resources */,
+				EF60BD41240DB47F00F4C624 /* EventsListViewController.xib in Resources */,
+				EF60BD3B240D871800F4C624 /* WeatherViewController.xib in Resources */,
+				EF60BD3A240D85C700F4C624 /* AboutObservatoryViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +660,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 12.4;
 			};
 			name = Debug;
 		};
@@ -626,6 +707,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 12.4;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -662,38 +744,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = BQ7YQ94D2F;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.4;
 			};
 			name = Debug;
 		};
@@ -701,39 +758,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = BQ7YQ94D2F;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.4;
 			};
 			name = Release;
 		};

@@ -59,11 +59,20 @@
 		
 		UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:root];
 		UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:blank];
+
+#if TARGET_OS_TV == 1
+		rootNav.navigationBarHidden = YES;
+		detailNav.navigationBarHidden = YES;
+#endif
 		
 		self.viewControllers = @[ rootNav, detailNav ];
 		root.delegate = self;
 		self.delegate = self;
 		self.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+
+#if TARGET_OS_TV == 1
+		self.preferredPrimaryColumnWidthFraction = 0.42;
+#endif
 	}
 
 	return self;
