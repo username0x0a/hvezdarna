@@ -54,10 +54,10 @@
 		EF60BD30240D80C600F4C624 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2F240D80C600F4C624 /* UIKit.framework */; };
 		EF60BD3A240D85C700F4C624 /* AboutObservatoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */; };
 		EF60BD3B240D871800F4C624 /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD33240D84A300F4C624 /* WeatherViewController.xib */; };
-		EF60BD3F240D882000F4C624 /* EventsSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */; };
 		EF60BD41240DB47F00F4C624 /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */; };
 		EF60BD43240DB59300F4C624 /* EventsListCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD42240DB59300F4C624 /* EventsListCellView.xib */; };
 		EF60BD45240DB91D00F4C624 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */; };
+		EF6106F3243CD62600A83F8D /* EventsSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */; };
 		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
 		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
 		EF844BA819CEBEA100CE392B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
@@ -525,7 +525,6 @@
 				EFC2DBAF196335D7006902DE /* EventDetailViewController.xib in Resources */,
 				EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */,
 				EFC2DBAD196335D7006902DE /* EventDetailCellView.xib in Resources */,
-				EF60BD3F240D882000F4C624 /* EventsSplitViewController.xib in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
 				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
 				EFC2DBB3196335D7006902DE /* EventsSplitViewController.xib in Resources */,
@@ -538,6 +537,7 @@
 			files = (
 				EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */,
 				EF60BD43240DB59300F4C624 /* EventsListCellView.xib in Resources */,
+				EF6106F3243CD62600A83F8D /* EventsSplitViewController.xib in Resources */,
 				EF60BD45240DB91D00F4C624 /* EventDetailViewController.xib in Resources */,
 				EF60BD41240DB47F00F4C624 /* EventsListViewController.xib in Resources */,
 				EF60BD3B240D871800F4C624 /* WeatherViewController.xib in Resources */,

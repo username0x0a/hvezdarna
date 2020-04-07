@@ -75,7 +75,8 @@
 
 		NSHTTPURLResponse *resp = (id)response;
 
-		if (![resp isKindOfClass:[NSHTTPURLResponse class]] || resp.statusCode != 200) {
+		if (![resp isKindOfClass:[NSHTTPURLResponse class]] ||
+		  resp.statusCode != 200 || data.length < 10*1024) {
 			completion(nil);
 			return;
 		}
