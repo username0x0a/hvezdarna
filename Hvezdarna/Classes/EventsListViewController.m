@@ -117,10 +117,6 @@
 {
 	[super viewWillAppear:animated];
 
-#if !TARGET_OS_TV
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-#endif
-
 	self.navigationController.navigationBar.translucent = YES;
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
 

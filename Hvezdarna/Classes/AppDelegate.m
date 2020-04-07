@@ -51,7 +51,9 @@
 	_tabBarController.delegate = self;
 	_tabBarController.viewControllers = @[ weather, eventsList, about ];
 
+#if !TARGET_OS_TV
 	[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
+#endif
 
 	[self refreshTabBarAppearance];
 
@@ -129,13 +131,10 @@ static UIViewAnimationOptions quickAnimation =
 
 	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
 
-	BOOL isClear = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
+	BOOL darkScreen = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
 	UITabBar *tabBar = _tabBarController.tabBar;
 
 #if !TARGET_OS_TV
-	[[UIApplication sharedApplication] setStatusBarStyle:
-		(isClear) ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault animated:YES];
-#endif
 
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
@@ -143,12 +142,12 @@ static UIViewAnimationOptions quickAnimation =
 
 	} completion:^(BOOL f) {
 
-		tabBar.backgroundColor = (isClear) ? [UIColor clearColor] : [UIColor clearColor];
-		tabBar.backgroundImage = (isClear) ?  [UIImage new] : nil;
+		tabBar.backgroundColor = (darkScreen) ? [UIColor clearColor] : [UIColor clearColor];
+		tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
 		tabBar.translucent = YES;
-		tabBar.shadowImage = (isClear) ? [UIImage new] : nil;
-		tabBar.tintColor = (isClear) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
-		tabBar.barTintColor = (isClear) ? [UIColor lightGrayColor] : [UIColor whiteColor];
+		tabBar.shadowImage = (darkScreen) ? [UIImage new] : nil;
+		tabBar.tintColor = (darkScreen) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+		tabBar.barTintColor = (darkScreen) ? [UIColor lightGrayColor] : [UIColor whiteColor];
 
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
@@ -156,6 +155,18 @@ static UIViewAnimationOptions quickAnimation =
 
 		} completion:nil];
 	}];
+
+#else
+
+	tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
+//	tabBar.translucent = YES;
+//	tabBar.shadowImage = (darkScreen) ? [UIImage new] : nil;
+	tabBar.tintColor = [UIColor whiteColor];
+	tabBar.barTintColor = [UIColor colorWithWhite:1 alpha:(darkScreen) ? 0.2:1.0];
+
+	tabBar.unselectedItemTintColor = (darkScreen) ? [UIColor whiteColor] : [UIColor blackColor];
+
+#endif
 
 	isInitialDraw = NO;
 }
@@ -201,6 +212,8 @@ shouldSelectViewController:(UIViewController *)viewController
 				tabBarController.selectedIndex = toIndex;
 	}];
 
+#if !TARGET_OS_TV
+
 	[UIView animateWithDuration:.12 delay:0 options:quickAnimation animations:^{
 		self.window.transform = CGAffineTransformMakeScale(1.02, 1.02);
 	} completion:^(BOOL finished) {
@@ -208,6 +221,8 @@ shouldSelectViewController:(UIViewController *)viewController
 			self.window.transform = CGAffineTransformIdentity;
 		} completion:nil];
 	}];
+
+#endif
 
 	return YES;
 }

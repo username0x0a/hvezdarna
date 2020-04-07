@@ -37,6 +37,12 @@
 	self.navigationController.navigationBar.titleTextAttributes = @{
 		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
 	};
+#else
+	UIEdgeInsets insets = UIEdgeInsetsMake(15, 0, 10, 0);
+	_shortDescription.textContainerInset = insets;
+	_longDescription.textContainerInset = insets;
+	_shortDescription.textContainer.lineFragmentPadding = 0;
+	_longDescription.textContainer.lineFragmentPadding = 0;
 #endif
 }
 
@@ -98,10 +104,10 @@
 	_infoView.top = _eventTitle.bottom+2.0f;
 	_infoView.width = width;
 
-	_shortDescription.text = _event.shortDescription;
+	_shortDescription.text = _event.shortDescription ?: @"";
 	_shortDescription.accessibilityLabel = _event.shortDescription;
 
-	_longDescription.text = _event.longDescription;
+	_longDescription.text = _event.longDescription ?: @"";
 	_longDescription.accessibilityLabel = _event.longDescription;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -143,13 +149,14 @@
 	_longDescription.top = _shortDescription.bottom+4.0f;
 	_longDescription.height = _longDescription.expandedSize.height;
 	_detailsView.top = _infoView.bottom;
+	_detailsView.height = _longDescription.bottom;
 
 	// Clear old custom fields
 	for (UIView *view in _detailsView.subviews)
 		if ([view isKindOfClass:[EventDetailCellView class]])
 			[view removeFromSuperview];
 
-	int currentY = _longDescription.bottom+16.0f;
+	int currentY = _detailsView.bottom+16.0f;
 #if !TARGET_OS_TV
 	for (NSString *option in _event.opts)
 	{
@@ -166,8 +173,35 @@
 #endif
 	_detailsView.height = currentY;
 
+#if TARGET_OS_TV
+	CGFloat margin = 80;
+#else
+	CGFloat margin = 14;
+#endif
+
 	// Set the content size to be the size our our whole frame
-	_scrollView.contentSize = CGSizeMake(self.view.width, _detailsView.bottom + 14);
+	_scrollView.contentSize = CGSizeMake(_scrollView.width, _detailsView.bottom + margin);
+
+#if TARGET_OS_TV
+
+	for (UIView *v in _scrollView.subviews)
+		if (v.tag == 1234)
+			[v removeFromSuperview];
+
+	NSUInteger total = 0;
+	if (_scrollView.contentSize.height > _scrollView.height)
+		total = ceil(_scrollView.contentSize.height / _scrollView.height) + 1;
+	if (total)
+		for (NSUInteger i = 0; i < total; i++) {
+			UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//			b.alpha = 0;
+			b.tag = 1234;
+			b.top = _scrollView.height * i;
+			[_scrollView addSubview:b];
+			b.fromTrailingEdge = 0;
+		}
+
+#endif
 }
 
 
