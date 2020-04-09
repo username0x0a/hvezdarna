@@ -7,19 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B0AC4C2715DA75B80075D628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C2615DA75B80075D628 /* UIKit.framework */; };
-		B0AC4C2915DA75B80075D628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C2815DA75B80075D628 /* Foundation.framework */; };
-		B0AC4C2B15DA75B80075D628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C2A15DA75B80075D628 /* CoreGraphics.framework */; };
 		B0AC4C3315DA75B80075D628 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AC4C3215DA75B80075D628 /* main.m */; };
-		B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */; };
-		D699EB0023FD38D600D6DCF1 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D699EAFF23FD38D600D6DCF1 /* SafariServices.framework */; };
-		EF01346E163BE4DB00AB0FD4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */; };
 		EF0CA2E823F02F7B00CD2806 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */; };
-		EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF13F0B0164AA7450040328A /* MessageUI.framework */; };
-		EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
 		EF52B425240933A3006AAE11 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
 		EF52B42824094145006AAE11 /* NSObject+Parsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B42624094145006AAE11 /* NSObject+Parsing.m */; };
-		EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF59282D196B1D0100578709 /* CoreText.framework */; };
 		EF60BCE524097F0500F4C624 /* EventsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF60BCE424097F0500F4C624 /* EventsListViewModel.m */; };
 		EF60BD00240C6B1B00F4C624 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
 		EF60BD01240C6B1B00F4C624 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA019CEBEA100CE392B /* FMDatabaseAdditions.m */; };
@@ -44,28 +35,17 @@
 		EF60BD14240C6B3A00F4C624 /* WeatherViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF52B424240933A3006AAE11 /* WeatherViewModel.m */; };
 		EF60BD15240C6B3A00F4C624 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB74196335D7006902DE /* WeatherViewController.m */; };
 		EF60BD16240C6B5600F4C624 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
-		EF60BD22240D808A00F4C624 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD21240D808A00F4C624 /* CoreGraphics.framework */; };
-		EF60BD24240D809400F4C624 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD23240D809400F4C624 /* CoreText.framework */; };
-		EF60BD26240D809900F4C624 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD25240D809900F4C624 /* Foundation.framework */; };
-		EF60BD28240D80A400F4C624 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD27240D809D00F4C624 /* libsqlite3.tbd */; };
-		EF60BD2A240D80B300F4C624 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD29240D80B300F4C624 /* QuartzCore.framework */; };
-		EF60BD2C240D80B800F4C624 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2B240D80B700F4C624 /* Security.framework */; };
-		EF60BD2E240D80C200F4C624 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */; };
-		EF60BD30240D80C600F4C624 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF60BD2F240D80C600F4C624 /* UIKit.framework */; };
 		EF60BD3A240D85C700F4C624 /* AboutObservatoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */; };
 		EF60BD3B240D871800F4C624 /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD33240D84A300F4C624 /* WeatherViewController.xib */; };
 		EF60BD41240DB47F00F4C624 /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */; };
 		EF60BD43240DB59300F4C624 /* EventsListCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD42240DB59300F4C624 /* EventsListCellView.xib */; };
 		EF60BD45240DB91D00F4C624 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */; };
 		EF6106F3243CD62600A83F8D /* EventsSplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */; };
-		EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9819CEBA5900CE392B /* Security.framework */; };
-		EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */; };
 		EF844BA819CEBEA100CE392B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844B9E19CEBEA100CE392B /* FMDatabase.m */; };
 		EF844BA919CEBEA100CE392B /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA019CEBEA100CE392B /* FMDatabaseAdditions.m */; };
 		EF844BAA19CEBEA100CE392B /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA219CEBEA100CE392B /* FMDatabasePool.m */; };
 		EF844BAB19CEBEA100CE392B /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA419CEBEA100CE392B /* FMDatabaseQueue.m */; };
 		EF844BAC19CEBEA100CE392B /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = EF844BA719CEBEA100CE392B /* FMResultSet.m */; };
-		EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */; };
 		EFC2DBA1196335D7006902DE /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB74196335D7006902DE /* WeatherViewController.m */; };
 		EFC2DBA5196335D7006902DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7A196335D7006902DE /* AppDelegate.m */; };
 		EFC2DBA6196335D7006902DE /* AboutObservatoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB7C196335D7006902DE /* AboutObservatoryViewController.m */; };
@@ -85,48 +65,48 @@
 		EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DB93196335D7006902DE /* EventsListViewController.xib */; };
 		EFC2DBB8196335D7006902DE /* UIView+position.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9A196335D7006902DE /* UIView+position.m */; };
 		EFC2DBB9196335D7006902DE /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = EFC2DB9C196335D7006902DE /* Utils.m */; };
-		EFC2DC3019646C06006902DE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC2DC2F19646C06006902DE /* Accelerate.framework */; };
 		EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC2DC351964724A006902DE /* WeatherViewController.xib */; };
+		EFFD46AD243F19CC0000D48A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46AA243F19A20000D48A /* CoreGraphics.framework */; };
+		EFFD46AE243F19CC0000D48A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A3243F19A20000D48A /* CoreText.framework */; };
+		EFFD46AF243F19CC0000D48A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A1243F19A20000D48A /* Foundation.framework */; };
+		EFFD46B0243F19CC0000D48A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A2243F19A20000D48A /* MessageUI.framework */; };
+		EFFD46B2243F19CC0000D48A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A6243F19A20000D48A /* QuartzCore.framework */; };
+		EFFD46B3243F19CC0000D48A /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46AB243F19A20000D48A /* SafariServices.framework */; };
+		EFFD46B5243F19CC0000D48A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A8243F19A20000D48A /* SystemConfiguration.framework */; };
+		EFFD46B6243F19CC0000D48A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A9243F19A20000D48A /* UIKit.framework */; };
+		EFFD46B7243F19CF0000D48A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46AC243F19A30000D48A /* libsqlite3.tbd */; };
+		EFFD46B8243F19D60000D48A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469D243F198D0000D48A /* CoreGraphics.framework */; };
+		EFFD46B9243F19D60000D48A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469B243F198D0000D48A /* CoreText.framework */; };
+		EFFD46BA243F19D60000D48A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469A243F198D0000D48A /* Foundation.framework */; };
+		EFFD46BB243F19D60000D48A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469F243F198E0000D48A /* QuartzCore.framework */; };
+		EFFD46BC243F19D60000D48A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46A0243F198E0000D48A /* Security.framework */; };
+		EFFD46BD243F19D60000D48A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469C243F198D0000D48A /* SystemConfiguration.framework */; };
+		EFFD46BE243F19D60000D48A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD4699243F19780000D48A /* UIKit.framework */; };
+		EFFD46BF243F19DA0000D48A /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD469E243F198D0000D48A /* libsqlite3.tbd */; };
+		EFFD46C3243F1AEC0000D48A /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFFD46C2243F1ADF0000D48A /* CoreServices.framework */; };
+		EFFD46C4243F40620000D48A /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF401A031FD4AB25008F62C6 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B0AC4C2215DA75B80075D628 /* Hvezdarna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hvezdarna.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0AC4C2615DA75B80075D628 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		B0AC4C2815DA75B80075D628 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B0AC4C2A15DA75B80075D628 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B0AC4C2E15DA75B80075D628 /* Hvezdarna-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hvezdarna-Info.plist"; sourceTree = "<group>"; };
 		B0AC4C3215DA75B80075D628 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B0AC4C3415DA75B80075D628 /* Hvezdarna-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hvezdarna-Prefix.pch"; sourceTree = "<group>"; };
-		B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D699EAFF23FD38D600D6DCF1 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
-		EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = ../iPhoneOS.sdk/usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EF13F0B0164AA7450040328A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		EF401A031FD4AB25008F62C6 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		EF52B423240933A3006AAE11 /* WeatherViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewModel.h; sourceTree = "<group>"; };
 		EF52B424240933A3006AAE11 /* WeatherViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewModel.m; sourceTree = "<group>"; };
 		EF52B42624094145006AAE11 /* NSObject+Parsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Parsing.m"; sourceTree = "<group>"; };
 		EF52B42724094145006AAE11 /* NSObject+Parsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Parsing.h"; sourceTree = "<group>"; };
-		EF59282D196B1D0100578709 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		EF60BCE324097F0500F4C624 /* EventsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventsListViewModel.h; sourceTree = "<group>"; };
 		EF60BCE424097F0500F4C624 /* EventsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EventsListViewModel.m; sourceTree = "<group>"; };
-		EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hvezdarna-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF60BD21240D808A00F4C624 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD23240D809400F4C624 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD25240D809900F4C624 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD27240D809D00F4C624 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
-		EF60BD29240D80B300F4C624 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD2B240D80B700F4C624 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
-		EF60BD2F240D80C600F4C624 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		EF60BCEA240C6AB800F4C624 /* Hvezdarna.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hvezdarna.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF60BD33240D84A300F4C624 /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
 		EF60BD39240D85C700F4C624 /* AboutObservatoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutObservatoryViewController.xib; sourceTree = "<group>"; };
 		EF60BD3E240D882000F4C624 /* EventsSplitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsSplitViewController.xib; sourceTree = "<group>"; };
 		EF60BD40240DB47F00F4C624 /* EventsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsListViewController.xib; sourceTree = "<group>"; };
 		EF60BD42240DB59300F4C624 /* EventsListCellView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsListCellView.xib; sourceTree = "<group>"; };
 		EF60BD44240DB91D00F4C624 /* EventDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
-		EF844B9819CEBA5900CE392B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EF844B9D19CEBEA100CE392B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		EF844B9E19CEBEA100CE392B /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		EF844B9F19CEBEA100CE392B /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -139,7 +119,6 @@
 		EF844BA619CEBEA100CE392B /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		EF844BA719CEBEA100CE392B /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		EF9BD33923FDF261000FF4A3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EFC2DB73196335D7006902DE /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WeatherViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB74196335D7006902DE /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WeatherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB79196335D7006902DE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -172,8 +151,26 @@
 		EFC2DB9A196335D7006902DE /* UIView+position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+position.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB9B196335D7006902DE /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Utils.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB9C196335D7006902DE /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Utils.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		EFC2DC2F19646C06006902DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		EFC2DC351964724A006902DE /* WeatherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherViewController.xib; sourceTree = "<group>"; };
+		EFFD4699243F19780000D48A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD469A243F198D0000D48A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD469B243F198D0000D48A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreText.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD469C243F198D0000D48A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD469D243F198D0000D48A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD469E243F198D0000D48A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		EFFD469F243F198E0000D48A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD46A0243F198E0000D48A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.4.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		EFFD46A1243F19A20000D48A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EFFD46A2243F19A20000D48A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		EFFD46A3243F19A20000D48A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		EFFD46A6243F19A20000D48A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EFFD46A7243F19A20000D48A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EFFD46A8243F19A20000D48A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EFFD46A9243F19A20000D48A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EFFD46AA243F19A20000D48A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EFFD46AB243F19A20000D48A /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		EFFD46AC243F19A30000D48A /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib/libsqlite3.tbd; sourceTree = DEVELOPER_DIR; };
+		EFFD46C2243F1ADF0000D48A /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,18 +178,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFC2DC3019646C06006902DE /* Accelerate.framework in Frameworks */,
-				B0AC4C2B15DA75B80075D628 /* CoreGraphics.framework in Frameworks */,
-				D699EB0023FD38D600D6DCF1 /* SafariServices.framework in Frameworks */,
-				EF59282E196B1D0100578709 /* CoreText.framework in Frameworks */,
-				B0AC4C2915DA75B80075D628 /* Foundation.framework in Frameworks */,
-				EF13F0B1164AA7450040328A /* MessageUI.framework in Frameworks */,
-				EF844B9B19CEBA8700CE392B /* MobileCoreServices.framework in Frameworks */,
-				B0AC4C7A15DA7FEA0075D628 /* QuartzCore.framework in Frameworks */,
-				EFA681F816502A8D007BDA4F /* SystemConfiguration.framework in Frameworks */,
-				EF844B9919CEBA5900CE392B /* Security.framework in Frameworks */,
-				B0AC4C2715DA75B80075D628 /* UIKit.framework in Frameworks */,
-				EF01346E163BE4DB00AB0FD4 /* libsqlite3.tbd in Frameworks */,
+				EFFD46AE243F19CC0000D48A /* CoreText.framework in Frameworks */,
+				EFFD46B5243F19CC0000D48A /* SystemConfiguration.framework in Frameworks */,
+				EFFD46AF243F19CC0000D48A /* Foundation.framework in Frameworks */,
+				EFFD46B3243F19CC0000D48A /* SafariServices.framework in Frameworks */,
+				EFFD46B2243F19CC0000D48A /* QuartzCore.framework in Frameworks */,
+				EFFD46C3243F1AEC0000D48A /* CoreServices.framework in Frameworks */,
+				EFFD46B0243F19CC0000D48A /* MessageUI.framework in Frameworks */,
+				EFFD46AD243F19CC0000D48A /* CoreGraphics.framework in Frameworks */,
+				EFFD46B7243F19CF0000D48A /* libsqlite3.tbd in Frameworks */,
+				EFFD46B6243F19CC0000D48A /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,14 +195,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF60BD2A240D80B300F4C624 /* QuartzCore.framework in Frameworks */,
-				EF60BD30240D80C600F4C624 /* UIKit.framework in Frameworks */,
-				EF60BD2E240D80C200F4C624 /* SystemConfiguration.framework in Frameworks */,
-				EF60BD24240D809400F4C624 /* CoreText.framework in Frameworks */,
-				EF60BD26240D809900F4C624 /* Foundation.framework in Frameworks */,
-				EF60BD28240D80A400F4C624 /* libsqlite3.tbd in Frameworks */,
-				EF60BD2C240D80B800F4C624 /* Security.framework in Frameworks */,
-				EF60BD22240D808A00F4C624 /* CoreGraphics.framework in Frameworks */,
+				EFFD46BB243F19D60000D48A /* QuartzCore.framework in Frameworks */,
+				EFFD46BC243F19D60000D48A /* Security.framework in Frameworks */,
+				EFFD46BF243F19DA0000D48A /* libsqlite3.tbd in Frameworks */,
+				EFFD46B9243F19D60000D48A /* CoreText.framework in Frameworks */,
+				EFFD46BA243F19D60000D48A /* Foundation.framework in Frameworks */,
+				EFFD46BD243F19D60000D48A /* SystemConfiguration.framework in Frameworks */,
+				EFFD46BE243F19D60000D48A /* UIKit.framework in Frameworks */,
+				EFFD46B8243F19D60000D48A /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				B0AC4C2215DA75B80075D628 /* Hvezdarna.app */,
-				EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */,
+				EF60BCEA240C6AB800F4C624 /* Hvezdarna.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,27 +230,9 @@
 		B0AC4C2515DA75B80075D628 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF60BD2F240D80C600F4C624 /* UIKit.framework */,
-				EF60BD2D240D80C200F4C624 /* SystemConfiguration.framework */,
-				EF60BD2B240D80B700F4C624 /* Security.framework */,
-				EF60BD29240D80B300F4C624 /* QuartzCore.framework */,
-				EF60BD27240D809D00F4C624 /* libsqlite3.tbd */,
-				EF60BD25240D809900F4C624 /* Foundation.framework */,
-				EF60BD23240D809400F4C624 /* CoreText.framework */,
-				EF60BD21240D808A00F4C624 /* CoreGraphics.framework */,
+				EFFD4697243F195D0000D48A /* iOS */,
+				EFFD4696243F19550000D48A /* tvOS */,
 				EF844B9C19CEBEA100CE392B /* fmdb */,
-				EFC2DC2F19646C06006902DE /* Accelerate.framework */,
-				B0AC4C2A15DA75B80075D628 /* CoreGraphics.framework */,
-				EF59282D196B1D0100578709 /* CoreText.framework */,
-				B0AC4C2815DA75B80075D628 /* Foundation.framework */,
-				EF13F0B0164AA7450040328A /* MessageUI.framework */,
-				EF844B9A19CEBA8700CE392B /* MobileCoreServices.framework */,
-				B0AC4C7815DA7FE00075D628 /* QuartzCore.framework */,
-				D699EAFF23FD38D600D6DCF1 /* SafariServices.framework */,
-				EF844B9819CEBA5900CE392B /* Security.framework */,
-				EFA681F716502A8D007BDA4F /* SystemConfiguration.framework */,
-				B0AC4C2615DA75B80075D628 /* UIKit.framework */,
-				EF01346D163BE4DB00AB0FD4 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -286,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				EF401A031FD4AB25008F62C6 /* Media.xcassets */,
-				EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -301,6 +277,7 @@
 				EFC2DB89196335D7006902DE /* EventDetailViewController.xib */,
 				EFC2DB86196335D7006902DE /* EventDetailCellView.xib */,
 				EFC2DB7D196335D7006902DE /* AboutObservatoryViewController.xib */,
+				EF0CA2E723F02F7B00CD2806 /* LaunchScreen.storyboard */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -435,12 +412,45 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		EFFD4696243F19550000D48A /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				EFFD469D243F198D0000D48A /* CoreGraphics.framework */,
+				EFFD469B243F198D0000D48A /* CoreText.framework */,
+				EFFD469A243F198D0000D48A /* Foundation.framework */,
+				EFFD469E243F198D0000D48A /* libsqlite3.tbd */,
+				EFFD469F243F198E0000D48A /* QuartzCore.framework */,
+				EFFD46A0243F198E0000D48A /* Security.framework */,
+				EFFD469C243F198D0000D48A /* SystemConfiguration.framework */,
+				EFFD4699243F19780000D48A /* UIKit.framework */,
+			);
+			name = tvOS;
+			sourceTree = "<group>";
+		};
+		EFFD4697243F195D0000D48A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				EFFD46AA243F19A20000D48A /* CoreGraphics.framework */,
+				EFFD46C2243F1ADF0000D48A /* CoreServices.framework */,
+				EFFD46A3243F19A20000D48A /* CoreText.framework */,
+				EFFD46A1243F19A20000D48A /* Foundation.framework */,
+				EFFD46AC243F19A30000D48A /* libsqlite3.tbd */,
+				EFFD46A2243F19A20000D48A /* MessageUI.framework */,
+				EFFD46A7243F19A20000D48A /* MobileCoreServices.framework */,
+				EFFD46A6243F19A20000D48A /* QuartzCore.framework */,
+				EFFD46AB243F19A20000D48A /* SafariServices.framework */,
+				EFFD46A8243F19A20000D48A /* SystemConfiguration.framework */,
+				EFFD46A9243F19A20000D48A /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B0AC4C2115DA75B80075D628 /* Hvezdarna */ = {
+		B0AC4C2115DA75B80075D628 /* Hvezdarna-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B0AC4C5415DA75B80075D628 /* Build configuration list for PBXNativeTarget "Hvezdarna" */;
+			buildConfigurationList = B0AC4C5415DA75B80075D628 /* Build configuration list for PBXNativeTarget "Hvezdarna-iOS" */;
 			buildPhases = (
 				B0AC4C1E15DA75B80075D628 /* Sources */,
 				B0AC4C1F15DA75B80075D628 /* Frameworks */,
@@ -450,7 +460,7 @@
 			);
 			dependencies = (
 			);
-			name = Hvezdarna;
+			name = "Hvezdarna-iOS";
 			productName = Hvezdarna;
 			productReference = B0AC4C2215DA75B80075D628 /* Hvezdarna.app */;
 			productType = "com.apple.product-type.application";
@@ -469,7 +479,7 @@
 			);
 			name = "Hvezdarna-tvOS";
 			productName = "Hvezdarna-tvOS";
-			productReference = EF60BCEA240C6AB800F4C624 /* Hvezdarna-tvOS.app */;
+			productReference = EF60BCEA240C6AB800F4C624 /* Hvezdarna.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -478,7 +488,7 @@
 		B0AC4C1915DA75B80075D628 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
@@ -508,7 +518,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B0AC4C2115DA75B80075D628 /* Hvezdarna */,
+				B0AC4C2115DA75B80075D628 /* Hvezdarna-iOS */,
 				EF60BCE9240C6AB800F4C624 /* Hvezdarna-tvOS */,
 			);
 		};
@@ -526,7 +536,7 @@
 				EFC2DBB5196335D7006902DE /* EventsListViewController.xib in Resources */,
 				EFC2DBAD196335D7006902DE /* EventDetailCellView.xib in Resources */,
 				EFC2DC361964724A006902DE /* WeatherViewController.xib in Resources */,
-				EF401A041FD4AB25008F62C6 /* Media.xcassets in Resources */,
+				EFFD46C4243F40620000D48A /* Media.xcassets in Resources */,
 				EFC2DBB3196335D7006902DE /* EventsSplitViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,6 +644,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = BQ7YQ94D2F;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -643,6 +654,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -655,10 +668,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Hvezdarna/Libraries/**";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/$(PROJECT_NAME)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				SDKROOT = iphoneos;
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
+				PRODUCT_NAME = Hvezdarna;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 12.4;
 			};
@@ -688,6 +703,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
+				DEVELOPMENT_TEAM = BQ7YQ94D2F;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -695,6 +711,8 @@
 					"$(PROJECT_DIR)/Hvezdarna/Libraries",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -702,10 +720,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "${SRCROOT}/Hvezdarna/Libraries/**";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/$(PROJECT_NAME)-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-ObjC";
-				SDKROOT = iphoneos;
+				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
+				PRODUCT_NAME = Hvezdarna;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 12.4;
 				VALIDATE_PRODUCT = YES;
@@ -716,13 +736,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -730,25 +744,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
 		EF60BCFE240C6ABE00F4C624 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -757,12 +760,7 @@
 		EF60BCFF240C6ABE00F4C624 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hvezdarna/Hvezdarna-Prefix.pch";
-				INFOPLIST_FILE = "Hvezdarna/Hvezdarna-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = "Brand Assets";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -780,7 +778,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B0AC4C5415DA75B80075D628 /* Build configuration list for PBXNativeTarget "Hvezdarna" */ = {
+		B0AC4C5415DA75B80075D628 /* Build configuration list for PBXNativeTarget "Hvezdarna-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B0AC4C5515DA75B80075D628 /* Debug */,

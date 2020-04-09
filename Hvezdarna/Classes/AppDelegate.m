@@ -122,19 +122,21 @@
 #pragma mark - Tab bar actions
 
 
+#if !TARGET_OS_TV
 static UIViewAnimationOptions quickAnimation =
 	UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
+#endif
 
 - (void)refreshTabBarAppearance
 {
 	static BOOL isInitialDraw = YES;
 
-	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
-
 	BOOL darkScreen = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
 	UITabBar *tabBar = _tabBarController.tabBar;
 
 #if !TARGET_OS_TV
+
+	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
 
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
