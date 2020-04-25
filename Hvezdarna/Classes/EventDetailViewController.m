@@ -65,8 +65,6 @@
     [super viewWillAppear:animated];
 
 #if !TARGET_OS_TV
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Rezervace"
 		style:UIBarButtonItemStylePlain target:self action:@selector(openLink)];
 	self.navigationItem.rightBarButtonItem.enabled = _event.link.length > 0;

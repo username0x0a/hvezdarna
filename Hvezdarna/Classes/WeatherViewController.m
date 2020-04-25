@@ -77,6 +77,18 @@
 		_conditionImage.top -= 40;
 	}
 
+#else
+
+	NSArray<UIView *> *views = @[ _temperatureLabel,
+		_temperatureHeadingLabel, _conditionImage, _detailsContainer ];
+
+	for (UIView *v in views) {
+		v.layer.shadowColor = [UIColor blackColor].CGColor;
+		v.layer.shadowOffset = CGSizeZero;
+		v.layer.shadowOpacity = 0.45;
+		v.layer.shadowRadius = 12;
+	}
+
 #endif
 
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;

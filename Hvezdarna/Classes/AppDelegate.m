@@ -122,10 +122,8 @@
 #pragma mark - Tab bar actions
 
 
-#if !TARGET_OS_TV
 static UIViewAnimationOptions quickAnimation =
 	UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState;
-#endif
 
 - (void)refreshTabBarAppearance
 {
@@ -160,13 +158,36 @@ static UIViewAnimationOptions quickAnimation =
 
 #else
 
-	tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
-//	tabBar.translucent = YES;
-//	tabBar.shadowImage = (darkScreen) ? [UIImage new] : nil;
-	tabBar.tintColor = [UIColor whiteColor];
-	tabBar.barTintColor = [UIColor colorWithWhite:1 alpha:(darkScreen) ? 0.2:1.0];
+	if (@available(tvOS 13.0, *)) {
 
-	tabBar.unselectedItemTintColor = (darkScreen) ? [UIColor whiteColor] : [UIColor blackColor];
+		tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
+
+		UITabBarAppearance *appearance = [UITabBarAppearance new];
+
+		appearance.backgroundColor = [UIColor colorWithWhite:1 alpha:(darkScreen) ? 0.1:0.3];
+		appearance.selectionIndicatorTintColor = [UIColor whiteColor];
+
+		UIColor *color = (darkScreen) ? [UIColor whiteColor] : [UIColor darkGrayColor];
+		appearance.stackedLayoutAppearance.normal.iconColor = color;
+		appearance.stackedLayoutAppearance.normal.titleTextAttributes = @{
+			NSForegroundColorAttributeName: color };
+
+		color = [UIColor darkGrayColor];
+		appearance.stackedLayoutAppearance.selected.iconColor = color;
+		appearance.stackedLayoutAppearance.selected.titleTextAttributes = @{
+			NSForegroundColorAttributeName: color };
+		appearance.stackedLayoutAppearance.focused.iconColor = color;
+		appearance.stackedLayoutAppearance.focused.titleTextAttributes = @{
+			NSForegroundColorAttributeName: color };
+
+		appearance.inlineLayoutAppearance = appearance.stackedLayoutAppearance;
+		appearance.compactInlineLayoutAppearance = appearance.stackedLayoutAppearance;
+
+		[UIView transitionWithView:tabBar duration:2.0 options:quickAnimation animations:^{
+			tabBar.standardAppearance = appearance;
+		} completion:nil];
+
+	}
 
 #endif
 

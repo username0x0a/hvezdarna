@@ -10,6 +10,7 @@
 #import "EventsListSectionView.h"
 #import "EventsListCellView.h"
 #import "EventsListViewModel.h"
+#import "NSObject+Parsing.h"
 #import "Utils.h"
 
 #import <objc/runtime.h>
@@ -86,7 +87,11 @@
 		self.title = @"Program";
 		self.tabBarItem.image = [UIImage imageNamed:@"tab-calendar"];
 
+// TODO: Actually check on all platforms/versions
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
 		self.automaticallyAdjustsScrollViewInsets = NO;
+#pragma clang diagnostic pop
 		self.extendedLayoutIncludesOpaqueBars = NO;
 		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
 
@@ -202,7 +207,8 @@
 {
 	__auto_type delegate = _delegate;
 
-	EventsListCellView *cell = (EventsListCellView*)[tableView cellForRowAtIndexPath:indexPath];
+	EventsListCellView *cell = [[tableView cellForRowAtIndexPath:indexPath]
+	                            parsedKindOfClass:[EventsListCellView class]];
 	Event *event = cell.event;
 
 	if (!delegate || !event) return;

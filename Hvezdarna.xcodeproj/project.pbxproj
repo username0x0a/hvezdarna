@@ -137,8 +137,8 @@
 		EFC2DB87196335D7006902DE /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EventDetailViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB88196335D7006902DE /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EventDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB89196335D7006902DE /* EventDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventDetailViewController.xib; sourceTree = "<group>"; };
-		EFC2DB8A196335D7006902DE /* EventsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = EventsList.h; path = Classes/EventsList.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		EFC2DB8B196335D7006902DE /* EventsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = EventsList.m; path = Classes/EventsList.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		EFC2DB8A196335D7006902DE /* EventsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EventsList.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		EFC2DB8B196335D7006902DE /* EventsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EventsList.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB8C196335D7006902DE /* EventsListSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EventsListSectionView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		EFC2DB8D196335D7006902DE /* EventsListSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EventsListSectionView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		EFC2DB8E196335D7006902DE /* EventsSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EventsSplitViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -332,6 +332,7 @@
 				EFC2DC1C19633928006902DE /* Event Detail view */,
 				EFC2DC1E1963399B006902DE /* About view */,
 				EFECB9EC196DB5C800D524FD /* Models */,
+				EFCE636B2454690C00AF93FE /* Managers */,
 				EFC2DB79196335D7006902DE /* AppDelegate.h */,
 				EFC2DB7A196335D7006902DE /* AppDelegate.m */,
 			);
@@ -383,6 +384,15 @@
 			name = "About view";
 			sourceTree = "<group>";
 		};
+		EFCE636B2454690C00AF93FE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				EFC2DB8A196335D7006902DE /* EventsList.h */,
+				EFC2DB8B196335D7006902DE /* EventsList.m */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		EFECB9EB196DB59900D524FD /* Events List view */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,8 +415,6 @@
 			children = (
 				EFC2DB7F196335D7006902DE /* Event.h */,
 				EFC2DB80196335D7006902DE /* Event.m */,
-				EFC2DB8A196335D7006902DE /* EventsList.h */,
-				EFC2DB8B196335D7006902DE /* EventsList.m */,
 			);
 			name = Models;
 			path = ..;
@@ -675,7 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = Hvezdarna;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 12.4;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -727,7 +735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.misacek.hvezdarna;
 				PRODUCT_NAME = Hvezdarna;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 12.4;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
