@@ -12,9 +12,7 @@
 
 @interface EventsListCellView : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *title;
-@property (nonatomic, strong) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, strong) IBOutlet UILabel *time;
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
 
 @property (nonatomic, strong) Event *event;
 

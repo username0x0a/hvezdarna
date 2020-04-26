@@ -77,19 +77,26 @@
 		_conditionImage.top -= 40;
 	}
 
-#else
+#endif
 
-	NSArray<UIView *> *views = @[ _temperatureLabel,
-		_temperatureHeadingLabel, _conditionImage, _detailsContainer ];
+	NSArray<UIView *> *views = @[ _conditionImage,
+		_temperatureHeadingLabel, _temperatureLabel,
+		_pressureHeadingLabel, _pressureLabel,
+		_windSpeedHeadingLabel, _windSpeedLabel,
+		_humidityHeadingLabel, _humidityLabel
+	];
 
 	for (UIView *v in views) {
 		v.layer.shadowColor = [UIColor blackColor].CGColor;
 		v.layer.shadowOffset = CGSizeZero;
+#if TARGET_OS_IOS == 1
+		v.layer.shadowOpacity = 1.0;
+		v.layer.shadowRadius = 1;
+#else
 		v.layer.shadowOpacity = 0.45;
 		v.layer.shadowRadius = 12;
-	}
-
 #endif
+	}
 
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
 

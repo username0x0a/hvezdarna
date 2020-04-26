@@ -117,6 +117,19 @@
 		[_tableView deselectRowAtIndexPath:selection animated:YES];
 }
 
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+#if TARGET_OS_IOS == 1
+	if (!isIOS(11)) {
+		UIEdgeInsets insets = UIEdgeInsetsMake(
+			kUINavigationBarHeight + kUIStatusBarHeight, 0, kUITabBarHeight, 0);
+		_tableView.contentInset = insets;
+		_tableView.scrollIndicatorInsets = insets;
+	}
+#endif
+}
+
 
 #pragma mark -
 #pragma mark Table view delegate
