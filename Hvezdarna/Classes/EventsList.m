@@ -146,7 +146,7 @@
 			NSArray<NSString *> *opts = objectOrNull([[[event[@"options"] parsedArray]
 			  filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:
 			  ^BOOL(id evaluatedObject, NSDictionary<NSString *,id> *bindings) {
-				return [evaluatedObject parsedString];
+				return [evaluatedObject parsedString] != nil;
 			}]] componentsJoinedByString:@"|"]);
 
 			[_db executeUpdate:@"INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);"

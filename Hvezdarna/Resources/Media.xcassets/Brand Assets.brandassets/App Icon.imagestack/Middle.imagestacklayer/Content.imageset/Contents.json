@@ -1,15 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "Default-arrow.pdf",
-      "idiom" : "tv"
+      "filename" : "Default-arrow@1x.png",
+      "idiom" : "tv",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Default-arrow@2x.png",
+      "idiom" : "tv",
+      "scale" : "2x"
     }
   ],
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "preserves-vector-representation" : true
   }
 }
