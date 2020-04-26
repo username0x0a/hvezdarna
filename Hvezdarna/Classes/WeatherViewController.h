@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WeatherViewController : UIViewController <UIScrollViewDelegate>
+@interface WeatherViewController : UIViewController
 
 @property (nonatomic, strong) IBOutlet UIImageView *backgroundView;
 

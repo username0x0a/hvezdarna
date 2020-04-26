@@ -172,7 +172,7 @@
 	_detailsView.height = currentY;
 
 #if TARGET_OS_TV
-	CGFloat margin = 80;
+	CGFloat margin = 0;
 #else
 	CGFloat margin = 14;
 #endif
@@ -186,15 +186,19 @@
 		if (v.tag == 1234)
 			[v removeFromSuperview];
 
+	CGFloat scrollHeight = _scrollView.height;
+	CGFloat buttonSpacing = scrollHeight/2;
+	CGFloat contentHeight = _scrollView.contentSize.height;
+
 	NSUInteger total = 0;
-	if (_scrollView.contentSize.height > _scrollView.height)
-		total = ceil(_scrollView.contentSize.height / _scrollView.height) + 1;
+	if (contentHeight > scrollHeight)
+		total = ceil(contentHeight / buttonSpacing) + 1;
 	if (total)
 		for (NSUInteger i = 0; i < total; i++) {
 			UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
 //			b.alpha = 0;
 			b.tag = 1234;
-			b.top = _scrollView.height * i;
+			b.top = MIN(buttonSpacing * i, contentHeight);
 			[_scrollView addSubview:b];
 			b.fromTrailingEdge = 0;
 		}

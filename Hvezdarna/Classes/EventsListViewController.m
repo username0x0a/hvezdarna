@@ -16,30 +16,31 @@
 #import <objc/runtime.h>
 
 
-@interface PositionedSearchBar : UISearchBar
+@interface EventsListSearchBar : UISearchBar
 @end
 
-@implementation PositionedSearchBar
+@implementation EventsListSearchBar
 
 - (void)customize
 {
 	// Set tint color of bar elements
 	self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
 
+	UITextField *field = [self viewsForClass:[UITextField class]].firstObject;
+
 	// Hide text field subviews and add custom-styled background
-	for (UITextField *field in self.allSubviews)
-		if ([field isKindOfClass:[UITextField class]])
-		{
-			UIView *container = field;
-			for (UIView *v in container.subviews)
-				if ([NSStringFromClass(v.class) containsString:@"Background"])
-					v.hidden = YES;
-			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
-			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-			background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
-			background.layer.cornerRadius = (isIOS(11)) ? 10:4;
-			[container insertSubview:background atIndex:0];
-		}
+	if (field)
+	{
+		UIView *container = field;
+		for (UIView *v in container.subviews)
+			if ([NSStringFromClass(v.class) containsString:@"Background"])
+				v.hidden = YES;
+		UIView *background = [[UIView alloc] initWithFrame:container.bounds];
+		background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
+		background.layer.cornerRadius = (isIOS(11)) ? 10:4;
+		[container insertSubview:background atIndex:0];
+	}
 }
 
 - (void)setFrame:(CGRect)frame
@@ -87,14 +88,6 @@
 		self.title = @"Program";
 		self.tabBarItem.image = [UIImage imageNamed:@"tab-calendar"];
 
-// TODO: Actually check on all platforms/versions
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated"
-		self.automaticallyAdjustsScrollViewInsets = NO;
-#pragma clang diagnostic pop
-		self.extendedLayoutIncludesOpaqueBars = NO;
-		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
-
 		[self reloadData];
 	}
 
@@ -105,17 +98,10 @@
 {
 	[super viewDidLoad];
 
-	_searchBar.clipsToBounds = NO;
-//	CGFloat topOffset = kUINavigationBarHeight;
-//	CGFloat bottomOffset = 0;
-//	topOffset += kUIStatusBarHeight;
-//	bottomOffset += kUITabBarHeight;
-//	_tableView.contentInset = _tableView.scrollIndicatorInsets =
-//		UIEdgeInsetsMake(topOffset, 0, bottomOffset, 0);
-
-	object_setClass(_searchBar, [PositionedSearchBar class]);
-	self.navigationItem.titleView = _searchBar;
-//	_searchBar.width = _searchBar.superview.width;
+	UISearchBar *bar = _searchBar;
+	object_setClass(bar, [EventsListSearchBar class]);
+	bar.clipsToBounds = NO;
+	self.navigationItem.titleView = bar;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -136,13 +122,18 @@
 #pragma mark Table view delegate
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 	return 80.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+#if TARGET_OS_IOS == 1
 	return 42.0;
+#else
+	return 64.0;
+#endif
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -161,7 +152,7 @@
 	[view setTitleText:title];
 #else
 	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 240, 44)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	label.textColor = [UIColor grayColor];
 	label.font = [UIFont boldSystemFontOfSize:30];
