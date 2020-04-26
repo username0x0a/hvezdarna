@@ -9,5 +9,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-HVEZDARNA_VERSION = 2.5
-HVEZDARNA_BUILD   = 150
+HVEZDARNA_VERSION = 3.0
+HVEZDARNA_BUILD   = 177
