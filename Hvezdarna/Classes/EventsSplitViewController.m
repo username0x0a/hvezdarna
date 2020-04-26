@@ -26,13 +26,27 @@
 {
 	[super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = nil;
 
-	UILabel *labe = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 280, 100)];
+#if TARGET_OS_TV
+	CGFloat margin = 80;
+	CGFloat fontSize = 48;
+#else
+	CGFloat margin = 20;
+	CGFloat fontSize = 18;
+#endif
+
+	CGRect f = self.view.bounds;
+	f.size.width -= 2*margin;
+	f.size.height -= 2*margin;
+	f.origin.x -= margin;
+	f.origin.y -= margin;
+
+	UILabel *labe = [[UILabel alloc] initWithFrame:f];
 	labe.autoresizingMask =
 		UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin |
 		UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-	labe.font = [UIFont systemFontOfSize:18];
+	labe.font = [UIFont systemFontOfSize:fontSize];
 	labe.textColor = [UIColor lightGrayColor];
 	labe.textAlignment = NSTextAlignmentCenter;
 	labe.text = @"Vyberte pořad ze seznamu";
@@ -59,11 +73,20 @@
 		
 		UINavigationController *rootNav = [[UINavigationController alloc] initWithRootViewController:root];
 		UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:blank];
+
+#if TARGET_OS_TV == 1
+		rootNav.navigationBarHidden = YES;
+		detailNav.navigationBarHidden = YES;
+#endif
 		
 		self.viewControllers = @[ rootNav, detailNav ];
 		root.delegate = self;
 		self.delegate = self;
 		self.preferredDisplayMode = UISplitViewControllerDisplayModeAllVisible;
+
+#if TARGET_OS_TV == 1
+		self.preferredPrimaryColumnWidthFraction = 0.42;
+#endif
 	}
 
 	return self;

@@ -10,35 +10,37 @@
 #import "EventsListSectionView.h"
 #import "EventsListCellView.h"
 #import "EventsListViewModel.h"
+#import "NSObject+Parsing.h"
 #import "Utils.h"
 
 #import <objc/runtime.h>
 
 
-@interface PositionedSearchBar : UISearchBar
+@interface EventsListSearchBar : UISearchBar
 @end
 
-@implementation PositionedSearchBar
+@implementation EventsListSearchBar
 
 - (void)customize
 {
 	// Set tint color of bar elements
 	self.tintColor = [UIColor colorWithRed:0.310f green:0.510f blue:0.714f alpha:1.00f];
 
+	UITextField *field = [self viewsForClass:[UITextField class]].firstObject;
+
 	// Hide text field subviews and add custom-styled background
-	for (UITextField *field in self.allSubviews)
-		if ([field isKindOfClass:[UITextField class]])
-		{
-			UIView *container = field;
-			for (UIView *v in container.subviews)
-				if ([NSStringFromClass(v.class) containsString:@"Background"])
-					v.hidden = YES;
-			UIView *background = [[UIView alloc] initWithFrame:container.bounds];
-			background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-			background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
-			background.layer.cornerRadius = (isIOS(11)) ? 10:4;
-			[container insertSubview:background atIndex:0];
-		}
+	if (field)
+	{
+		UIView *container = field;
+		for (UIView *v in container.subviews)
+			if ([NSStringFromClass(v.class) containsString:@"Background"])
+				v.hidden = YES;
+		UIView *background = [[UIView alloc] initWithFrame:container.bounds];
+		background.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		background.backgroundColor = [UIColor colorWithWhite:.94f alpha:1];
+		background.layer.cornerRadius = (isIOS(11)) ? 10:4;
+		[container insertSubview:background atIndex:0];
+	}
 }
 
 - (void)setFrame:(CGRect)frame
@@ -56,7 +58,10 @@
 
 @interface EventsListViewController ()
 	<UITableViewDelegate, UITableViewDataSource,
-	 UISearchDisplayDelegate, UISearchBarDelegate>
+#if !TARGET_OS_TV
+	 UISearchDisplayDelegate,
+#endif
+	 UISearchBarDelegate>
 
 @property (nonatomic, strong) EventsListViewModel *model;
 @property (nonatomic, copy) NSArray<CalendarDay *> *displayedCalendar;
@@ -83,10 +88,6 @@
 		self.title = @"Program";
 		self.tabBarItem.image = [UIImage imageNamed:@"tab-calendar"];
 
-		self.automaticallyAdjustsScrollViewInsets = NO;
-		self.extendedLayoutIncludesOpaqueBars = NO;
-		self.edgesForExtendedLayout = UIRectEdgeTop | UIRectEdgeBottom;
-
 		[self reloadData];
 	}
 
@@ -97,25 +98,15 @@
 {
 	[super viewDidLoad];
 
-	self.view.backgroundColor = [UIColor whiteColor];
-	_searchBar.clipsToBounds = NO;
-//	CGFloat topOffset = kUINavigationBarHeight;
-//	CGFloat bottomOffset = 0;
-//	topOffset += kUIStatusBarHeight;
-//	bottomOffset += kUITabBarHeight;
-//	_tableView.contentInset = _tableView.scrollIndicatorInsets =
-//		UIEdgeInsetsMake(topOffset, 0, bottomOffset, 0);
-
-	object_setClass(_searchBar, [PositionedSearchBar class]);
-	self.navigationItem.titleView = _searchBar;
-//	_searchBar.width = _searchBar.superview.width;
+	UISearchBar *bar = _searchBar;
+	object_setClass(bar, [EventsListSearchBar class]);
+	bar.clipsToBounds = NO;
+	self.navigationItem.titleView = bar;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-
-	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 
 	self.navigationController.navigationBar.translucent = YES;
 	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
@@ -126,25 +117,40 @@
 		[_tableView deselectRowAtIndexPath:selection animated:YES];
 }
 
+- (void)viewDidLayoutSubviews
+{
+	[super viewDidLayoutSubviews];
+#if TARGET_OS_IOS == 1
+	if (!isIOS(11)) {
+		UIEdgeInsets insets = UIEdgeInsetsMake(
+			kUINavigationBarHeight + kUIStatusBarHeight, 0, kUITabBarHeight, 0);
+		_tableView.contentInset = insets;
+		_tableView.scrollIndicatorInsets = insets;
+	}
+#endif
+}
+
 
 #pragma mark -
 #pragma mark Table view delegate
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
 	return 80.0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+#if TARGET_OS_IOS == 1
 	return 42.0;
+#else
+	return 64.0;
+#endif
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	EventsListSectionView *view = [[EventsListSectionView alloc]
-		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
-
 	NSInteger timestamp = _displayedCalendar[section].ID;
 
 	NSString *title = [[NSString stringWithFormat:@"%@  %@",
@@ -152,7 +158,20 @@
 		[Utils getLocalDateStringFromTimestamp:timestamp]]
 		uppercaseString];
 
+#if TARGET_OS_IOS == 1
+	EventsListSectionView *view = [[EventsListSectionView alloc]
+		initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 32)];
+
 	[view setTitleText:title];
+#else
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+	label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	label.textColor = [UIColor grayColor];
+	label.font = [UIFont boldSystemFontOfSize:30];
+	label.text = title;
+	[view addSubview:label];
+#endif
 
 	return view;
 }
@@ -192,7 +211,8 @@
 {
 	__auto_type delegate = _delegate;
 
-	EventsListCellView *cell = (EventsListCellView*)[tableView cellForRowAtIndexPath:indexPath];
+	EventsListCellView *cell = [[tableView cellForRowAtIndexPath:indexPath]
+	                            parsedKindOfClass:[EventsListCellView class]];
 	Event *event = cell.event;
 
 	if (!delegate || !event) return;
@@ -214,6 +234,8 @@
 	[_tableView reloadData];
 }
 
+
+#if TARGET_OS_IOS == 1
 
 #pragma mark -
 #pragma mark Search bar delegate
@@ -243,5 +265,7 @@
 	[searchBar resignFirstResponder];
 	[self reloadData];
 }
+
+#endif
 
 @end

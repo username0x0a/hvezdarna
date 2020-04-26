@@ -67,7 +67,8 @@
 
 @interface UIView (UTils)
 
-- (NSArray *)allSubviews;
+- (NSArray<__kindof UIView *> *)allSubviews;
+- (NSArray<__kindof UIView *> *)viewsForClass:(Class)cls;
 
 @end
 

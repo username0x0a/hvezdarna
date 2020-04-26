@@ -52,6 +52,8 @@
 	NSString *image = (hour < 6 || hour > 20) ? @"placeholder-evening" : @"placeholder-dusk";
 	_backgroundView.image = [UIImage imageNamed:image];
 
+#if TARGET_OS_IOS == 1
+
 	if (isIPad() || isWidescreen() || isUltraWidescreen())
 	{
 		_temperatureHeadingLabel.top += 32;
@@ -73,6 +75,27 @@
 		_detailsContainer.left -= 20;
 		_detailsContainer.width += 40;
 		_conditionImage.top -= 40;
+	}
+
+#endif
+
+	NSArray<UIView *> *views = @[ _conditionImage,
+		_temperatureHeadingLabel, _temperatureLabel,
+		_pressureHeadingLabel, _pressureLabel,
+		_windSpeedHeadingLabel, _windSpeedLabel,
+		_humidityHeadingLabel, _humidityLabel
+	];
+
+	for (UIView *v in views) {
+		v.layer.shadowColor = [UIColor blackColor].CGColor;
+		v.layer.shadowOffset = CGSizeZero;
+#if TARGET_OS_IOS == 1
+		v.layer.shadowOpacity = 1.0;
+		v.layer.shadowRadius = 1;
+#else
+		v.layer.shadowOpacity = 0.45;
+		v.layer.shadowRadius = 12;
+#endif
 	}
 
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
@@ -98,9 +121,11 @@
 	[super viewDidAppear:animated];
 
 	if (![Utils connectionAvailable]) {
+#if !TARGET_OS_TV
 		[[[UIAlertView alloc] initWithTitle:@"Chyba připojení"
 			message:@"Připojení k internetu není k dipozici" delegate:self
 				cancelButtonTitle:@"Zavřít" otherButtonTitles:nil] show];
+#endif
 		return;
 	}
 
@@ -111,10 +136,12 @@
 	[self reloadScreenData];
 }
 
+#if !TARGET_OS_TV
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
 	return UIStatusBarStyleLightContent;
 }
+#endif
 
 
 #pragma mark - Data reloading
@@ -237,8 +264,10 @@
 
 		hidden = !hidden;
 
+#if !TARGET_OS_TV
 		[[UIApplication sharedApplication] setStatusBarHidden:hidden
 			withAnimation:UIStatusBarAnimationSlide];
+#endif
 
 		for (UIView *v in self.view.subviews)
 			if (v != self->_backgroundView) {
@@ -259,9 +288,11 @@
 
 	if (counter < 0) counter = 0;
 
+#if !TARGET_OS_TV
 	[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:(counter != 0)];
 	}];
+#endif
 }
 
 @end

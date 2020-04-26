@@ -7,9 +7,12 @@
 //
 
 #import <SystemConfiguration/SCNetworkReachability.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 #import <netinet/in.h>
 
+#import "NSObject+Parsing.h"
 #import "Utils.h"
 
 @implementation Utils
@@ -166,12 +169,13 @@
 }
 
 + (void) openURL:(NSString *)url inDelegate:(UIViewController *)delegate {
-		
+#if TARGET_OS_IOS == 1
 	NSURL *URL = [NSURL URLWithString:url];
-	
+
 	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:URL];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[delegate.tabBarController presentViewController:vc animated:YES completion:nil];
+#endif
 }
 
 + (BOOL) connectionAvailable {
@@ -271,7 +275,7 @@
 
 @implementation UIView (Utils)
 
-- (NSArray *)allSubviews
+- (NSArray<__kindof UIView *> *)allSubviews
 {
 	NSMutableArray *all = [NSMutableArray array];
 
@@ -281,6 +285,21 @@
 		[all addObjectsFromArray:v.allSubviews];
 
 	return all;
+}
+
+- (NSArray<__kindof UIView *> *)viewsForClass:(Class)cls
+{
+	NSMutableArray<__kindof UIView *> *views = [NSMutableArray array];
+
+	for (UIView *v in self.subviews)
+	{
+		if ([v parsedKindOfClass:cls])
+			[views addObject:v];
+
+		[views addObjectsFromArray:[v viewsForClass:cls]];
+	}
+
+	return views;
 }
 
 @end

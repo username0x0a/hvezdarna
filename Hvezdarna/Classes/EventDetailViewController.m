@@ -7,7 +7,9 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#if !TARGET_OS_TV
 #import <SafariServices/SafariServices.h>
+#endif
 
 #import "EventDetailViewController.h"
 #import "EventDetailCellView.h"
@@ -26,6 +28,7 @@
 {
 	[super viewDidLoad];
 
+#if !TARGET_OS_TV
 	self.title = @"Představení";
 
 	self.navigationController.navigationBar.barTintColor =
@@ -34,29 +37,38 @@
 	self.navigationController.navigationBar.titleTextAttributes = @{
 		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
 	};
+#else
+	UIEdgeInsets insets = UIEdgeInsetsMake(15, 0, 10, 0);
+	_shortDescription.textContainerInset = insets;
+	_longDescription.textContainerInset = insets;
+	_shortDescription.textContainer.lineFragmentPadding = 0;
+	_longDescription.textContainer.lineFragmentPadding = 0;
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
 
+#if !TARGET_OS_TV
 	self.navigationController.navigationBar.barTintColor =
 		[UIColor colorWithWhite:1 alpha:.9];
 	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
 	self.navigationController.navigationBar.titleTextAttributes = @{
 		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
 	};
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+#if !TARGET_OS_TV
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Rezervace"
 		style:UIBarButtonItemStylePlain target:self action:@selector(openLink)];
 	self.navigationItem.rightBarButtonItem.enabled = _event.link.length > 0;
+#endif
 
 	[self recalculateContent];
 }
@@ -73,6 +85,10 @@
 	BOOL wide = width >= 600;
 
 	CGFloat fontSize = (wide) ? 29:26;
+#if TARGET_OS_TV == 1
+	width = _scrollView.width - _scrollView.layoutMargins.left - _scrollView.layoutMargins.right - _scrollView.contentInset.left - _scrollView.contentInset.right;
+	fontSize = 64;
+#endif
 
 	_eventTitle.font = [_eventTitle.font fontWithSize:fontSize];
 	_eventTitle.text = _event.title;
@@ -86,10 +102,10 @@
 	_infoView.top = _eventTitle.bottom+2.0f;
 	_infoView.width = width;
 
-	_shortDescription.text = _event.shortDescription;
+	_shortDescription.text = _event.shortDescription ?: @"";
 	_shortDescription.accessibilityLabel = _event.shortDescription;
 
-	_longDescription.text = _event.longDescription;
+	_longDescription.text = _event.longDescription ?: @"";
 	_longDescription.accessibilityLabel = _event.longDescription;
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -98,6 +114,9 @@
 	paragraphStyle.alignment = NSTextAlignmentJustified;
 
 	fontSize = (wide) ? 20:18;
+#if TARGET_OS_TV == 1
+	fontSize = 36;
+#endif
 
 	NSAttributedString *attrShortDescription = [[NSAttributedString alloc]
 		initWithString:_shortDescription.text attributes:@{
@@ -106,7 +125,9 @@
 			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
 		}];
 
+#if !TARGET_OS_TV
 	fontSize = (wide) ? 18:16;
+#endif
 
 	NSAttributedString *attrDescription = [[NSAttributedString alloc]
 		initWithString:_longDescription.text attributes:@{
@@ -126,13 +147,15 @@
 	_longDescription.top = _shortDescription.bottom+4.0f;
 	_longDescription.height = _longDescription.expandedSize.height;
 	_detailsView.top = _infoView.bottom;
+	_detailsView.height = _longDescription.bottom;
 
 	// Clear old custom fields
 	for (UIView *view in _detailsView.subviews)
 		if ([view isKindOfClass:[EventDetailCellView class]])
 			[view removeFromSuperview];
 
-	int currentY = _longDescription.bottom+16.0f;
+	int currentY = _detailsView.bottom+16.0f;
+#if !TARGET_OS_TV
 	for (NSString *option in _event.opts)
 	{
 		UINib *nibForCells = [UINib nibWithNibName:@"EventDetailCellView" bundle:nil];
@@ -145,10 +168,42 @@
 		cell.top = currentY;
 		currentY = cell.bottom;
 	}
+#endif
 	_detailsView.height = currentY;
 
+#if TARGET_OS_TV
+	CGFloat margin = 0;
+#else
+	CGFloat margin = 14;
+#endif
+
 	// Set the content size to be the size our our whole frame
-	_scrollView.contentSize = CGSizeMake(self.view.width, _detailsView.bottom + 14);
+	_scrollView.contentSize = CGSizeMake(_scrollView.width, _detailsView.bottom + margin);
+
+#if TARGET_OS_TV
+
+	for (UIView *v in _scrollView.subviews)
+		if (v.tag == 1234)
+			[v removeFromSuperview];
+
+	CGFloat scrollHeight = _scrollView.height;
+	CGFloat buttonSpacing = scrollHeight/2;
+	CGFloat contentHeight = _scrollView.contentSize.height;
+
+	NSUInteger total = 0;
+	if (contentHeight > scrollHeight)
+		total = ceil(contentHeight / buttonSpacing) + 1;
+	if (total)
+		for (NSUInteger i = 0; i < total; i++) {
+			UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//			b.alpha = 0;
+			b.tag = 1234;
+			b.top = MIN(buttonSpacing * i, contentHeight);
+			[_scrollView addSubview:b];
+			b.fromTrailingEdge = 0;
+		}
+
+#endif
 }
 
 
@@ -157,9 +212,11 @@
 
 - (void)openLink
 {
+#if !TARGET_OS_TV
 	SFSafariViewController *vc = [[SFSafariViewController alloc] initWithURL:[NSURL URLWithString:_event.link]];
 	vc.modalPresentationStyle = UIModalPresentationPageSheet;
 	[self.tabBarController presentViewController:vc animated:YES completion:nil];
+#endif
 }
 
 @end
