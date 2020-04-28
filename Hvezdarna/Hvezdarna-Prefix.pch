@@ -62,6 +62,7 @@
 // App-related paths
 #define NSDocumentsPath() (NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0])
 #define NSLibraryPath() (NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES)[0])
+#define NSCachesPath() (NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0])
 #define NSTemporaryPath() (NSTemporaryDirectory())
 
 // Devices macros

@@ -42,8 +42,14 @@
 {
 	if (!(self = [super init])) return nil;
 
-	NSString *path = [NSLibraryPath() stringByAppendingPathComponent:@"Database.sqlite"];
-	
+#if TARGET_OS_TV == 1
+	NSString *path = NSCachesPath();
+#else
+	NSString *path = NSLibraryPath();
+#endif
+
+	path = [path stringByAppendingPathComponent:@"Database.sqlite"];
+
 	_db = [FMDatabase databaseWithPath:path];
 #ifndef DEBUG
 	_db.logsErrors = NO;

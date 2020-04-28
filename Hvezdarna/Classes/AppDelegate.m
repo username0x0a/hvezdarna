@@ -65,6 +65,9 @@
 #if TARGET_OS_IOS == 1
 	if (@available(iOS 13.0, *))
 		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+#elseif TARGET_OS_TV == 1
+	if (@available(tvOS 13.0, *))
+		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 #endif
 	[self.window makeKeyAndVisible];
 
