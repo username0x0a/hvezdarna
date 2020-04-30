@@ -21,26 +21,25 @@ begin
 		voc[i['desc']] = 1 if i['desc'].is_a?(String) && i['desc'].length > 0
 
 		if i['options'].is_a?(Array) then
-
-			i['options'].each{|o|  voc[o] = 1 if o.is_a?(String) && o.length > 0 }
-
+			i['options'].each{|o| voc[o] = 1 if o.is_a?(String) && o.length > 0 }
 		end
 	}
 
 	voc.keys.each{|key|
 
 		encoded = URI.encode key
-		uri = URI('https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text=%27'+ encoded +'%27&To=%27en%27&From=%27cs%27')
+		uri = URI('https://translate.google.com/translate_a/single?client=gtx&sl=cs&tl=en&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&source=btn&ssel=3&tsel=0&kc=2&q='+encoded)
 		req = Net::HTTP::Get.new uri.request_uri
-		req.basic_auth '+n8Sk92Pb6lWEEWY/FKJvdeWuJIDdYlEA849wGPtals', '+n8Sk92Pb6lWEEWY/FKJvdeWuJIDdYlEA849wGPtals'
 		req.add_field 'Accept', 'application/json'
 		http = Net::HTTP.new uri.hostname, uri.port
 		http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 		res = http.request req
+#		raise StandardError, res.body if res.code.to_i != 200
+		next if res.code.to_i != 200
 		translated = JSON.parse res.body
-		translated = translated['d']['results'][0]['Text']
-		voc[key] = translated
+		translated = translated[0].map{|e| e[0] }.join
+		voc[key] = translated if translated.is_a? String
 	}
 
 	e.each{|i|
@@ -59,8 +58,8 @@ begin
 		f.close
 	end
 
-rescue
+#rescue
 
-	exit
+#	exit
 
 end

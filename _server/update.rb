@@ -5,6 +5,7 @@ require 'net/http'
 require 'uri'
 #require 'sqlite3'
 require 'json'
+require 'pp'
 
 class String
 
@@ -37,11 +38,19 @@ class String
 			c = [s.to_i(16)].pack('U')
 			out = out.gsub o, c
 		}
-
-
-
 #		out = out.gsub /&#(8192|8193|8194|8195|8196|8197|8198|8199|8200);/, ' '
 #		out = out.gsub /&#[0-9]{1,4};/, ''
+		return out
+	end
+
+	def clearParagraphs
+		out = self.clone
+		out = out.gsub "\r", ''
+		out = out.gsub "\t", ''
+		out = out.split "\n"
+		out.map!{|e| e.strip }
+		out.select!{|e| e.length > 0 }
+		out = out.join "\n\n"
 		return out
 	end
 
@@ -56,7 +65,7 @@ def month_to_number(mon)
 	elsif mon.index('července') != nil || mon.index('červenec') != nil then return 7
 	elsif mon.index('červ') != nil then return 6
 	elsif mon.index('srp') != nil then return 8
-	elsif mon.index('září') != nil then return 9
+	elsif mon.index('zář') != nil then return 9
 	elsif mon.index('říj') != nil then return 10
 	elsif mon.index('list') != nil then return 11
 	elsif mon.index('pros') != nil then return 12
@@ -72,7 +81,7 @@ events = [ ]
 
 0.upto(3) {|i|
 
-	src = Net::HTTP.get(URI('http://www.hvezdarna.cz/?page_id=442&cal_page='+i.to_s)).force_encoding('UTF-8')
+	src = Net::HTTP.get(URI('https://www.hvezdarna.cz/?page_id=442&cal_page='+i.to_s)).force_encoding('UTF-8')
 	src = src.getValue(['<div id="cal-main">'], '<a name=priklad></a>')
 	src = src.gsub(' cal-day-last','')
 
@@ -94,26 +103,35 @@ events = [ ]
 			name = p.getValue(['cal-title-','<h5>'], '</h5')
 			next if name == nil
 			next if p.index('cal-day-item-gray') != nil
+			name = name.strip
+
+			shortDesc = p.getValue(['cal-day-desc','>'], '</div')
+			if shortDesc != nil then
+				shortDesc = shortDesc.removeHTML.removeEntities
+				if shortDesc.index('ZRUŠENO') != nil then
+					shortDesc = shortDesc.gsub('ZRUŠENO', '')
+					shortDesc = "ZRUŠENO\n\n" + shortDesc
+				end
+				shortDesc = shortDesc.clearParagraphs
+			end
+
+			desc = p.getValue(['cal-day-item-desc-inner','>','>'], /(<div|<\/div)/)
+			desc = desc.removeHTML.removeEntities.clearParagraphs if desc
+
+			price = p.getValue(['cal-day-price', '>', 'cena: '], '</div')
+			time = p.getValue(['<h4>'], '</h4').split(':')
+			time = Time.at(day.to_i + time[0].to_i*60*60 + time[1].to_i*60).to_i
+
+			# covid-19 special
+			desc = shortDesc + "\n\n" + desc
+			shortDesc = "ZRUŠENO"
+
 			e = { }
-			e['name'] = name.strip
-			e['price'] = p.getValue(['cal-day-price', '>', 'cena: '], '</div')
-			e['time'] = p.getValue(['<h4>'], '</h4').split(':')
-			e['time'] = Time.at(day.to_i + e['time'][0].to_i*60*60 + e['time'][1].to_i*60).to_i
-			e['short_desc'] = p.getValue(['cal-day-desc','>'], '</div')
-			e['desc'] = p.getValue(['cal-day-item-desc-inner','>','>'], /(<div|<\/div)/)
-			e['short_desc'] = e['short_desc'].removeHTML.removeEntities if e['short_desc']
-			e['desc'] = e['desc'].removeHTML.removeEntities if e['desc']
-
-			while e['short_desc'][-1] == "\n" || e['short_desc'][-1] == "\r"
-				e['short_desc'] = e['short_desc'][0..-2]
-			end
-
-			while e['desc'][-1] == "\n" || e['desc'][-1] == "\r"
-				e['desc'] = e['desc'][0..-2]
-			end
-
-			e['short_desc'].strip!
-			e['desc'].strip!
+			e['name'] = name
+			e['price'] = price
+			e['time'] = time
+			e['desc'] = desc
+			e['short_desc'] = shortDesc
 
 			link = nil
 			programID = p.getValue(['<a href="', 'prdID='], '"')
@@ -122,7 +140,7 @@ events = [ ]
 
 			e['options'] = p.getValue(['<P','align=right>'],'</div')
 			if (e['options'])
-				e['options'] = e['options'].split('<br>')
+				e['options'] = e['options'].gsub('<BR>','<br>').gsub(/(<I>|<\/I>|<P>|<\/P>)/,'').split('<br>')
 				e['options'].map! {|opt| opt.strip}
 #				e['options'] = e['options'].join('|')
 			end
