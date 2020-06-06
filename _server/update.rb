@@ -3,7 +3,6 @@
 
 require 'net/http'
 require 'uri'
-#require 'sqlite3'
 require 'json'
 require 'pp'
 
@@ -122,9 +121,9 @@ events = [ ]
 			time = p.getValue(['<h4>'], '</h4').split(':')
 			time = Time.at(day.to_i + time[0].to_i*60*60 + time[1].to_i*60).to_i
 
-			# covid-19 special
-			desc = shortDesc + "\n\n" + desc
-			shortDesc = "ZRUŠENO"
+			# # covid-19 special
+			# desc = shortDesc + "\n\n" + desc
+			# shortDesc = "ZRUŠENO"
 
 			e = { }
 			e['name'] = name
@@ -152,21 +151,6 @@ events = [ ]
 }
 
 if events.count then
-=begin
-	db = SQLite3::Database.open('db.sqlite')
-
-	begin
-		db.execute('SELECT * FROM events;')
-	rescue
-		db.execute('CREATE TABLE events (id integer NOT NULL PRIMARY KEY AUTOINCREMENT,name text NOT NULL,"time" int NOT NULL,"short_desc" text,"desc" text,opts text,price text,link text)')
-	end
-
-	db.transaction
-	db.execute('DELETE FROM events;')
-	events.each {|e|
-		db.execute('INSERT INTO events VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);', e.name, e.time, e.short_desc, e.desc, e.options, e.price, e.link) }
-	db.commit
-=end
 
 	events = events.to_json
 	events.gsub! "\\r\\n", "\\n"
