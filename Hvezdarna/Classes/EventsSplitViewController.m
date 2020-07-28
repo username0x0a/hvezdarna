@@ -26,7 +26,9 @@
 {
 	[super viewDidLoad];
 
+#if !TARGET_OS_TV
 	self.view.backgroundColor = nil;
+#endif
 
 #if TARGET_OS_TV
 	CGFloat margin = 80;

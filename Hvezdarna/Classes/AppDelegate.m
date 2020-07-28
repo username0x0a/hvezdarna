@@ -61,12 +61,13 @@
 	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 #endif
 
+#if TARGET_OS_TV == 1
+	self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-bg"]];
+#endif
+
 	self.window.rootViewController = _tabBarController;
 #if TARGET_OS_IOS == 1
 	if (@available(iOS 13.0, *))
-		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-#elseif TARGET_OS_TV == 1
-	if (@available(tvOS 13.0, *))
 		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 #endif
 	[self.window makeKeyAndVisible];
@@ -132,7 +133,8 @@ static UIViewAnimationOptions quickAnimation =
 {
 	static BOOL isInitialDraw = YES;
 
-	BOOL darkScreen = [_tabBarController.selectedViewController isKindOfClass:[WeatherViewController class]];
+	UIViewController *controller = _tabBarController.selectedViewController;
+	BOOL darkScreen = [controller isKindOfClass:[WeatherViewController class]];
 	UITabBar *tabBar = _tabBarController.tabBar;
 
 #if !TARGET_OS_TV
@@ -162,6 +164,8 @@ static UIViewAnimationOptions quickAnimation =
 #else
 
 	if (@available(tvOS 13.0, *)) {
+
+		darkScreen = darkScreen || controller.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
 
 		tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
 
@@ -232,11 +236,15 @@ shouldSelectViewController:(UIViewController *)viewController
 
 	NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
 
+#if !TARGET_OS_TV
+
 	[UIView transitionFromView:fromView toView:toView duration:0.3
 		options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {
 			if (finished)
 				tabBarController.selectedIndex = toIndex;
 	}];
+
+#endif
 
 #if !TARGET_OS_TV
 

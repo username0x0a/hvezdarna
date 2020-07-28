@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="17132" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="appleTV" appearance="light"/>
     <dependencies>
         <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17105.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutObservatoryViewController">
             <connections>
-                <outlet property="backgroundView" destination="fEn-4b-s6B" id="t4J-zu-bwm"/>
                 <outlet property="logoView" destination="dDs-Mg-vaV" id="Yu8-Yj-6eC"/>
                 <outlet property="textContentView" destination="VBw-n0-k95" id="eBf-Yn-SnS"/>
                 <outlet property="textField" destination="3Q8-gs-V89" id="Ecx-nw-GYF"/>
@@ -22,10 +22,6 @@
             <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default-bg" translatesAutoresizingMaskIntoConstraints="NO" id="fEn-4b-s6B" userLabel="Background">
-                    <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                </imageView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBw-n0-k95">
                     <rect key="frame" x="791" y="170" width="1023" height="850"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +39,7 @@ e-mail@hvezdarna.cz
 +(420) 541 32 12 87
 
 Hvězdárna a planetárium Brno je příspěvkovou organizací zřízenou statutárním městem Brnem.</string>
-                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="34"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
@@ -60,7 +56,9 @@ Hvězdárna a planetárium Brno je příspěvkovou organizací zřízenou statut
         </view>
     </objects>
     <resources>
-        <image name="Default-bg" width="2732" height="2732"/>
         <image name="hvezdarna-logo" width="275" height="100"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -3,6 +3,16 @@
     {
       "filename" : "hvezdarna-logo.pdf",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "hvezdarna-logo~dark.pdf",
+      "idiom" : "universal"
     }
   ],
   "info" : {
