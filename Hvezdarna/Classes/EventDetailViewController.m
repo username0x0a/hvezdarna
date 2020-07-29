@@ -31,12 +31,13 @@
 #if !TARGET_OS_TV
 	self.title = @"Představení";
 
-	self.navigationController.navigationBar.barTintColor =
-		[UIColor colorWithWhite:1 alpha:.9];
-	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
-	self.navigationController.navigationBar.titleTextAttributes = @{
-		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
-	};
+	[self colorizeNavBar];
+
+	if (@available(iOS 11.0, *)) {
+		self.view.backgroundColor = [UIColor colorNamed:@"view-background"];
+		_shortDescription.textColor = [UIColor colorNamed:@"detail-paragraph-text"];
+		_longDescription.textColor = [UIColor colorNamed:@"detail-paragraph-secondary-text"];
+	}
 #else
 	UIEdgeInsets insets = UIEdgeInsetsMake(15, 0, 10, 0);
 	_shortDescription.textContainerInset = insets;
@@ -51,12 +52,7 @@
 	[super viewDidAppear:animated];
 
 #if !TARGET_OS_TV
-	self.navigationController.navigationBar.barTintColor =
-		[UIColor colorWithWhite:1 alpha:.9];
-	self.navigationController.navigationBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
-	self.navigationController.navigationBar.titleTextAttributes = @{
-		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
-	};
+	[self colorizeNavBar];
 #endif
 }
 
@@ -77,6 +73,25 @@
 {
 	[super viewDidLayoutSubviews];
 	[self recalculateContent];
+}
+
+- (void)colorizeNavBar
+{
+	UINavigationBar *navBar = self.navigationController.navigationBar;
+
+	navBar.barTintColor = [UIColor colorWithWhite:1 alpha:.9];
+	navBar.tintColor = [UIColor colorWithWhite:.72 alpha:1];
+	navBar.titleTextAttributes = @{
+		NSForegroundColorAttributeName: [UIColor colorWithWhite:.46 alpha:1]
+	};
+
+	if (@available(iOS 11.0, *)) {
+		navBar.barTintColor = [UIColor colorNamed:@"navbar-bartint-detail"];
+		navBar.tintColor = [UIColor colorNamed:@"navbar-tint-detail"];
+		navBar.titleTextAttributes = @{
+			NSForegroundColorAttributeName: [UIColor colorNamed:@"navbar-text-detail"]
+		};
+	}
 }
 
 - (void)recalculateContent
@@ -122,7 +137,7 @@
 		initWithString:_shortDescription.text attributes:@{
 			NSParagraphStyleAttributeName: paragraphStyle,
 			NSFontAttributeName: [_shortDescription.font fontWithSize:fontSize],
-			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
+			NSForegroundColorAttributeName: _shortDescription.textColor,
 		}];
 
 #if !TARGET_OS_TV
@@ -133,7 +148,7 @@
 		initWithString:_longDescription.text attributes:@{
 			NSParagraphStyleAttributeName: paragraphStyle,
 			NSFontAttributeName: [_longDescription.font fontWithSize:fontSize],
-			NSForegroundColorAttributeName: [UIColor colorWithWhite:94/255.0 alpha:1]
+			NSForegroundColorAttributeName: _longDescription.textColor,
 		}];
 
 	_detailsView.width = width;
@@ -154,7 +169,7 @@
 		if ([view isKindOfClass:[EventDetailCellView class]])
 			[view removeFromSuperview];
 
-	int currentY = _detailsView.bottom+16.0f;
+	int currentY = _longDescription.bottom+16.0f;
 #if !TARGET_OS_TV
 	for (NSString *option in _event.opts)
 	{

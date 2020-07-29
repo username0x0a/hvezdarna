@@ -64,12 +64,8 @@
 #if TARGET_OS_TV == 1
 	self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-bg"]];
 #endif
-
 	self.window.rootViewController = _tabBarController;
-#if TARGET_OS_IOS == 1
-	if (@available(iOS 13.0, *))
-		self.window.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-#endif
+
 	[self.window makeKeyAndVisible];
 
 	return YES;
@@ -134,11 +130,18 @@ static UIViewAnimationOptions quickAnimation =
 	static BOOL isInitialDraw = YES;
 
 	UIViewController *controller = _tabBarController.selectedViewController;
-	BOOL darkScreen = [controller isKindOfClass:[WeatherViewController class]];
+	BOOL isWeatherScreen = [controller isKindOfClass:[WeatherViewController class]];
+	BOOL darkScreen = isWeatherScreen;
+
+	if (@available(iOS 13.0, tvOS 13.0, *)) {
+		darkScreen = darkScreen || controller.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
+	}
+
 	UITabBar *tabBar = _tabBarController.tabBar;
 
 #if !TARGET_OS_TV
 
+	BOOL transparentTabBar = isWeatherScreen;
 	CGFloat firstDelay = (isInitialDraw) ? .05:.12;
 
 	[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
@@ -147,12 +150,26 @@ static UIViewAnimationOptions quickAnimation =
 
 	} completion:^(BOOL f) {
 
-		tabBar.backgroundColor = (darkScreen) ? [UIColor clearColor] : [UIColor clearColor];
-		tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
+		static UIColor *st_backColor = nil;
+		static UIColor *st_btntColor = nil;
+		static UIImage *st_backImage = nil;
+		static UIImage *st_shadImage = nil;
+
+		if (isInitialDraw) {
+			st_backColor = tabBar.backgroundColor;
+			st_btntColor = tabBar.barTintColor;
+			st_backImage = tabBar.backgroundImage;
+			st_shadImage = tabBar.shadowImage;
+		}
+
+		tabBar.backgroundColor = (transparentTabBar) ? [UIColor clearColor] : st_backColor;
+		tabBar.backgroundImage = (transparentTabBar) ?  [UIImage new] : st_backImage;
 		tabBar.translucent = YES;
-		tabBar.shadowImage = (darkScreen) ? [UIImage new] : nil;
-		tabBar.tintColor = (darkScreen) ? [UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
-		tabBar.barTintColor = (darkScreen) ? [UIColor lightGrayColor] : [UIColor whiteColor];
+		tabBar.shadowImage = (transparentTabBar) ? [UIImage new] : st_shadImage;
+		tabBar.tintColor = (isWeatherScreen) ?
+			[UIColor whiteColor] : [UIColor colorWithRed:53.0/255.0 green:165.0/255.0 blue:215.0/255.0 alpha:1.0];
+		tabBar.barTintColor = (isWeatherScreen) ?
+			[UIColor lightGrayColor] : st_btntColor;
 
 		[UIView animateWithDuration:firstDelay delay:0 options:quickAnimation animations:^{
 
@@ -164,8 +181,6 @@ static UIViewAnimationOptions quickAnimation =
 #else
 
 	if (@available(tvOS 13.0, *)) {
-
-		darkScreen = darkScreen || controller.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark;
 
 		tabBar.backgroundImage = (darkScreen) ?  [UIImage new] : nil;
 
@@ -221,7 +236,6 @@ static UIViewAnimationOptions quickAnimation =
 - (BOOL)tabBarController:(UITabBarController *)tabBarController
 shouldSelectViewController:(UIViewController *)viewController
 {
-	NSArray *tabViewControllers = tabBarController.viewControllers;
 	UIView *fromView = tabBarController.selectedViewController.view;
 	UIView *toView = viewController.view;
 
@@ -234,9 +248,10 @@ shouldSelectViewController:(UIViewController *)viewController
 		return NO;
 	}
 
-	NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
-
 #if !TARGET_OS_TV
+
+	NSArray *tabViewControllers = tabBarController.viewControllers;
+	NSUInteger toIndex = [tabViewControllers indexOfObject:viewController];
 
 	[UIView transitionFromView:fromView toView:toView duration:0.3
 		options:UIViewAnimationOptionTransitionCrossDissolve completion:^(BOOL finished) {

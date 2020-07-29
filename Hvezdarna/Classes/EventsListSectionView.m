@@ -18,12 +18,16 @@
 	{
 		self.backgroundColor = [UIColor colorWithWhite:.9f alpha:.9f];
 
+		if (@available(iOS 11.0, *)) {
+			self.backgroundColor = [UIColor colorNamed:@"table-header-background"];
+		}
+
 		CGFloat sepLine = 1.0 / [UIScreen mainScreen].scale;
 
 		for (int i = 0; i < 2; i++) {
 			UIView *line = [[UIView alloc] initWithFrame:self.bounds];
 			line.height = sepLine;
-			line.backgroundColor = [UIColor colorWithWhite:.85f alpha:.9f];
+			line.backgroundColor = [UIColor colorWithWhite:.65f alpha:.7f];
 			line.autoresizingMask = (i) ? UIViewAutoresizingFlexibleTopMargin : UIViewAutoresizingFlexibleBottomMargin;
 			line.autoresizingMask |= UIViewAutoresizingFlexibleWidth;
 			[self addSubview:line];

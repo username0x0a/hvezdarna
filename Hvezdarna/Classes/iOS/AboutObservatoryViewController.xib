@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17147" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17120"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,10 +43,10 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <attributedString key="attributedText">
                                 <fragment>
-                                    <string key="content">Hvězdárna a planetárium Brno představuje multivizuální centrum pro popularizaci nejrůznějších věd, především z oblasti neživé přírody. Na prvním místě je samozřejmě astronomie, ale nevyhýbáme se ani geologii, chemii, fyzice, matematice, geografii a mnoha dalším. To vše v laikům srozumitelné, zábavné a také interaktivní podobě. Nejsme vědeckým pracovištěm, ale s vědou se u nás setkáte na každém kroku. Věnujeme se také propagaci brněnských univerzit a velkých vědeckých projektů realizovaných na území města Brna. Naše prostory jsou ideální pro středně velké kulturní aktivity, stejně jako akce kongresové či incentivní turistiky.
-</string>
+                                    <mutableString key="content">Hvězdárna a planetárium Brno představuje multivizuální centrum pro popularizaci nejrůznějších věd, především z oblasti neživé přírody. Na prvním místě je samozřejmě astronomie, ale nevyhýbáme se ani geologii, chemii, fyzice, matematice, geografii a mnoha dalším. To vše v laikům srozumitelné, zábavné a také interaktivní podobě. Nejsme vědeckým pracovištěm, ale s vědou se u nás setkáte na každém kroku. Věnujeme se také propagaci brněnských univerzit a velkých vědeckých projektů realizovaných na území města Brna. Naše prostory jsou ideální pro středně velké kulturní aktivity, stejně jako akce kongresové či incentivní turistiky.
+</mutableString>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -55,7 +56,7 @@
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -67,7 +68,7 @@ http://www.hvezdarna.cz
 e-mail@hvezdarna.cz
 +(420) 541 32 12 87</string>
                                     <attributes>
-                                        <color key="NSColor" red="0.066804558038711548" green="0.40124079585075378" blue="0.99837982654571533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="linkColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -77,7 +78,7 @@ e-mail@hvezdarna.cz
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -87,14 +88,14 @@ Cg
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content="Hvězdárna a planetárium Brno je příspěvkovou organizací zřízenou statutárním městem Brnem.">
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -106,7 +107,7 @@ Cg
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43" userLabel="Web Button">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43" userLabel="Web Button">
                     <rect key="frame" x="53" y="469" width="214" height="36"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <state key="normal" title="Oficiální web hvězdárny">
@@ -131,5 +132,11 @@ Cg
     <resources>
         <image name="Default-bg" width="2732" height="2732"/>
         <image name="hvezdarna-logo" width="275" height="100"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
