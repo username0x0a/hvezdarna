@@ -125,6 +125,16 @@ events = [ ]
 			# desc = shortDesc + "\n\n" + desc
 			# shortDesc = "ZRUŠENO"
 
+			# Letní kino special
+			if p.index('Letní kino')
+				movieName = p.getValue(['"cal-day-desc"','<br>'], "\n")
+				if movieName != nil
+					movieName = movieName.strip
+					name = name + ": " + movieName
+					shortDesc = shortDesc.gsub movieName, ''
+				end
+			end
+
 			e = { }
 			e['name'] = name
 			e['price'] = price
