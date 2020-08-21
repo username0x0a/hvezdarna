@@ -16,9 +16,28 @@
 #import "EventsList.h"
 
 
+@interface MSTabBarController: UITabBarController
+
+@property (nonatomic, copy) void (^appearanceUpdateHandler)(void);
+
+@end
+
+@implementation MSTabBarController
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
+{
+	[super traitCollectionDidChange:previousTraitCollection];
+#if TARGET_OS_TV == 1
+	__auto_type block = _appearanceUpdateHandler;
+	if (block) block();
+#endif
+}
+
+@end
+
 @interface AppDelegate () <UIApplicationDelegate, UITabBarControllerDelegate>
 
-@property (nonatomic, strong) UITabBarController *tabBarController;
+@property (nonatomic, strong) MSTabBarController *tabBarController;
 
 @end
 
@@ -47,9 +66,14 @@
 	about = [[AboutObservatoryViewController alloc] initWithNibName:
 	           @"AboutObservatoryViewController" bundle:nil];
 
-	_tabBarController = [UITabBarController new];
+	__weak typeof(self) wself = self;
+
+	_tabBarController = [MSTabBarController new];
 	_tabBarController.delegate = self;
 	_tabBarController.viewControllers = @[ weather, eventsList, about ];
+	_tabBarController.appearanceUpdateHandler = ^{
+		[wself refreshTabBarAppearance];
+	};
 
 #if !TARGET_OS_TV
 	[[UITabBarItem appearance] setTitlePositionAdjustment:UIOffsetMake(0, -2)];
