@@ -17,7 +17,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    if (self = [super initWithStyle:style reuseIdentifier:nil])
+	if (self = [super initWithStyle:style reuseIdentifier:nil])
 	{
 		[self.textLabel removeFromSuperview];
 		[self.detailTextLabel removeFromSuperview];

@@ -108,7 +108,7 @@
 	}
 
 #if TARGET_OS_TV == 1
-    self.view.backgroundColor = [UIColor clearColor];
+	self.view.backgroundColor = [UIColor clearColor];
 #endif
 }
 

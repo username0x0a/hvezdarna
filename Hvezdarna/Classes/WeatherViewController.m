@@ -118,41 +118,41 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+	[super viewWillAppear:animated];
 
 #if TARGET_OS_TV == 1
 
-    UIView *blur = _blurView;
-    UIView *back = _backgroundView;
+	UIView *blur = _blurView;
+	UIView *back = _backgroundView;
 
-    blur.alpha = 0;
-    back.alpha = 0;
+	blur.alpha = 0;
+	back.alpha = 0;
 
-    UIView *sup = self.tabBarController.view.superview;
-    [sup insertSubview:back atIndex:0];
-    [sup insertSubview:blur atIndex:0];
+	UIView *sup = self.tabBarController.view.superview;
+	[sup insertSubview:back atIndex:0];
+	[sup insertSubview:blur atIndex:0];
 
-    [UIView animateWithDuration:0.5 animations:^{
-        blur.alpha = 1;
-        back.alpha = 1;
-    }];
+	[UIView animateWithDuration:0.5 animations:^{
+		blur.alpha = 1;
+		back.alpha = 1;
+	}];
 
 #endif
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+	[super viewWillDisappear:animated];
 
 #if TARGET_OS_TV == 1
 
-    UIView *blur = _blurView;
-    UIView *back = _backgroundView;
+	UIView *blur = _blurView;
+	UIView *back = _backgroundView;
 
-    [UIView animateWithDuration:0.5 animations:^{
-        blur.alpha = 0;
-        back.alpha = 0;
-    }];
+	[UIView animateWithDuration:0.5 animations:^{
+		blur.alpha = 0;
+		back.alpha = 0;
+	}];
 
 #endif
 }
