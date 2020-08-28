@@ -102,14 +102,28 @@
 	object_setClass(bar, [EventsListSearchBar class]);
 	bar.clipsToBounds = NO;
 	self.navigationItem.titleView = bar;
+
+	if (@available(iOS 11.0, *)) {
+		self.view.backgroundColor = [UIColor colorNamed:@"view-background"];
+	}
+
+#if TARGET_OS_TV == 1
+	self.view.backgroundColor = [UIColor clearColor];
+#endif
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 
-	self.navigationController.navigationBar.translucent = YES;
-	self.navigationController.navigationBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
+	UINavigationBar *navBar = self.navigationController.navigationBar;
+
+	navBar.translucent = YES;
+	navBar.barTintColor = [UIColor colorWithWhite:.8 alpha:.8];
+
+	if (@available(iOS 11.0, *)) {
+		navBar.barTintColor = [UIColor colorNamed:@"navbar-bartint-list"];
+	}
 
 	NSIndexPath *selection = [_tableView indexPathForSelectedRow];
 

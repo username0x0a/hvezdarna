@@ -93,10 +93,17 @@
 		v.layer.shadowOpacity = 1.0;
 		v.layer.shadowRadius = 1;
 #else
-		v.layer.shadowOpacity = 0.45;
-		v.layer.shadowRadius = 12;
+		v.layer.shadowOpacity = 0.75;
+		v.layer.shadowRadius = 4;
 #endif
 	}
+
+#if TARGET_OS_TV == 1
+	self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+	self.view.layer.shadowOffset = CGSizeZero;
+	self.view.layer.shadowOpacity = 1.0;
+	self.view.layer.shadowRadius = 64;
+#endif
 
 	CGFloat colorIntensity = (hour < 6 || hour > 20) ? .11 : .22;
 
@@ -114,6 +121,84 @@
 	l.startPoint = CGPointMake(0.5f, 0.0f);
 	l.endPoint = CGPointMake(0.5f, 1.0f);
 	_blurView.layer.mask = l;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+
+#if TARGET_OS_TV == 1
+
+	UIView *blur = _blurView;
+	UIView *back = _backgroundView;
+
+	blur.alpha = 0;
+	back.alpha = 0;
+
+	UIView *sup = self.tabBarController.view.superview;
+	[sup insertSubview:back atIndex:0];
+	[sup insertSubview:blur atIndex:0];
+
+	[UIView animateWithDuration:0.5 animations:^{
+		blur.alpha = 1;
+		back.alpha = 1;
+	}];
+
+	NSArray<UIView *> *firstViews = @[ _conditionImage ];
+	NSArray<UIView *> *secondViews = @[ _temperatureHeadingLabel, _temperatureLabel ];
+	NSArray<UIView *> *thirdViews = @[ _detailsContainer ];
+
+	for (UIView *v in firstViews) {
+		v.alpha = 0; v.transform = CGAffineTransformMakeTranslation(0, -20);
+	}
+
+	for (UIView *v in secondViews) {
+		v.alpha = 0; v.transform = CGAffineTransformMakeTranslation(0, -20);
+	}
+
+	for (UIView *v in thirdViews) {
+		v.alpha = 0; v.transform = CGAffineTransformMakeTranslation(0, -20);
+	}
+
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+		for (UIView *v in firstViews) {
+			[UIView animateWithDuration:0.25 delay:0.0 options:kNilOptions animations:^{
+				v.alpha = 1; v.transform = CGAffineTransformIdentity;
+			} completion:nil];
+		}
+
+		for (UIView *v in secondViews) {
+			[UIView animateWithDuration:0.35 delay:0.12 options:kNilOptions animations:^{
+				v.alpha = 1; v.transform = CGAffineTransformIdentity;
+			} completion:nil];
+		}
+
+		for (UIView *v in thirdViews) {
+			[UIView animateWithDuration:0.45 delay:0.24 options:kNilOptions animations:^{
+				v.alpha = 1; v.transform = CGAffineTransformIdentity;
+			} completion:nil];
+		}
+	});
+
+#endif
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+
+#if TARGET_OS_TV == 1
+
+	UIView *blur = _blurView;
+	UIView *back = _backgroundView;
+
+	[UIView animateWithDuration:0.5 animations:^{
+		blur.alpha = 0;
+		back.alpha = 0;
+	}];
+
+#endif
 }
 
 - (void)viewDidAppear:(BOOL)animated

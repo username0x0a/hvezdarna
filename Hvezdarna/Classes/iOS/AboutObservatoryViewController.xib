@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16092.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16082.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -45,7 +45,7 @@
                                     <string key="content">Hvězdárna a planetárium Brno představuje multivizuální centrum pro popularizaci nejrůznějších věd, především z oblasti neživé přírody. Na prvním místě je samozřejmě astronomie, ale nevyhýbáme se ani geologii, chemii, fyzice, matematice, geografii a mnoha dalším. To vše v laikům srozumitelné, zábavné a také interaktivní podobě. Nejsme vědeckým pracovištěm, ale s vědou se u nás setkáte na každém kroku. Věnujeme se také propagaci brněnských univerzit a velkých vědeckých projektů realizovaných na území města Brna. Naše prostory jsou ideální pro středně velké kulturní aktivity, stejně jako akce kongresové či incentivní turistiky.
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -55,7 +55,7 @@
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -67,7 +67,7 @@ http://www.hvezdarna.cz
 e-mail@hvezdarna.cz
 +(420) 541 32 12 87</string>
                                     <attributes>
-                                        <color key="NSColor" red="0.066804558038711548" green="0.40124079585075378" blue="0.99837982654571533" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -77,7 +77,7 @@ e-mail@hvezdarna.cz
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
@@ -87,14 +87,14 @@ Cg
 Cg
 </string>
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
                                 </fragment>
                                 <fragment content="Hvězdárna a planetárium Brno je příspěvkovou organizací zřízenou statutárním městem Brnem.">
                                     <attributes>
-                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="NSColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <font key="NSFont" size="18" name="AvenirNext-Regular"/>
                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                     </attributes>
