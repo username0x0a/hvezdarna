@@ -496,7 +496,7 @@
 		B0AC4C1915DA75B80075D628 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1160;
 				ORGANIZATIONNAME = Heartpix;
 				TargetAttributes = {
 					B0AC4C2115DA75B80075D628 = {
