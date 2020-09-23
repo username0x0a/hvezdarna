@@ -81,10 +81,6 @@
 
 	[self refreshTabBarAppearance];
 
-#if !TARGET_OS_TV
-	[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-#endif
-
 #if TARGET_OS_TV == 1
 	self.window.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"Default-bg"]];
 #endif

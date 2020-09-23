@@ -20,6 +20,8 @@
 @property (nonatomic, strong) WeatherViewModel *model;
 @property (nonatomic, strong) UIView *blurView;
 
+@property (nonatomic, assign) BOOL fullscreen;
+
 @end
 
 
@@ -205,12 +207,18 @@
 {
 	[super viewDidAppear:animated];
 
-	if (![Utils connectionAvailable]) {
-#if !TARGET_OS_TV
-		[[[UIAlertView alloc] initWithTitle:@"Chyba připojení"
-			message:@"Připojení k internetu není k dipozici" delegate:self
-				cancelButtonTitle:@"Zavřít" otherButtonTitles:nil] show];
-#endif
+	if (![Utils connectionAvailable])
+	{
+		UIAlertController *alert = [UIAlertController
+			alertControllerWithTitle:@"Chyba připojení"
+			message:@"Připojení k internetu není k dipozici"
+			preferredStyle:UIAlertControllerStyleAlert];
+
+		[alert addAction:[UIAlertAction actionWithTitle:@"Zavřít"
+			style:UIAlertActionStyleDefault handler:nil]];
+
+		[self presentViewController:alert animated:YES completion:nil];
+
 		return;
 	}
 
@@ -222,10 +230,22 @@
 }
 
 #if !TARGET_OS_TV
+
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
 	return UIStatusBarStyleLightContent;
 }
+
+- (BOOL)prefersStatusBarHidden
+{
+	return _fullscreen;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+	return UIStatusBarAnimationSlide;
+}
+
 #endif
 
 
@@ -342,16 +362,20 @@
 
 - (void)backgroundTapped:(UITapGestureRecognizer *)gesture
 {
-	static BOOL hidden = NO;
+	self.fullscreen = !_fullscreen;
+}
+
+- (void)setFullscreen:(BOOL)fullscreen
+{
+	_fullscreen = fullscreen;
+
+	BOOL hidden = fullscreen == YES;
 
 	[UIView animateWithDuration:.233 delay:0 options:UIViewAnimationOptionBeginFromCurrentState|
 	 UIViewAnimationOptionAllowUserInteraction animations:^{
 
-		hidden = !hidden;
-
 #if !TARGET_OS_TV
-		[[UIApplication sharedApplication] setStatusBarHidden:hidden
-			withAnimation:UIStatusBarAnimationSlide];
+		[self setNeedsStatusBarAppearanceUpdate];
 #endif
 
 		for (UIView *v in self.view.subviews)
