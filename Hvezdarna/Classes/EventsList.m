@@ -122,18 +122,19 @@
 		}
 
 		NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-		
+
+		NSTimeInterval currentUnixTS = [Utils unixTimestamp];
+
 		NSArray *events = [response[@"events"] parsedArray];
+		NSTimeInterval latestUnixTS = [events.lastObject[@"time"] parsedNumber].doubleValue;
 		
-		if (events.count == 0) {
+		if (events.count == 0 || latestUnixTS < currentUnixTS) {
 			if (completion) completion(EventsListUpdateResultNoChange);
 			return;
 		}
 		
 		[_db beginTransaction];
 		[self clearEventsData];
-
-		NSTimeInterval currentUnixTS = [Utils unixTimestamp];
 
 		for (NSDictionary *event in events)
 		{
