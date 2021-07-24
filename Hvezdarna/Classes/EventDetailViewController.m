@@ -96,12 +96,15 @@
 
 - (void)recalculateContent
 {
-	CGFloat width = self.view.width - 2*20;
+	CGFloat width = self.view.width - 2*12;
 	BOOL wide = width >= 600;
 
 	CGFloat fontSize = (wide) ? 29:26;
 #if TARGET_OS_TV == 1
-	width = _scrollView.width - _scrollView.layoutMargins.left - _scrollView.layoutMargins.right - _scrollView.contentInset.left - _scrollView.contentInset.right;
+	width = _scrollView.width - _scrollView.layoutMargins.left
+	                          - _scrollView.layoutMargins.right
+	                          - _scrollView.contentInset.left
+	                          - _scrollView.contentInset.right;
 	fontSize = 64;
 #endif
 
@@ -125,7 +128,9 @@
 
 	NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 	paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+#if TARGET_OS_TV == 1
 	paragraphStyle.lineSpacing = -2;
+#endif
 	paragraphStyle.alignment = NSTextAlignmentJustified;
 
 	fontSize = (wide) ? 20:18;
@@ -161,24 +166,26 @@
 	_longDescription.width = width;
 	_longDescription.top = _shortDescription.bottom+4.0f;
 	_longDescription.height = _longDescription.expandedSize.height;
-	_detailsView.top = _infoView.bottom;
-	_detailsView.height = _longDescription.bottom;
 
+	_detailsView.top = _infoView.bottom;
+	_detailsView.height = _longDescription.text.length ?
+		_longDescription.bottom : _shortDescription.bottom;
+
+	CGFloat currentY = _detailsView.height+16.0f;
+
+#if !TARGET_OS_TV
 	// Clear old custom fields
 	for (UIView *view in _detailsView.subviews)
 		if ([view isKindOfClass:[EventDetailCellView class]])
 			[view removeFromSuperview];
 
-	int currentY = _longDescription.bottom+16.0f;
-#if !TARGET_OS_TV
 	for (NSString *option in _event.opts)
 	{
 		UINib *nibForCells = [UINib nibWithNibName:@"EventDetailCellView" bundle:nil];
 		NSArray *topLevelObjects = [nibForCells instantiateWithOwner:self options:nil];
 		EventDetailCellView *cell = [topLevelObjects objectAtIndex:0];
 		cell.width = _detailsView.width;
-		NSString *val = [option stringByReplacingOccurrencesOfString:@": " withString:@" je "];
-		[cell setTextOfDetail:val];
+		[cell setTextOfDetail:option];
 		[_detailsView addSubview:cell];
 		cell.top = currentY;
 		currentY = cell.bottom;
