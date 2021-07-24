@@ -24,7 +24,7 @@
 
 	lastUpdate = [NSDate new];
 
-	NSURL *url = [NSURL URLWithString:@"https://www.hvezdarna.cz/meteo/lastmeteodatanew"];
+	NSURL *url = [NSURL URLWithString:@"https://hvezdarna.cz/meteo/lastmeteodatanew"];
 
 	[[[NSURLSession sharedSession] dataTaskWithURL:url
 		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -68,7 +68,9 @@
 	lastUpdate = [NSDate new];
 
 	// @"http://www.hvezdarna.cz/ryba/ryba512.jpg"
-	NSURL *url = [NSURL URLWithString:@"http://www.hvezdarna.cz/kamera/kamera1920.jpg"];
+	NSString *urlString = [NSString stringWithFormat:
+		@"http://hvezdarna.cz/kamera/kamera1920.jpg?%.0f", [NSDate new].timeIntervalSince1970];
+	NSURL *url = [NSURL URLWithString:urlString];
 
 	[[[NSURLSession sharedSession] dataTaskWithURL:url
 		completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
