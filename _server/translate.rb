@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+require 'fileutils'
 require 'net/https'
 require 'uri'
 require 'json'
+
+FileUtils.cd File.dirname File.realpath File.expand_path __FILE__
 
 exit if !File.exists? 'program.json'
 

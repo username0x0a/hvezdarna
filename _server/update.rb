@@ -1,10 +1,15 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 
+require 'fileutils'
 require 'net/http'
 require 'uri'
 require 'json'
 require 'pp'
+
+ENV['TZ'] = 'Europe/Prague'
+
+FileUtils.cd File.dirname File.realpath File.expand_path __FILE__
 
 class String
 
@@ -16,6 +21,7 @@ class String
 			return nil if si == nil
 			si += b.length
 		}
+		return self[si..] if end_ == nil
 		ei = self.index(end_, si)
 		return nil if ei == nil
 		ei -= 1
@@ -37,8 +43,9 @@ class String
 			c = [s.to_i(16)].pack('U')
 			out = out.gsub o, c
 		}
-#		out = out.gsub /&#(8192|8193|8194|8195|8196|8197|8198|8199|8200);/, ' '
-#		out = out.gsub /&#[0-9]{1,4};/, ''
+		# out = out.gsub /&#(8192|8193|8194|8195|8196|8197|8198|8199|8200);/, ' '
+		# out = out.gsub /&#[0-9]{1,4};/, ''
+		out = out.gsub '&nbsp;', ' '
 		return out
 	end
 
@@ -72,93 +79,111 @@ def month_to_number(mon)
 	throw :badMonthException
 end
 
+def string_difference_percent(a, b)
+	longer = [a.size, b.size].max
+	same = a.each_char.zip(b.each_char).count { |a,b| a == b }
+	(longer - same) / a.size.to_f
+end
+
 
 ###
 
 tm = Time.now
 events = [ ]
 
-0.upto(3) {|i|
+src = Net::HTTP.get(URI('https://www.hvezdarna.cz/?type=verejnost')).force_encoding('UTF-8')
+src = src.getValue(['id="main-program-content"', '</h1'], '<!-- main-program-content -->')
 
-	src = Net::HTTP.get(URI('https://www.hvezdarna.cz/?page_id=442&cal_page='+i.to_s)).force_encoding('UTF-8')
-	src = src.getValue(['<div id="cal-main">'], '<a name=priklad></a>')
-	src = src.gsub(' cal-day-last','')
+programs = src.split('<!-- main-program-porad -->')
+programs.each {|p|
 
-	days = src.split('<div class="cal-day"')
-	days.each {|d|
+	name = p.getValue(['<h3', '"main-program-title"', '>'], '</h3')
+	next if name == nil
+	name = name.removeHTML.removeEntities.strip
 
-		day_name = d.getValue(['cal-day-title','<h3>'], '</h3')
-		next if day_name == nil
+	detail = p.match(/https:\/\/.*?hvezdarna.cz\/porad\/.*?"/)
+	detail = detail[0] if detail != nil
 
-		day = day_name.to_i
-		month = month_to_number(day_name)
-		year = tm.year
-		year+=1 if month < tm.month
-		day = Time.new(year, month, day)
+	desc = nil
+	price = nil
 
-		programs = d.split('<div class="cal-day-item-desc-outer')
-		programs.each {|p|
+	if detail
 
-			name = p.getValue(['cal-title-','<h5>'], '</h5')
-			next if name == nil
-			next if p.index('cal-day-item-gray') != nil
-			name = name.strip
+	end
 
-			shortDesc = p.getValue(['cal-day-desc','>'], '</div')
-			if shortDesc != nil then
-				shortDesc = shortDesc.removeHTML.removeEntities
-				if shortDesc.index('ZRUŠENO') != nil then
-					shortDesc = shortDesc.gsub('ZRUŠENO', '')
-					shortDesc = "ZRUŠENO\n\n" + shortDesc
-				end
-				shortDesc = shortDesc.clearParagraphs
-			end
+	shortDesc = p.getValue(['class="main-program-desc"', '<p>'], '</p')
+	if shortDesc != nil then
+		shortDesc = shortDesc.removeHTML.removeEntities
+		if shortDesc.index('ZRUŠENO') != nil then
+			shortDesc = shortDesc.gsub('ZRUŠENO', '')
+			shortDesc = "ZRUŠENO\n\n" + shortDesc
+		end
+		shortDesc = shortDesc.clearParagraphs
+	end
 
-			desc = p.getValue(['cal-day-item-desc-inner','>','>'], /(<div|<\/div)/)
-			desc = desc.removeHTML.removeEntities.clearParagraphs if desc
+	options = p.getValue(['class="main-program-desc"'], '-->')
+	options = options.split('<div class')
+	options = options.map {|option|
+		next nil if option.index('"main-program-tecky"') == nil
+		option = option.getValue(['"main-program-tecky"', '>'], '<')
+		next nil if option == nil || option.length == 0
+		option
+	} || []
+	options = options.compact
 
-			price = p.getValue(['cal-day-price', '>', 'cena: '], '</div')
-			time = p.getValue(['<h4>'], '</h4').split(':')
-			time = Time.at(day.to_i + time[0].to_i*60*60 + time[1].to_i*60).to_i
+	date_links = {}
 
-			# # covid-19 special
-			# desc = shortDesc + "\n\n" + desc
-			# shortDesc = "ZRUŠENO"
-
-			# Letní kino special
-			if p.index('Letní kino')
-				movieName = p.getValue(['"cal-day-desc"','<br>'], "\n")
-				if movieName != nil
-					movieName = movieName.strip
-					name = name + ": " + movieName
-					shortDesc = shortDesc.gsub movieName, ''
-				end
-			end
-
-			e = { }
-			e['name'] = name
-			e['price'] = price
-			e['time'] = time
-			e['desc'] = desc
-			e['short_desc'] = shortDesc
-
-			link = nil
-			programID = p.getValue(['<a href="', 'prdID='], '"')
-			link = 'http://vstupenky.hvezdarna.cz/incoming.aspx?mrsid=2&eventid='+ programID if programID != nil
-			e['link'] = link
-
-			e['options'] = p.getValue(['<P','align=right>'],'</div')
-			if (e['options'])
-				e['options'] = e['options'].gsub('<BR>','<br>').gsub(/(<I>|<\/I>|<P>|<\/P>)/,'').split('<br>')
-				e['options'].map! {|opt| opt.strip}
-#				e['options'] = e['options'].join('|')
-			end
-			events << e
-		}
-
+	dates = p.getValue(['class="main-program-terminy"', '>'], nil)
+	dates = dates.split('<a ')
+	dates.each {|date|
+		next if date.index('href=') == nil
+		link = date.getValue(['href=', '"'], '"')
+		link = nil if link.start_with?('https') == false
+		date = date.getValue(['href=', '>'], '</a')
+		next if date == nil
+		time = date.getValue(['</strong', '>'], nil)
+		next if time == nil
+		date = date.getValue(['<strong', '>'], '</strong').strip
+		next if time == nil
+		date = date.strip.split('.').map{|n|
+			n = n.strip
+			n.to_i < 10 && n.length < 2 ? "0#{n}" : n
+		}.reverse.join('-')
+		time = time.strip.split(':').map{|n|
+			n = n.strip
+			n.to_i < 10 && n.length < 2 ? "0#{n}" : n
+		}.join(':')
+		date_links["#{date}T#{time}"] = link
 	}
 
+	# # Letní kino special
+	# if p.index('Letní kino')
+	# 	movieName = p.getValue(['"cal-day-desc"','<br>'], "\n")
+	# 	if movieName != nil
+	# 		movieName = movieName.strip
+	# 		name = name + ": " + movieName
+	# 		shortDesc = shortDesc.gsub movieName, ''
+	# 	end
+	# end
+
+	date_links.keys.each{|datetime|
+		y, m, d, h, s = datetime.split(/[-T:]/).map{|i|i.to_i}
+		time = Time.new y, m, d, h, s
+
+		e = { }
+		e['name'] = name
+		e['price'] = price
+		e['time'] = time.to_i
+		e['desc'] = desc
+		e['short_desc'] = shortDesc
+		e['link'] = date_links[datetime]
+		e['options'] = options
+
+		events << e
+	}
 }
+
+events = events.sort_by {|a| a['time'] }
 
 if events.count then
 
